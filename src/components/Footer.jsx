@@ -16,7 +16,6 @@ export default function Footer() {
       </div>
     </div>
 
-    {/* Links Section */}
     <div className="flex flex-row gap-3 md:gap-8 lg:gap-24 text-start md:text-left w-full">
      
       <div className="">

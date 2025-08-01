@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
 import Header from "./components/Header"
 import Footer from "./components/Footer";
+import Error from "./components/Error";
 import {Embla} from "./components/Embla";
 
 

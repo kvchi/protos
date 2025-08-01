@@ -17,7 +17,7 @@ const Testimonial = () => {
             key={testimonial.id}
             className={`
               bg-[#E7EBEF] shadow-lg rounded-xl py-8 pl-8 pr-8
-              w-[90%] sm:w-[47%] md:w-[30%] xl:w-[25%]
+              w-[100%] sm:w-[47%] md:w-[50%] lg:w-[29%] xl:w-[45%] 
               transition hover:scale-[1.02] hover:shadow-xl 
               ${translateYClasses[index]}
             `}

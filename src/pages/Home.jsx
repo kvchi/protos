@@ -66,10 +66,10 @@ export default function Home() {
         ))}
       </div>
       </section>
-      <section className="bg-white w-full py-16 flex items-center">
-        <div className="px-24">
+      <section className="bg-white w-full px-10 py-16 flex lg:flex-row flex-col items-center">
+        <div className="lg:px-24">
           <h3 className="pb-10 font-semibold text-2xl">What out client <span className="block">say about us</span></h3>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non at nisi amet! Iste molestiae quo laborum. A vel enim eum sint natus vero, accusantium excepturi sapiente reprehenderit laudantium culpa consequatur.</p>
+          <p className="w-full"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non at nisi amet! Iste molestiae quo laborum. A vel enim eum sint natus vero, accusantium excepturi sapiente reprehenderit laudantium culpa consequatur.</p>
         </div>
         <div>
           <Testimonials />

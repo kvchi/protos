@@ -5,11 +5,13 @@ import { categoriesData } from "../data/categoriesData";
 import workData from '../data/workData';
 import WorkCard from '../components/WorkCard';
 import Testimonials from '../components/Testimonials';
+import {Embla} from "../components/Embla";
 
 
 export default function Home() {
   return (
     <div className="">
+      <Embla />
       <div className=" hidden lg:block px-24 py-10 w-full">
         <h3 className="text-[#0E375F] font-semibold text-2xl">
           Top Business Around
@@ -68,7 +70,7 @@ export default function Home() {
       </section>
       <section className="bg-white w-full px-10 py-16 flex lg:flex-row flex-col items-center">
         <div className="lg:px-24">
-          <h3 className="pb-10 font-semibold text-2xl">What out client <span className="block">say about us</span></h3>
+          <h3 className="pb-10 font-semibold text-3xl md:text-2xl">What out client <span className="block">say about us</span></h3>
           <p className="w-full"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non at nisi amet! Iste molestiae quo laborum. A vel enim eum sint natus vero, accusantium excepturi sapiente reprehenderit laudantium culpa consequatur.</p>
         </div>
         <div>

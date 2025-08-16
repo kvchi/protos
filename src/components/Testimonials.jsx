@@ -16,8 +16,8 @@ const Testimonial = () => {
           <div
             key={testimonial.id}
             className={`
-              bg-[#E7EBEF] shadow-lg rounded-xl py-8 pl-8 pr-8
-              w-[100%] sm:w-[47%] md:w-[50%] lg:w-[25%] xl:w-[27%] 
+              bg-[#E7EBEF] shadow-lg shadow-[#80B7EC]/60 rounded-xl py-8 pl-8 pr-8
+              w-[100%] md:w-[50%] lg:w-[25%] xl:w-[27%] 
               transition hover:scale-[1.02] hover:shadow-xl 
               ${translateYClasses[index]}
             `}
@@ -30,16 +30,17 @@ const Testimonial = () => {
                 className="w-14 h-14 rounded-md object-contain"
               />
               <div className="flex-1">
-                <div className='flex items-center gap-4 '>
+                <div className='flex items-center justify-between md:gap-6 '>
                     <h4 className="text-lg font-semibold whitespace-nowrap overflow-hidden text-ellipsis">{testimonial.name}</h4>
               <BsQuote className="text-gray-400 text-5xl" />
                 </div>
                 <p className="text-sm text-gray-500">{testimonial.title}</p>
               </div>
             </div>
+              <div className='bg-[#80B7EC] w-32 h-1 rounded-md mt-[-10px]'></div>
 
             {/* Testimonial Text */}
-            <p className="text-sm text-gray-700 mb-4 ">
+            <p className="text-sm text-gray-700 mb-4 mt-4">
               {testimonial.text}
             </p>
 

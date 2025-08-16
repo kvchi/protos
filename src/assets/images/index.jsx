@@ -24,6 +24,8 @@ import rectangle11 from './rectangle11.png';
 import rectangle1 from './rectangle1.png'
 import rectangle2 from './rectangle2.png'
 import rectangle3 from './rectangle3.png'
+import woman from './woman.png'
+import meeting from './meeting.png'
 
 
 
@@ -54,6 +56,8 @@ rectangle11,
 rectangle1,
 rectangle2,
 rectangle3,
+woman,
+meeting
 
 
 

@@ -6,7 +6,7 @@ export default function Footer() {
   <div className="flex flex-col md:flex-row md:items-start md:gap-10 lg:gap-24">
     
     <div className="mb-8 md:mb-0 md:min-w-[150px] flex md:flex-col md:items-start items-center justify-between">
-      <h2 className="text-white text-2xl md:text-3xl font-bold text-start md:text-left">
+      <h2 className="text-white text-2xl md:text-3xl font-bold text-start md:text-left cursor-pointer">
         Protos
       </h2>
       <div className=" flex gap-2 pt-0 md:pt-2">

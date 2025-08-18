@@ -26,10 +26,17 @@ import rectangle2 from './rectangle2.png'
 import rectangle3 from './rectangle3.png'
 import woman from './woman.png'
 import meeting from './meeting.png'
+import about from './about.png'
+import man1 from './man1.png'
+import man2 from './man2.png'
+import man3 from './man3.png'
+import man4 from './man4.png'
+import twitterBlack from './twitterBlack.png'
 
 
 
 export {
+    about,
     Facebook,
     Instagram,
     twitter,
@@ -57,7 +64,12 @@ rectangle1,
 rectangle2,
 rectangle3,
 woman,
-meeting
+meeting, 
+man1,
+man2,
+man3,
+man4,
+twitterBlack
 
 
 

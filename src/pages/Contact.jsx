@@ -139,7 +139,7 @@ export default function Contact() {
         </div>
       </section>
       <section>
-        <div className="grid md:grid-cols-3 gap-6 px-10 md:px-28 mb-20">
+        <div className="grid md:grid-cols-3 gap-6 px-8 md:px-28 mb-20">
             {contactInfo.map((i) => (
               <div 
                 key={i.id}

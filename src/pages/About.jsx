@@ -59,7 +59,7 @@ export default function About() {
         </p>
         <h3 className='text-[26px] my-5 text-center'>Getting the Exposure you need</h3>
         <p className="my-8 font-normal text-2xl">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Et recusandae, aliquid, dicta autem fuga officia soluta dolores suscipit beatae tempore voluptatem quia facilis rem cumque pariatur dolor nihil ad! Delectus autem non ducimus veniam esse natus praesentium similique numquam illum ratione perferendis iusto dolore consequuntur tempora animi mollitia inventore aliquid, voluptates, eveniet ipsum beatae! Ea, possimus nisi. Veniam debitis eos impedit maxime deleniti aliquam! Tenetur repudiandae qui commodi illo nostrum iure cumque eaque sapiente accusamus tempore! Tempora beatae voluptates, nesciunt omnis adipisci neque dolorem amet, quisquam officia placeat maiores nulla quas sapiente. Error ullam expedita omnis enim rerum, ipsum voluptate!</p>
-        <h3 className='text-3xl'>Meet the Team</h3>
+        <h3 className='text-3xl mb-6'>Meet the Team</h3>
         <div className='grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:px-28'>
             {meetTeam.map((i) => (
               <div 

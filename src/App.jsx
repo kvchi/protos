@@ -15,8 +15,7 @@ import Policy from "./pages/Policy";
   function PageOutlet() {
     return (
     <>
-      <Header />
-      
+      <Header /> 
       <Outlet />
       <Footer />
     </>

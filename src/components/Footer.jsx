@@ -1,4 +1,5 @@
 import { Facebook, Instagram, twitter } from "../assets/images";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -16,17 +17,17 @@ export default function Footer() {
       </div>
     </div>
 
-    <div className="flex flex-row gap-3 md:gap-8 lg:gap-24 text-start md:text-left w-full">
+    <div className="flex flex-row gap-3 md:gap-8 lg:gap-24 text-start md:text-left w-full ">
      
       <div className="">
         <h3 className="text-[#FFA500] text-[10px] md:text-lg font-semibold pb-3">
           Discovery
         </h3>
-        <div className="text-white font-light space-y-2 text-[12px] md:text-base">
-          <p>Articles</p>
-          <p>Find a Business</p>
-          <p>Categories</p>
-          <p>Events</p>
+        <div className="flex flex-col text-white font-light space-y-2 text-[12px] md:text-base">
+          <Link to="/" className="cursor-pointer">Articles</Link>
+          <Link className="cursor-pointer">Find a Business</Link>
+          <Link to="/category" className="cursor-pointer">Categories</Link>
+          <Link className="cursor-pointer">Events</Link>
         </div>
       </div>
 
@@ -35,22 +36,22 @@ export default function Footer() {
         <h3 className="text-[#FFA500] text-[12px] md:text-lg font-semibold pb-3">
           For Business
         </h3>
-        <div className="text-white font-light space-y-2 text-[12px] md:text-base">
-          <p>Protos for business</p>
-          <p>Advertise what you own</p>
-          <p>Business Blog</p>
+        <div className="text-white font-light space-y-2 text-[12px] md:text-base ">
+          <p className="cursor-pointer">Protos for business</p>
+          <p className="cursor-pointer">Advertise what you own</p>
+          <p className="cursor-pointer">Business Blog</p>
         </div>
       </div>
       <div>
         <h3 className="text-[#FFA500] text-[12px] md:text-lg font-semibold pb-3">
           About Protos
         </h3>
-        <div className="text-white font-light space-y-2 text-[12px] md:text-base">
-          <p>About Us</p>
-          <p>Contact Us</p>
-          <p>Privacy Policy</p>
-          <p>Terms of Service</p>
-          <p>Help Center</p>
+        <div className="flex flex-col text-white font-light space-y-2 text-[12px] md:text-base">
+          <Link to="/about" className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>About Us</Link>
+          <Link to="/contact" className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Contact Us</Link>
+          <p className="cursor-pointer">Privacy Policy</p>
+          <p className="cursor-pointer">Terms of Service</p>
+          <p className="cursor-pointer">Help Center</p>
         </div>
       </div>
     </div>

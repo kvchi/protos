@@ -32,6 +32,16 @@ import man2 from './man2.png'
 import man3 from './man3.png'
 import man4 from './man4.png'
 import twitterBlack from './twitterBlack.png'
+import cate from './cate.png'
+import cate2 from './cate2.png'
+import cate3 from './cate3.png'
+import hand from './hand.png'
+import Frame from './Frame.png'
+import Frame2 from './Frame2.png'
+import Frame3 from './Frame3.png'
+import Frame4 from './Frame4.png'
+import Frame5 from './Frame5.png'
+
 
 
 
@@ -69,7 +79,16 @@ man1,
 man2,
 man3,
 man4,
-twitterBlack
+twitterBlack,
+cate,
+cate2,
+cate3,
+hand,
+Frame,
+Frame2,
+Frame3,
+Frame4,
+Frame5
 
 
 

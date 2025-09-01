@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Frame3 } from "../assets/images";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { PiWarningCircleLight } from "react-icons/pi";
@@ -18,15 +18,31 @@ export default function Tel() {
   const [selectedCountryCode, setSelectedCountryCode] = useState("+234");
   const [phone, setPhone] = useState("");
 
+  // Load previous values from localStorage
+  useEffect(() => {
+    const savedPhone = localStorage.getItem("phone");
+    const savedCode = localStorage.getItem("countryCode");
+    if (savedPhone) setPhone(savedPhone);
+    if (savedCode) setSelectedCountryCode(savedCode);
+  }, []);
+
+  // Save values to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem("phone", phone);
+    localStorage.setItem("countryCode", selectedCountryCode);
+  }, [phone, selectedCountryCode]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!phone.trim()) return; // check if phone is empty
-    navigate("/email");
+    if (!phone.trim()) return;
+    navigate("/desc");
   };
+
+  const handleBack = () => navigate(-1);
 
   return (
     <main className="bg-gray-100 py-10 px-8 lg:px-30">
-      <BsArrowLeft className="w-10 h-10 mb-10" />
+      <BsArrowLeft className="w-10 h-10 mb-10 cursor-pointer" onClick={handleBack} />
       <div className="flex gap-10">
         <div className="lg:w-[40%]">
           <h2 className="text-2xl md:text-3xl font-bold text-[#0E375F] lg:w-[90%] w-[85%] leading-snug">
@@ -35,8 +51,7 @@ export default function Tel() {
           <p className="lg:text-xl font-medium w-[80%] lg:w-full mt-10">
             Your Business contact number
           </p>
-          
-          {/* FIX: Add onSubmit */}
+
           <form className="flex flex-col mt-8" onSubmit={handleSubmit}>
             <div className="flex gap-2">
               <select
@@ -59,7 +74,7 @@ export default function Tel() {
                 required
               />
             </div>
-            
+
             <div className="flex items-center gap-1 text-gray-400">
               <PiWarningCircleLight className="w-10 h-10 mt-4" />
               <p className="text-xs leading-tight pt-4">

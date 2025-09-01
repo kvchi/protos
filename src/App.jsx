@@ -14,6 +14,10 @@ import Signup from "./pages/Signup";
 import Signup1 from "./pages/Signup1";
 import Email from "./pages/Email";
 import Tel from "./pages/Tel";
+import Desc from "./pages/Desc";
+import BusinessInfo from "./pages/BusinessInfo";
+import CompleteBiz from "./pages/CompleteBiz";
+import Signin from "./pages/Signin";
 
  export default function App() {
 
@@ -57,6 +61,10 @@ import Tel from "./pages/Tel";
           element: <Signup />
         },
         {
+          path: "/signin",
+          element: <Signin />
+        },
+        {
           path: "/signup1",
           element: <Signup1 />
         },
@@ -67,6 +75,18 @@ import Tel from "./pages/Tel";
         {
           path: "/tel",
           element: <Tel />
+        },
+        {
+          path: "/desc",
+          element: <Desc />
+        },
+        {
+          path: "/businessInfo",
+          element: <BusinessInfo />
+        },
+        {
+          path: "/completeBiz",
+          element: <CompleteBiz />
         },
       ],
       errorElement: (

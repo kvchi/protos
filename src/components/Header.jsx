@@ -10,7 +10,7 @@ export default function Header() {
         </Link>
 
         <div className="flex items-center gap-4 sm:gap-6 py-2">
-          <Link to="/login" className="border-2 rounded-xl border-[#0E375F] px-3 sm:px-4 py-1.5 sm:py-2">
+          <Link to="/signin" className="border-2 rounded-xl border-[#0E375F] px-3 sm:px-4 py-1.5 sm:py-2">
             <button className="text-[#0E375F] text-sm sm:text-base font-normal cursor-pointer">
               Log in
             </button>

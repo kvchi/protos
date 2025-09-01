@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Frame } from "../assets/images";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { PiWarningCircleLight } from "react-icons/pi";
@@ -8,15 +8,34 @@ export default function Signup() {
   const navigate = useNavigate();
   const [businessName, setBusinessName] = useState("");
 
+  useEffect(() => {
+    const savedBusinessName = localStorage.getItem("businessName");
+    if (savedBusinessName) {
+      setBusinessName(savedBusinessName);
+    }
+  }, []);
+
+    const handleChange = (e) => {
+        setBusinessName(e.target.value);
+        localStorage.setItem("businessName", e.target.value);
+    };
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!businessName.trim()) return; 
     navigate("/email"); 
   };
 
+  const handleBack = () => {
+      navigate(-1);
+    
+};
+
   return (
     <main className="bg-gray-100 py-10 px-8 lg:px-30">
-      <BsArrowLeft className="w-10 h-10 mb-10" />
+      <BsArrowLeft className="w-10 h-10 mb-10 cursor-pointer" 
+        onClick={handleBack}  />
       <div className="flex gap-10">
         <div className="lg:w-[40%]">
           <h2 className="text-3xl font-bold text-[#0E375F]">
@@ -30,7 +49,7 @@ export default function Signup() {
             <input
               type="text"
               value={businessName}
-              onChange={(e) => setBusinessName(e.target.value)}
+              onChange={handleChange}
               className="border-2 rounded-md w-[85%] border-gray-300 mt-6 p-2"
               placeholder="Enter Your Business name"
               required

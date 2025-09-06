@@ -133,7 +133,7 @@ export function Embla() {
           </div>
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
-        <div className="min-w-full relative">
+        <div className="min-w-full  relative">
           <img
             src={cate3}
             alt=""

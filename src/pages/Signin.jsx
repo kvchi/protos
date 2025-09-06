@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Frame6 } from "../assets/images";
+import { Frame6, hand } from "../assets/images";
 import api from "../api/axios";
 
 export default function Signin() {
@@ -8,49 +8,61 @@ export default function Signin() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
+  const [switching, setSwitching] = useState(false); // new state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setSwitching(true); // show switching screen immediately
     setLoading(true);
 
     try {
-        const response = await api.post('/auth/login/', {
-            email: email,
-            password: password,
-        });
+      const response = await api.post("/auth/login/", {
+        email: email,
+        password: password,
+      });
 
-        console.log(response.data);
-        localStorage.setItem('token', response.data.token);
+      console.log(response.data);
+      localStorage.setItem("token", response.data.token);
 
-        setSuccess(true);
-
-        setTimeout(() => {
-          navigate('/');
-        }, 2000)
+      // redirect after 2s
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000);
     } catch (err) {
-        console.error(err);
-        setError(err.response?.data?.message || 'Login failed. Please check your credentials.');
+      console.error(err);
+      setError(
+        err.response?.data?.message ||
+          "Login failed. Please check your credentials."
+      );
+      setSwitching(false); // go back to form if login failed
     } finally {
-        setLoading(false);
-    }}
+      setLoading(false);
+    }
+  };
 
-    if (success) {
-      return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-        <img
-          src={Frame6}
-          alt="Switching..."
-          className="hidden md:w-full md:h-full mb-6 animate-pulse"
-        />
-        <h2 className="text-2xl font-bold text-[#0E375F]">
-          Switching to business account...
+ if (switching) {
+  return (
+    <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
+      {/* Background image */}
+      <img
+        src={hand}
+        alt="Switching..."
+        className="absolute inset-0 w-full h-full object-contain "
+      />
+
+      
+      <div className="relative z-10 text-center">
+        <h2 className="text-2xl text-center  md:text-4xl font-bold text-[#0E375F] px-6 py-3 ">
+          Switching to business <br /> account
         </h2>
       </div>
-      )
-    }
+    </div>
+  );
+}
+
+
   return (
     <main className=" bg-gray-100 flex flex-col lg:flex-row px-4 lg:px-28 py-10 lg:py-20 gap-40">
       <div className="w-full lg:max-w-md text-lg">
@@ -65,7 +77,9 @@ export default function Signin() {
           </Link>{" "}
         </p>
         <form onSubmit={handleSubmit}>
-          <p className="mb-2 text-[#0E375F] font-semibold">Your Email Address</p>
+          <p className="mb-2 text-[#0E375F] font-semibold">
+            Your Email Address
+          </p>
           <input
             type="email"
             placeholder="Enter your email address"
@@ -85,7 +99,7 @@ export default function Signin() {
 
           <div className="flex justify-between items-center ">
             <div className="flex items-center gap-2">
-              <input type="checkbox" name="" id="" />
+              <input type="checkbox" />
               <p>Remember me</p>
             </div>
             <p className="text-red-600 cursor-pointer font-semibold text-sm pr-5">
@@ -97,13 +111,12 @@ export default function Signin() {
             disabled={loading}
             className="mt-8 bg-[#0E375F] py-3 px-4 rounded-lg text-white mb-20 cursor-pointer flex mx-auto"
           >
-           {loading ? 'Signing in...' : 'Sign in to your account'}
-
+            Sign in to your account
           </button>
         </form>
       </div>
       <div className="place-items-center hidden xl:grid relative">
-        <img src={Frame6} alt="" className="w-full"/>
+        <img src={Frame6} alt="" className="w-full" />
       </div>
     </main>
   );

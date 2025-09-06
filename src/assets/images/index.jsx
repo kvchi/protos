@@ -13,6 +13,22 @@ import rectangle113 from './rectangle113.png';
 import rectangle114 from './rectangle114.png';
 import rectangle115 from './rectangle115.png';
 import rectangle116 from './rectangle116.png';
+import rectangle117 from './rectangle117.png';
+import rectangle118 from './rectangle118.png';
+import rectangle119 from './rectangle119.png';
+import rectangle120 from './rectangle120.png';
+import rectangle121 from './rectangle121.png';
+import rectangle122 from './rectangle122.png';
+import rectangle123 from './rectangle123.png';
+import rectangle124 from './rectangle124.png';
+import rectangle125 from './rectangle125.png';
+import rectangle126 from './rectangle126.png';
+import rectangle127 from './rectangle127.png';
+import rectangle128 from './rectangle128.png';
+import rectangle129 from './rectangle129.png';
+import rectangle130 from './rectangle130.png';
+import rectangle131 from './rectangle131.png';
+import rectangle132 from './rectangle132.png';
 import rectangle4 from './rectangle4.png';
 import rectangle5 from './rectangle5.png';
 import rectangle6 from './rectangle6.png';
@@ -63,6 +79,22 @@ export {
   rectangle114,
   rectangle115,
   rectangle116,
+  rectangle117,
+  rectangle118,
+  rectangle119,
+  rectangle120,
+  rectangle121,
+  rectangle122,
+  rectangle123,
+  rectangle124,
+  rectangle125,
+  rectangle126,
+  rectangle127,
+  rectangle128,
+  rectangle129,
+  rectangle130,
+  rectangle131,
+  rectangle132,
   rectangle4,
   rectangle5,
   rectangle6,

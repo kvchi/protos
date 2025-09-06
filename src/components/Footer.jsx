@@ -26,7 +26,7 @@ export default function Footer() {
         <div className="flex flex-col text-white font-light space-y-2 text-[12px] md:text-base">
           <Link to="/" className="cursor-pointer">Articles</Link>
           <Link className="cursor-pointer">Find a Business</Link>
-          <Link to="/category" className="cursor-pointer">Categories</Link>
+          <Link to="/category" onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })} className="cursor-pointer">Categories</Link>
           <Link className="cursor-pointer">Events</Link>
         </div>
       </div>

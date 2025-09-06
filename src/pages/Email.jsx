@@ -48,7 +48,7 @@ export default function Email() {
             <input
               type="email"
               value={email}
-              onChange={handleChange}
+              onChange={handleChange }
               className="border-2 rounded-md  w-[85%] border-gray-300 mt-6 p-2"
               placeholder="Yemkemo@gmail.com"
               required

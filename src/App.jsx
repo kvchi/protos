@@ -18,6 +18,7 @@ import Desc from "./pages/Desc";
 import BusinessInfo from "./pages/BusinessInfo";
 import CompleteBiz from "./pages/CompleteBiz";
 import Signin from "./pages/Signin";
+import HomeAfterLogin from "./pages/HomeAfterLogin";
 
  export default function App() {
 
@@ -39,6 +40,10 @@ import Signin from "./pages/Signin";
         {
           path: "/",
           element: <Home />
+        },
+        {
+          path: "/home",
+          element: <HomeAfterLogin />
         },
         {
           path: "/about",

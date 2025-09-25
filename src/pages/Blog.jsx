@@ -48,8 +48,8 @@ export default function Blog() {
             <span className="text-amber-800">Marketer</span>
           </h2>
           <p className="md:text-2xl">
-            Take your marketing skills to another level. Dr Rotex <br />{" "}
-            explains how to create a unique profile as a business <br /> owner
+            Take your marketing skills to another level. Dr Rotex 
+            explains how to create a unique profile as a business owner
             to attract customers.
           </p>
           <button className="bg-[#0e375f] p-2 rounded-lg text-white text-xl">

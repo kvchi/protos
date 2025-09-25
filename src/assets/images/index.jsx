@@ -58,6 +58,10 @@ import Frame3 from './Frame3.png'
 import Frame4 from './Frame4.png'
 import Frame5 from './Frame5.png'
 import Frame6 from './Frame6.png'
+import woman1 from './woman1.png'
+import card from './card.png'
+import card2 from './card2.png'
+import card3 from './card3.png'
 
 
 
@@ -122,7 +126,11 @@ Frame2,
 Frame3,
 Frame4,
 Frame5,
-Frame6
+Frame6,
+woman1,
+card,
+card2,
+card3,
 
 
 

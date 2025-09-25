@@ -19,6 +19,7 @@ import BusinessInfo from "./pages/BusinessInfo";
 import CompleteBiz from "./pages/CompleteBiz";
 import Signin from "./pages/Signin";
 import HomeAfterLogin from "./pages/HomeAfterLogin";
+import Blog from "./pages/Blog";
 
  export default function App() {
 
@@ -92,6 +93,10 @@ import HomeAfterLogin from "./pages/HomeAfterLogin";
         {
           path: "/completeBiz",
           element: <CompleteBiz />
+        },
+        {
+          path: "/blog",
+          element: <Blog />
         },
       ],
       errorElement: (

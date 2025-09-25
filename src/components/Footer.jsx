@@ -39,7 +39,8 @@ export default function Footer() {
         <div className="text-white font-light space-y-2 text-[12px] md:text-base ">
           <p className="cursor-pointer">Protos for business</p>
           <p className="cursor-pointer">Advertise what you own</p>
-          <p className="cursor-pointer">Business Blog</p>
+          <Link to="/blog" className="cursor-pointer"
+          onClick={() => window.scrollTo({ top: 0, left: 0, behavior: "smooth" })}>Business Blog</Link>
         </div>
       </div>
       <div>

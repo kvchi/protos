@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { meeting, woman } from "../assets/images";
 import { FiPhone } from "react-icons/fi";
 import { MdMailOutline } from "react-icons/md";

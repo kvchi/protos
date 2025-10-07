@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { Frame4 } from "../assets/images";
 import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -7,12 +7,13 @@ import PhoneNumberInput from "react-phone-number-input";
 import flags from "react-phone-number-input/flags";
 import "react-phone-number-input/style.css";
 import { CountryDropdown, RegionDropdown } from "react-country-region-selector";
+import AuthAction from "../components/AuthAction";
 
 export default function BusinessInfo() {
   const { formData, setFormData } = useContext(RegistrationContext);
   const navigate = useNavigate();
   const days = [
-    "Moday",
+    "Monday",
     "Tuesday",
     "Wednesday",
     "Thursday",
@@ -254,23 +255,7 @@ export default function BusinessInfo() {
                 </select>
               </div>
             </div>
-            <div className="md:col-span-2">
-            <p className="font-medium text-sm mt-6">
-              By continuing, you agree to{" "}
-              <span className="text-[#0E375F]">Protos</span>{" "}
-              <span className="text-amber-300 underline">Business Terms</span>{" "}
-              and acknowledge our{" "}
-              <span className="text-amber-300 underline">Privacy Policy.</span>{" "}
-              We may email you about Protos products, services and local events.
-              You can unsubscribe at any time.
-            </p>
-            <button
-              type="submit"
-              className="mt-8 bg-[#0E375F] py-3 px-4 rounded-lg text-white mb-20 cursor-pointer"
-            >
-              Add business
-            </button>
-            </div>
+            <AuthAction page="businessInfo" />
           </form>
         </div>
         <div className="place-items-center hidden lg:grid relative">

@@ -4,11 +4,15 @@ import api from "../api/axios";
 import { useLocation } from "react-router-dom";
 import { RegistrationContext } from "../context/RegistrationContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 export default function CompleteBiz() {
   const { formData, setFormData } = useContext(RegistrationContext);
   const location = useLocation();
   console.log(location.state, import.meta.env.VITE_BASE_URL);
+
+  const navigate = useNavigate();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -28,24 +32,42 @@ export default function CompleteBiz() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!validatePassword(formData.password)) {
-      alert(
-        "Password must be at least 8 characters, include a letter, a number, and a special character."
-      );
-      return;
-    }
+  if (!validatePassword(formData.password)) {
+    alert(
+      "Password must be at least 8 characters, include a letter, a number, and a special character."
+    );
+    return;
+  }
 
-    try {
-      const response = await api.post("/auth/create/", formData);
-      console.log("Success:", response.data);
-      alert("Account created successfully!");
-    } catch (error) {
-      console.error("Error:", error.response?.data || error.message);
-      alert("Failed to create account. Please try again.");
+  try {
+    const response = await api.post("/auth/create/", formData);
+    console.log("Success:", response.data);
+    alert("Account created successfully!");
+    navigate("/signin");
+  } catch (error) {
+    console.error("Error:", error.response?.data || error.message);
+
+    if (error.response?.data) {
+      // Try to grab meaningful error messages from backend
+      const backendErrors = error.response.data;
+
+      if (backendErrors.non_field_errors) {
+        alert(backendErrors.non_field_errors.join(" "));
+      } else if (backendErrors.password) {
+        alert(`Password error: ${backendErrors.password.join(" ")}`);
+      } else if (backendErrors.email) {
+        alert(`Email error: ${backendErrors.email.join(" ")}`);
+      } else {
+        alert("There was an error creating your account. Please check your inputs.");
+      }
+    } else {
+      alert("Something went wrong. Please try again later.");
     }
-  };
+  }
+};
+
 
   return (
     <main className="flex flex-col lg:flex-row px-4 sm:px-8 lg:px-28 py-15 bg-gray-100 gap-30">

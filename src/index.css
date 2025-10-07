@@ -8,3 +8,9 @@ body {
 .font-nunito {
   font-family: 'Nunito', sans-serif;
 }
+
+:root {
+  --color-primary: #0E375F;
+  --color-secondary: #E7EBEF;
+  --color-accent: #FFA500;
+}

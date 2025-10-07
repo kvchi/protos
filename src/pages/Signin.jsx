@@ -1,70 +1,87 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Frame6, hand } from "../assets/images";
+import { Frame6, } from "../assets/images";
 import api from "../api/axios";
+import { RegistrationContext } from "../context/RegistrationContext";
+
 
 export default function Signin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [switching, setSwitching] = useState(false); // new state
   const navigate = useNavigate();
+
+  // 👇 get context
+  const { login, } = useContext(RegistrationContext);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setSwitching(true); // show switching screen immediately
     setLoading(true);
 
     try {
       const response = await api.post("/auth/login/", {
-        email: email,
-        password: password,
+        email,
+        password,
       });
 
-      console.log(response.data);
-      localStorage.setItem("token", response.data.token);
+      console.log("Login Response from backend:",response.data);
 
-      // redirect after 2s
-      setTimeout(() => {
-        navigate("/home");
-      }, 2000);
+
+        if (response.data.detail?.includes("verification code")) {
+          localStorage.setItem("email", email);
+          localStorage.setItem("verifyType", "login");
+          navigate("/verifyemail");
+          return
+        }
+
+        if (response.data.token) {
+          login(
+        {
+          email: response.data.email,
+          first_name: response.data.first_name,
+          last_name: response.data.last_name
+      },
+        response.data.token
+      );
+      navigate("/home")
+        } else {
+        console.warn("Unexpected login response:", response.data);
+        setError("Unexpected response from server. Please try again.");
+      }
+      
     } catch (err) {
       console.error(err);
       setError(
         err.response?.data?.message ||
           "Login failed. Please check your credentials."
       );
-      setSwitching(false); // go back to form if login failed
     } finally {
       setLoading(false);
     }
   };
 
- if (switching) {
-  return (
-    <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
-      {/* Background image */}
-      <img
-        src={hand}
-        alt="Switching..."
-        className="absolute inset-0 w-full h-full object-contain "
-      />
-
-      
-      <div className="relative z-10 text-center">
-        <h2 className="text-2xl text-center  md:text-4xl font-bold text-[#0E375F] px-6 py-3 ">
-          Switching to business <br /> account
-        </h2>
-      </div>
-    </div>
-  );
-}
-
+ 
+  //   return (
+  //     <div className="relative flex items-center justify-center min-h-screen bg-gray-100">
+  //       <img
+  //         src={hand}
+  //         alt="Switching..."
+  //         className="absolute inset-0 w-full h-full object-contain "
+  //       />
+  //       <div className="relative z-10 text-center">
+  //         <h2 className="text-2xl md:text-4xl font-bold text-[#0E375F] px-6 py-3">
+  //           Switching to Customers <br /> account
+  //         </h2>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   return (
-    <main className=" bg-gray-100 flex flex-col lg:flex-row px-4 lg:px-28 py-10 lg:py-20 gap-40">
+    <main className="bg-gray-100 flex flex-col lg:flex-row px-4 lg:px-28 py-10 lg:py-20 gap-40">
       <div className="w-full lg:max-w-md text-lg">
         <h2 className="text-3xl font-bold text-[#0E375F] mb-5">Welcome Back</h2>
         <p className="mb-5 font-semibold">
@@ -74,7 +91,7 @@ export default function Signin() {
           Don't have a business account?
           <Link className="text-amber-300 " to="/signup">
             Sign up
-          </Link>{" "}
+          </Link>
         </p>
         <form onSubmit={handleSubmit}>
           <p className="mb-2 text-[#0E375F] font-semibold">
@@ -97,7 +114,7 @@ export default function Signin() {
           />
           {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
 
-          <div className="flex justify-between items-center ">
+          <div className="flex justify-between items-center">
             <div className="flex items-center gap-2">
               <input type="checkbox" />
               <p>Remember me</p>
@@ -111,7 +128,7 @@ export default function Signin() {
             disabled={loading}
             className="mt-8 bg-[#0E375F] py-3 px-4 rounded-lg text-white mb-20 cursor-pointer flex mx-auto"
           >
-            Sign in to your account
+            {loading ? "Signing in..." : "Sign in to your account"}
           </button>
         </form>
       </div>

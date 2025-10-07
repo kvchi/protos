@@ -20,6 +20,9 @@ import CompleteBiz from "./pages/CompleteBiz";
 import Signin from "./pages/Signin";
 import HomeAfterLogin from "./pages/HomeAfterLogin";
 import Blog from "./pages/Blog";
+import Business from "./pages/Business";
+import UserSignUp from "./pages/auth/UserSignUp";
+import VerifyEmail from "./pages/auth/VerifyEmail";
 
  export default function App() {
 
@@ -75,8 +78,17 @@ import Blog from "./pages/Blog";
           element: <Signup1 />
         },
         {
+          path: "/userSignup",
+          element: <UserSignUp />
+        
+        },
+        {
           path: "/email",
           element: <Email />
+        },
+        {
+          path: "/verifyemail",
+          element: <VerifyEmail />
         },
         {
           path: "/tel",
@@ -97,6 +109,10 @@ import Blog from "./pages/Blog";
         {
           path: "/blog",
           element: <Blog />
+        },
+        {
+          path: "/business",
+          element: <Business />
         },
       ],
       errorElement: (

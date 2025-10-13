@@ -23,6 +23,7 @@ import Blog from "./pages/Blog";
 import Business from "./pages/Business";
 import UserSignUp from "./pages/auth/UserSignUp";
 import VerifyEmail from "./pages/auth/VerifyEmail";
+import SearchResult from "./pages/SearchResult";
 
  export default function App() {
 
@@ -113,6 +114,10 @@ import VerifyEmail from "./pages/auth/VerifyEmail";
         {
           path: "/business",
           element: <Business />
+        },
+        {
+          path: "/searchResult",
+          element: <SearchResult />
         },
       ],
       errorElement: (

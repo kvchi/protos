@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Frame8 } from "../../assets/images";
+import { RegistrationContext } from "../../context/RegistrationContext";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -11,6 +12,8 @@ export default function VerifyEmail() {
     const inputRefs = useRef([]);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+
+    const { login } = useContext(RegistrationContext);
     
     const email = localStorage.getItem("email");
     const verifyType = localStorage.getItem("verifyType");
@@ -56,9 +59,22 @@ export default function VerifyEmail() {
                 alert("Email verified successfully!");
             navigate("/signin");
             } else if (verifyType === "login") {
-                localStorage.setItem("token", res.data.token);
-                alert("Login verified successfully!");
+                const accessToken = res.data?.token?.access_token;
+                const userData = res.data?.user;
+
+                if(accessToken && userData ) {
+                    login(userData, accessToken);
+
+                    localStorage.setItem("token", accessToken);
+                    localStorage.setItem("user", JSON.stringify(userData));
+
+                     alert("Login verified successfully!");
                 navigate("/home");
+                } else {
+                    console.warn("Missing token or user data in response:", res.data);
+                    alert("Unexpected response from server. Please try again.")
+                    navigate("/signin");
+                }
             }
         } catch (err) {
             console.error("Verification failed:", err.response?.data || err.message);

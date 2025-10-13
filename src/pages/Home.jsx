@@ -5,7 +5,7 @@ import { categoriesData } from "../data/categoriesData";
 import workData from '../data/workData';
 import WorkCard from '../components/WorkCard';
 import Testimonials from '../components/Testimonials';
-import {Embla} from "../components/Embla";
+import Embla from "../components/Embla";
 
 
 export default function Home() {

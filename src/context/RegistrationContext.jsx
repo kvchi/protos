@@ -36,6 +36,7 @@ export const RegistrationProvider = ({ children }) => {
   const login = (userData, authToken) => {
     setFormData(userData);
     setToken(authToken);
+    console.log(userData);
   };
 
   const logout = () => {

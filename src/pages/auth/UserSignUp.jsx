@@ -92,6 +92,9 @@ export default function UserSignUp() {
 
       if (res.status === 201 || res.status === 200) {
         localStorage.setItem("email", formData.email);
+        localStorage.setItem("verifyType", "signup");
+
+        alert("Signup successful! Please check your email for a verification code.")
         navigate("/verifyEmail");
       }
     } catch (err) {

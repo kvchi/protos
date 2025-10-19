@@ -21,13 +21,13 @@ export default function Business() {
         <img
           src={rectangle135}
           alt=""
-          className="w-full h-[300px] sm:h-[400px] md:h-[500px] object-cover"
+          className="w-full h-[300px] sm:h-[400px] md:h-full object-cover"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-          <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white">
+        <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-4 lg:px-30 -top-40">
+          <h1 className="text-3xl sm:text-5xl md:text-9xl font-bold text-white">
             <span className="text-[#ffa500]">Protos</span> for Business
           </h1>
-          <button className="bg-[#ffa500] px-4 py-2 rounded-md mt-8 sm:mt-10 text-sm sm:text-base md:text-lg font-medium">
+          <button className="bg-[#ffa500] px-4 py-2 rounded-md mt-8 sm:mt-10 text-sm sm:text-base md:text-lg font-medium ">
             Back to Business Dashboard
           </button>
         </div>

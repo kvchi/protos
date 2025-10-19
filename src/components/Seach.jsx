@@ -3,7 +3,7 @@ import { FiSearch, FiMapPin } from "react-icons/fi";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { AiFillStar } from "react-icons/ai";
 import { FaRegCommentDots } from "react-icons/fa";
-import rectangle133 from "../assets/images/rectangle133.png";
+import Rectangle133 from "../assets/images/Rectangle133.png";
 
 export default function Search() {
   return (
@@ -73,7 +73,7 @@ export default function Search() {
             {/* LEFT IMAGE */}
             <div className="w-full lg:w-56">
               <img
-                src={rectangle133}
+                src={Rectangle133}
                 alt="restaurant"
                 className="w-full lg:w-56 object-cover rounded-md"
               />

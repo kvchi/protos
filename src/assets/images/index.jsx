@@ -33,7 +33,7 @@ import rectangle129 from "./rectangle129.png";
 import rectangle130 from "./rectangle130.png";
 import rectangle131 from "./rectangle131.png";
 import rectangle132 from "./rectangle132.png";
-import rectangle133 from "./rectangle133.png";
+import Rectangle133 from "./Rectangle133.png";
 import rectangle134 from "./rectangle134.png";
 import rectangle135 from "./rectangle135.png";
 import rectangle136 from "./rectangle136.png";
@@ -110,7 +110,7 @@ export {
   rectangle130,
   rectangle131,
   rectangle132,
-  rectangle133,
+  Rectangle133,
   rectangle134,
   rectangle135,
   rectangle136,

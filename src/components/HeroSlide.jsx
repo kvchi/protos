@@ -10,7 +10,7 @@ export default function HeroSlide({ image, title, text, isLoggedIn }) {
       />
       <div className="absolute inset-0 bg-black/50"></div>
 
-      <div className="absolute top-10 left-6 md:top-20 md:left-20 lg:top-40 lg:left-24 z-10 text-white">
+      <div className="absolute top-10 left-6 md:top-20 md:left-20 lg:left-24 z-10 text-white">
         <h2 className="md:text-[40px] lg:text-[80px] font-extrabold leading-tight font-nunito">
           {title.map((line, idx) => (
             <span key={idx} className="block">

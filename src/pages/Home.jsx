@@ -9,6 +9,7 @@ import Embla from "../components/Embla";
 
 
 export default function Home() {
+  
   return (
     <div className="">
       <Embla />
@@ -54,8 +55,7 @@ export default function Home() {
           );
         })}
       </div>
-      <section className="bg-[#0e375f] w-full
-      ">
+      <section className="bg-[#0e375f] w-full">
           <h2 className="text-white text-center pt-25 pb-20 font-bold text-2xl">How we work</h2>
            <div className="flex flex-wrap justify-center gap-8 pb-25">
         {workData.map((item) => (

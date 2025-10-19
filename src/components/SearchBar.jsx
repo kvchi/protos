@@ -12,7 +12,7 @@ export default function SearchBar({ onFocus, onBlur }) {
     };
 
   return (
-    <div className="bg-[#E7EBEF] rounded-md md:rounded-xl flex items-center gap-3 p-2 md:p-3 shadow-md">
+    <div className="bg-[#E7EBEF] rounded-md md:rounded-xl flex items-center gap-3 p-2 md:p-3 shadow-md md:max-w-md lg:max-w-xl mx-auto">
       <div className="hidden lg:flex items-center gap-2">
         <p className="text-[#3A3A3A] text-sm">Category</p>
         <IoIosArrowDown />

@@ -24,6 +24,7 @@ import Business from "./pages/Business";
 import UserSignUp from "./pages/auth/UserSignUp";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import SearchResult from "./pages/SearchResult";
+import LearnMore from "./pages/LearnMore";
 
  export default function App() {
 
@@ -119,6 +120,10 @@ import SearchResult from "./pages/SearchResult";
           path: "/searchResult",
           element: <SearchResult />
         },
+        {
+          path: "/learnMore",
+          element: <LearnMore />
+        }
       ],
       errorElement: (
         <>

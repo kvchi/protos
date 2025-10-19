@@ -1,5 +1,5 @@
 import { useContext, useState, useRef, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { RegistrationContext } from "../context/RegistrationContext";
 import { ChevronDown, LogOut, LayoutDashboard, Truck } from "lucide-react";
 
@@ -8,6 +8,7 @@ export default function AuthButton({ signupText = "Sign up" }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const isLoggedIn = !!token;
   const pathname = location.pathname;
@@ -36,7 +37,7 @@ export default function AuthButton({ signupText = "Sign up" }) {
   return (
     <div>
       {isLoggedIn ? (
-        <div className="relative" ref={dropdownRef}>
+        <div className="relative " ref={dropdownRef}>
           {/* Avatar and Name */}
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -46,13 +47,13 @@ export default function AuthButton({ signupText = "Sign up" }) {
               {formData.first_name?.[0]}
               {formData.last_name?.[0]}
             </div>
-            <p className="ml-3 text-[#0E375F] font-medium flex items-center">
-              Hi,&nbsp;
-              <span className="font-semibold text-[#FFA500]">
+            <p className="ml-3 text-[#0E375F] font-medium flex items-center ">
+              <span className="hidden md:block">Hi,&nbsp;</span>
+              <span className="font-semibold text-[#FFA500] hidden md:block">
                 {formData.first_name} {formData.last_name}
               </span>
               <ChevronDown
-                className={`ml-2 w-4 h-4 transition-transform duration-200 ${
+                className={`ml-2 w-4 h-4 transition-transform duration-200 block ${
                   isOpen ? "rotate-180" : ""
                 }`}
               />
@@ -82,6 +83,7 @@ export default function AuthButton({ signupText = "Sign up" }) {
                 onClick={() => {
                   logout();
                   setIsOpen(false);
+                  navigate("/");
                 }}
                 className="flex w-full items-center gap-3 px-4 py-3 hover:bg-gray-100 text-red-500 transition"
               >

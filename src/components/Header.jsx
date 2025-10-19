@@ -1,13 +1,31 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate} from "react-router-dom";
 import AuthButton from "./AuthButton";
+import { useEffect, useState } from "react";
 
 export default function Header() {
   const location = useLocation();
-  console.log(location.pathname);
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const showBusinessText = 
+  location.pathname === "/business" || location.pathname === "/learnMore";
 
   const isBusinessPage = location.pathname === "/business";
-
   const signupText = isBusinessPage ? "Create Business account" : "Sign up";
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (isLoggedIn) {
+      navigate("/home")
+    } else {
+      navigate("/")
+    }
+  }
   
 
   return (
@@ -16,9 +34,16 @@ export default function Header() {
         <Link
           to="/"
           className="text-[#0E375F] text-xl sm:text-2xl font-semibold"
+          onClick={handleLogoClick}
         >
-          Protos
+          <span className="block">Protos</span>
+          {showBusinessText && (
+            <span className="block text-sm font-semibold text-[#664200]">
+              for Business
+            </span>
+          )}
         </Link>
+
         <AuthButton signupText={signupText} />
       
       </div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Embla } from '../components/Embla2'
+import  Embla  from '../components/Embla2'
 import { categoriesData2 } from '../data/categoriesData2'
 import CatCard from '../components/CatCard';
 

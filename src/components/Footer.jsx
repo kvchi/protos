@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div className="bg-[#0E375F] w-full px-4 md:px-10 lg:px-30 pt-10 pb-8">
-      <div className="flex flex-col md:flex-row md:items-start md:gap-10 lg:gap-24">
+      <div className="flex flex-col md:flex-row md:items-start md:gap-10 lg:gap-80">
         <div className="mb-8 md:mb-0 md:min-w-[150px] flex md:flex-col md:items-start items-center justify-between">
           <h2 className="text-white text-2xl md:text-3xl font-bold text-start md:text-left cursor-pointer">
             Protos
@@ -16,7 +16,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-row gap-3 md:gap-8 lg:gap-24 text-start md:text-left w-full ">
+        <div className="flex flex-row gap-3 md:gap-8 lg:gap-30 text-start md:text-left w-full ">
           <div className="">
             <h3 className="text-[#FFA500] text-[10px] md:text-lg font-semibold pb-3">
               Discovery

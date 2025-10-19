@@ -1,15 +1,21 @@
-// src/components/Embla/SearchBar.jsx
+import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
-
 export default function SearchBar({ onFocus, onBlur }) {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState("");
 
-    const handleSearch = () => {
-        navigate("/searchresult");
-    };
+  const handleSearch = () => {
+    if (!searchTerm.trim()) {
+      setError("Enter a keyword.");
+      return;
+    }
+    setError("");
+    navigate("/searchresult");
+  };
 
   return (
     <div className="bg-[#E7EBEF] rounded-md md:rounded-xl flex items-center gap-3 p-2 md:p-3 shadow-md md:max-w-md lg:max-w-xl mx-auto">
@@ -27,21 +33,26 @@ export default function SearchBar({ onFocus, onBlur }) {
 
       <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
 
-      <div className="bg-white flex items-center gap-2 px-2 py-1 rounded-lg shadow-sm w-full max-w-xs">
-        <IoSearch className="text-[#3A3A3A] lg:text-lg" />
-        <input
-          type="text"
-          placeholder="Search with keyword"
-          className="flex-1 outline-none border-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm"
-          onFocus={onFocus}
-          onBlur={onBlur}
-          required
-        />
+      <div className="bg-white flex flex-col w-full max-w-xs rounded-lg shadow-sm px-2 py-1">
+        <div className="flex items-center gap-2">
+          <IoSearch className="text-[#3A3A3A] lg:text-lg" />
+          <input
+            type="text"
+            placeholder="Search with keyword"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="flex-1 outline-none border-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm"
+            onFocus={onFocus}
+            onBlur={onBlur}
+          />
+        </div>
+        {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
       </div>
 
       <button
-      onClick={handleSearch}
-       className="bg-[#0E375F] text-white px-4 py-2 md:px-6 md:py-3 rounded-md text-sm lg:text-base cursor-pointer">
+        onClick={handleSearch}
+        className="bg-[#0E375F] text-white px-4 py-2 md:px-6 md:py-3 rounded-md text-sm lg:text-base cursor-pointer"
+      >
         Search
       </button>
     </div>

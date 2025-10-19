@@ -89,7 +89,7 @@ export default function Signin() {
         </p>
         <p className="mb-5 text-sm md:text-lg font-semibold">
           Don't have a business account?
-          <Link className="text-amber-300 " to="/signup">
+          <Link className="text-amber-300 " to="/userSignup">
             Sign up
           </Link>
         </p>

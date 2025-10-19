@@ -35,6 +35,7 @@ export default function SearchBar({ onFocus, onBlur }) {
           className="flex-1 outline-none border-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm"
           onFocus={onFocus}
           onBlur={onBlur}
+          required
         />
       </div>
 

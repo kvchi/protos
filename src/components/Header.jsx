@@ -29,11 +29,11 @@ export default function Header() {
   
 
   return (
-    <div className="bg-[#E7EBEF] w-full shadow-3xl">
+    <div className="bg-secondary w-full shadow-neutral-300 shadow-md z-10">
       <div className="flex items-center justify-between px-6 sm:px-10 lg:px-20 py-6">
         <Link
           to="/"
-          className="text-[#0E375F] text-xl sm:text-2xl font-semibold"
+          className="text-primary text-xl sm:text-2xl font-semibold"
           onClick={handleLogoClick}
         >
           <span className="block">Protos</span>

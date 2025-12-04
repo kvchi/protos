@@ -6,15 +6,17 @@ import workData from '../data/workData';
 import WorkCard from '../components/WorkCard';
 import Testimonials from '../components/Testimonials';
 import Embla from "../components/Embla";
+import { useNavigate } from "react-router-dom"
 
 
 export default function Home() {
+  const navigate = useNavigate()
   
   return (
     <div className="">
       <Embla />
       <div className=" hidden lg:block px-24 py-10 w-full">
-        <h3 className="text-[#0E375F] font-semibold text-2xl">
+        <h3 className="text-primary font-semibold text-2xl">
           Top Business Around
         </h3>
         <div className="flex items-center justify-between">
@@ -22,7 +24,7 @@ export default function Home() {
             We recommend these businesses based on your current location, they
             might be exactly what you need.
           </p>
-          <button className="bg-[#0e375f] py-2 px-6 rounded-xl text-white">
+          <button className="bg-primary py-2 px-6 rounded-xl text-white">
             View more
           </button>
         </div>
@@ -33,7 +35,7 @@ export default function Home() {
         ))}
       </div>
       <div className="px-10 lg:px-24 py-4 w-full">
-        <h2 className="text-[#0E375F] font-bold text-2xl">Categories</h2>
+        <h2 className="text-primary font-bold text-2xl">Categories</h2>
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 px-10 lg:px-24 py-6">
         {categoriesData.map((cate, index) => {
@@ -45,25 +47,31 @@ export default function Home() {
           const color = (isEvenRow ? col % 2 === 0 : col % 2 !== 0)
             ? "blue"
             : "yellow";
+
+            const isLastCard = index === categoriesData.length - 1;
+                        const route = isLastCard ? "/category" : `/category/${cate.id}`;
           return (
             <CatCard
               key={cate.id}
               image={cate.image}
               title={cate.title}
               color={color}
+              onClick={() => navigate(route)}
             />
           );
         })}
       </div>
-      <section className="bg-[#0e375f] w-full">
+      <section className="bg-primary w-full">
           <h2 className="text-white text-center pt-25 pb-20 font-bold text-2xl">How we work</h2>
-           <div className="flex flex-wrap justify-center gap-8 pb-25">
+           <div className="flex flex-wrap justify-center gap-8 pb-25 ">
         {workData.map((item) => (
           <WorkCard
             key={item.id}
             icon={item.icon}
             title={item.title}
             description={item.description}
+            onClick={() => navigate(item.link)}
+            
           />
         ))}
       </div>

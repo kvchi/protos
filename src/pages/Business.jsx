@@ -25,16 +25,16 @@ export default function Business() {
         />
         <div className="absolute inset-0 flex flex-col items-start justify-center text-start px-4 lg:px-30 -top-40">
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white">
-            <span className="text-[#ffa500]">Protos</span> for Business
+            <span className="text-accent">Protos</span> for Business
           </h1>
-          <button className="bg-[#ffa500] px-4 py-2 rounded-md mt-8 sm:mt-10 text-sm sm:text-base md:text-lg font-medium ">
+          <button className="bg-accent px-4 py-2 rounded-md mt-8 sm:mt-10 text-sm sm:text-base md:text-lg font-medium ">
             Back to Business Dashboard
           </button>
         </div>
       </div>
 
       <div className="w-full bg-[#E7EBEF] px-6 sm:px-10 md:px-20 py-16 sm:py-24">
-        <h1 className="mb-10 text-2xl sm:text-3xl text-[#0E375F] font-semibold text-center sm:text-left">
+        <h1 className="mb-10 text-2xl sm:text-3xl text-primary font-semibold text-center sm:text-left">
           Join the Protos for business
         </h1>
 
@@ -100,7 +100,10 @@ export default function Business() {
             </p>
             <Link
               to="/learnMore?topic=get-new-customers"
-              className="bg-[#0E375F] py-3 px-6 text-white rounded-md mt-20 text-sm sm:text-base inline-block"
+              className="bg-primary py-3 px-6 text-white rounded-md mt-20 text-sm sm:text-base inline-block"
+              onClick={() =>
+                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+                }
             >
               Learn more
             </Link>
@@ -122,7 +125,10 @@ export default function Business() {
             </p>
             <Link
               to="/learnMore?topic=search-engine-marketing-ads"
-              className="bg-[#0E375F] py-3 px-6 text-white rounded-md mt-20 text-sm sm:text-base inline-block"
+              className="bg-primary py-3 px-6 text-white rounded-md mt-20 text-sm sm:text-base inline-block"
+              onClick={() =>
+                  window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
+                }
             >
               Learn more
             </Link>

@@ -1,12 +1,19 @@
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoSearch } from "react-icons/io5";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
-export default function SearchBar({ onFocus, onBlur }) {
+export default function SearchBar({ onFocus, onBlur, forceDetailsLayout = false }) {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
   const [searchTerm, setSearchTerm] = useState("");
   const [error, setError] = useState("");
+
+ const showDetailsLayout = forceDetailsLayout || pathname === "/searchDetails" || pathname === "/menu" 
+const isMenuPage = pathname === "/menu";
+
+
 
   const handleSearch = () => {
     if (!searchTerm.trim()) {
@@ -18,22 +25,59 @@ export default function SearchBar({ onFocus, onBlur }) {
   };
 
   return (
-    <div className="bg-[#E7EBEF] rounded-md md:rounded-xl flex items-center gap-3 p-2 md:p-3 shadow-md md:max-w-md lg:max-w-xl mx-auto">
-      <div className="hidden lg:flex items-center gap-2">
-        <p className="text-[#3A3A3A] text-sm">Category</p>
-        <IoIosArrowDown />
-      </div>
+    <div
+      className={`
+        flex items-center gap-3 p-2
+        ${
+          showDetailsLayout
+            ? "bg-[#E7EBEF] rounded-2xl shadow-sm lg:max-w-xl"
+            : "bg-[#E7EBEF] rounded-md md:rounded-2xl shadow-md md:max-w-md lg:max-w-xl"
+        }
+      `}
+    >
+      {showDetailsLayout && (
+        <div className="hidden md:flex items-center bg-white px-3 py-2 rounded-lg ">
+          <input
+            type="text"
+            defaultValue={
+              isMenuPage
+              ? "Yenkemo Restaurant & Bar"
+              : "Lagos, Nigeria"
+            }
+            readOnly
+            className="outline-none bg-transparent text-gray-800 text-sm"
+          />
+        </div>
+      )}
 
-      <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
+      {showDetailsLayout && (
+        <span className="hidden md:block w-[1px] h-8 bg-gray-400 opacity-50"></span>
+      )}
 
-      <div className="hidden lg:flex items-center gap-2">
-        <p className="text-[#3A3A3A] text-sm">Location</p>
-        <IoIosArrowDown />
-      </div>
-
-      <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
-
-      <div className="bg-white flex flex-col w-full max-w-xs rounded-lg shadow-sm px-2 py-1">
+      {!showDetailsLayout && (
+        <>
+          <div className="hidden lg:flex items-center gap-2">
+            <p className="text-[#3A3A3A] text-sm">Category</p>
+            <IoIosArrowDown />
+          </div>
+          <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
+          <div className="hidden lg:flex items-center gap-2">
+            <p className="text-[#3A3A3A] text-sm">Location</p>
+            <IoIosArrowDown />
+          </div>
+          <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
+        </>
+      )}
+      <div
+        className={`
+          flex flex-col w-full max-w-xs rounded-lg px-2 py-1
+          ${
+            showDetailsLayout
+              ? "bg-white"
+              : "bg-white shadow-sm"
+          }
+        `}
+      >
         <div className="flex items-center gap-2">
           <IoSearch className="text-[#3A3A3A] lg:text-lg" />
           <input
@@ -41,7 +85,7 @@ export default function SearchBar({ onFocus, onBlur }) {
             placeholder="Search with keyword"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 outline-none border-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm"
+            className="flex-1 outline-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm"
             onFocus={onFocus}
             onBlur={onBlur}
           />
@@ -51,7 +95,7 @@ export default function SearchBar({ onFocus, onBlur }) {
 
       <button
         onClick={handleSearch}
-        className="bg-[#0E375F] text-white px-4 py-2 md:px-6 md:py-3 rounded-md text-sm lg:text-base cursor-pointer"
+        className="bg-primary text-white px-4 py-2 md:px-4 md:py-2 rounded-xl text-sm lg:text-base cursor-pointer"
       >
         Search
       </button>

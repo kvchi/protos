@@ -11,16 +11,16 @@ import NewsCard from "../components/NewsCard";
 export default function HomeAfterLogin() {
   return (
     <main>
-      <div className="px-6 lg:px-24 py-10">
+      <div className="flex justify-center px-6 lg:px-24 py-10">
         <SearchBar />
       </div>
       <Embla />
       <div className="lg:px-24 lg:py-10 w-full">
         <div className="flex items-center justify-between px-4 py-6 md:px-10 md:py-10 lg:px-24 mt-6 md:mt-0 w-full">
-          <h1 className="text-[#0E375F] font-semibold md:text-2xl">
+          <h1 className="text-primary font-semibold md:text-2xl">
             Top Business near you
           </h1>
-          <button className="block lg:hidden bg-[#0e375f] py-2 px-4 rounded-xl text-white text-[12px]">
+          <button className="block lg:hidden bg-primary py-2 px-4 rounded-xl text-white text-[12px]">
             View more
           </button>
         </div>
@@ -29,7 +29,7 @@ export default function HomeAfterLogin() {
             We recommend these businesses based on your current location, they
             might be exactly what you need.
           </p>
-          <button className="hidden lg:block bg-[#0e375f] py-2 px-6 rounded-xl text-white">
+          <button className="hidden lg:block bg-primary py-2 px-6 rounded-xl text-white">
             View more
           </button>
         </div>
@@ -41,10 +41,10 @@ export default function HomeAfterLogin() {
             ))}
         </div>
         <div className="flex items-center justify-between px-4 py-6 md:px-10 md:py-10 lg:px-24 mt-6 md:mt-0 w-full">
-          <h1 className="text-[#0E375F] font-semibold md:text-2xl">
+          <h1 className="text-primary font-semibold md:text-2xl">
             Top Business near you
           </h1>
-          <button className="block lg:hidden bg-[#0e375f] py-2 px-4 rounded-xl text-white text-[12px]">
+          <button className="block lg:hidden bg-primary py-2 px-4 rounded-xl text-white text-[12px]">
             View more
           </button>
         </div>
@@ -53,7 +53,7 @@ export default function HomeAfterLogin() {
             There are selected based on your prefrences, recent searches and
             viewed enterprise.
           </p>
-          <button className="hidden lg:block bg-[#0e375f] py-2 px-6 rounded-xl text-white">
+          <button className="hidden lg:block bg-primary py-2 px-6 rounded-xl text-white">
             View more
           </button>
         </div>
@@ -66,7 +66,7 @@ export default function HomeAfterLogin() {
         </div>
         
         <div className="px-4 md:px-10 lg:px-24 py-4 w-full">
-          <h2 className="text-[#0E375F] font-bold text-2xl">Categories</h2>
+          <h2 className="text-primary font-bold text-2xl">Categories</h2>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 px-4 md:px-10 lg:px-24 py-6">
           {categoriesData.map((cate, index) => {
@@ -89,7 +89,7 @@ export default function HomeAfterLogin() {
           })}
         </div>
         <div className="px-4 md:px-10 lg:px-24 py-16">
-          <h2 className="text-[#0E375F] font-bold text-2xl mb-2">
+          <h2 className="text-primary font-bold text-2xl mb-2">
             Latest News
           </h2>
           <p className="text-gray-600 mb-6">

@@ -16,8 +16,8 @@ const Testimonial = () => {
           <div
             key={testimonial.id}
             className={`
-              bg-[#E7EBEF] shadow-lg shadow-[#80B7EC]/60 rounded-xl py-8 pl-8 pr-8
-              w-[100%] md:w-[50%] lg:w-[25%] xl:w-[27%] 
+              bg-secondary shadow-lg shadow-[#80B7EC]/60 rounded-xl py-8 pl-8 pr-8
+              w-[100%] md:w-[50%] lg:w-[30%]  
               transition hover:scale-[1.02] hover:shadow-xl 
               ${translateYClasses[index]}
             `}

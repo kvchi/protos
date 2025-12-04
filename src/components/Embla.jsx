@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {
   image2,
   image3,
@@ -7,20 +7,20 @@ import {
   image6,
   image7,
 } from "../assets/images";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, EffectFade, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/pagination";
+
 import HeroSlide from "../components/HeroSlide";
-import SearchBar from "../components/SearchBar"; // ✅ import SearchBar
+import SearchBar from "../components/SearchBar";
 
 export default function Embla() {
-  const autoplay = useRef(Autoplay({ delay: 4000 }));
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [
-    autoplay.current,
-  ]);
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  // ✅ Detect login state
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
@@ -76,30 +76,29 @@ export default function Embla() {
 
   const slidesToShow = isLoggedIn ? loggedInSlides : guestSlides;
 
-  useEffect(() => {
-    if (!emblaApi) return;
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap());
-    emblaApi.on("select", onSelect);
-    emblaApi.on("reInit", onSelect);
-    onSelect();
-  }, [emblaApi]);
-
-  const handleFocus = () => autoplay.current.stop();
-  const handleBlur = () => autoplay.current.play();
-
   return (
     <div className="relative w-full overflow-hidden">
-      <div ref={emblaRef} className="overflow-hidden">
-        <div className="flex">
-          {slidesToShow.map((slide, i) => (
-            <HeroSlide key={i} {...slide} isLoggedIn={isLoggedIn} />
-          ))}
-        </div>
-      </div>
+      {/* SWIPER */}
+      <Swiper
+        modules={[EffectFade, Autoplay, Pagination]}
+        effect="fade"
+        fadeEffect={{ crossFade: true }}
+        speed={2500}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        loop={true}
+        onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
+        className="overflow-hidden"
+      >
+        {slidesToShow.map((slide, i) => (
+          <SwiperSlide key={i}>
+            <HeroSlide {...slide} isLoggedIn={isLoggedIn} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
       {!isLoggedIn && (
-        <div className="absolute bottom-15 md:bottom-30 lg:bottom-30 left-1/2 md:left-[19rem] lg:left-[24rem] -translate-x-1/2 w-[90%] md:w-[70%] lg:w-[50%] z-20">
-          <SearchBar onFocus={handleFocus} onBlur={handleBlur} />
+        <div className="absolute bottom-15 md:bottom-30 lg:bottom-30 left-1/2 md:left-[19rem] lg:left-[30rem] -translate-x-1/2 w-[90%] md:w-[70%] lg:w-[50%] z-20">
+          <SearchBar />
         </div>
       )}
 
@@ -108,11 +107,11 @@ export default function Embla() {
           <button
             key={i}
             className={`rounded-full transition-all duration-300 ${
-              selectedIndex === i
+              currentIndex === i
                 ? "w-4 h-4 bg-yellow-500"
                 : "w-3 h-3 bg-gray-300"
             }`}
-            onClick={() => emblaApi.scrollTo(i)}
+            onClick={() => document.querySelector(".swiper").swiper.slideToLoop(i)}
           ></button>
         ))}
       </div>

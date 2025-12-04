@@ -31,12 +31,12 @@ export default function NewsCard({ item }) {
         </div>
 
         <div className="flex items-center justify-between">
-          <span className="border border-[#0E375F] text-[#0E375F] rounded-md text-xs px-3 py-1">
+          <span className="border border-primary text-primary rounded-md text-xs px-3 py-1">
             {item.category}
           </span>
           <a
             href="#"
-            className="text-[#FCA311] text-sm font-medium hover:underline">
+            className="text-accent/90 text-sm font-medium hover:underline">
             Read more
           </a>
         </div>

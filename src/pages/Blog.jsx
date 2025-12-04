@@ -38,8 +38,8 @@ export default function Blog() {
 
   return (
     <main className="px-6 md:px-10 lg:px-30 bg-gray-100">
-      <h1 className="text-2xl md:text-6xl font-semibold text-amber-400 text-center py-12">
-        Protos<span className="text-[#0E375F]">Business Blog</span>
+      <h1 className="text-2xl md:text-6xl font-semibold text-accent text-center py-12">
+        Protos<span className="text-primary">Business Blog</span>
       </h1>
       <div className="flex flex-col lg:flex-row justify-between items-center gap-20 lg:gap-30 w-full mb-10">
         <div className="space-y-4 w-full lg:w-[50%]">
@@ -52,7 +52,7 @@ export default function Blog() {
             explains how to create a unique profile as a business owner
             to attract customers.
           </p>
-          <button className="bg-[#0e375f] p-2 rounded-lg text-white text-xl">
+          <button className="bg-primary p-2 rounded-lg text-white text-xl">
             Read more
           </button>
         </div>
@@ -61,7 +61,7 @@ export default function Blog() {
         </div>
       </div>
       <div className="mb-8">
-        <h2 className="text-3xl font-semibold text-[#0E375F]">Recent blogs</h2>
+        <h2 className="text-3xl font-semibold text-primary">Recent blogs</h2>
         <div className="p-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {posts.map((post, i) => (
@@ -75,9 +75,9 @@ export default function Blog() {
                   className=" object-cover  w-full h-[200px] rounded-xl"
                 />
                 <div className="p-4">
-                  <h2 className="font-semibold text-lg text-[#0E375F]">{post.title}</h2>
+                  <h2 className="font-semibold text-lg text-primary">{post.title}</h2>
                   <span className="flex justify-end items-center gap-1 mt-[-5px]">
-                    <FaClock className="text-yellow-500" /> {post.time}
+                    <FaClock className="text-accent" /> {post.time}
                   </span>
                   <p className="text-gray-600 text-sm mt-2 line-clamp-3">
                     {post.desc}
@@ -86,7 +86,7 @@ export default function Blog() {
                     <span className="flex items-center gap-1">
                       <FaCalendarAlt className="text-orange-500" /> {post.date}
                     </span>
-                    <button className="mt-4  bg-[#0E375F] text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
+                    <button className="mt-4  bg-primary text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
                       Read more
                     </button>
                   </div>
@@ -108,9 +108,9 @@ export default function Blog() {
                   className=" object-cover  w-full h-[200px] rounded-xl"
                 />
                 <div className="p-4">
-                  <h2 className="font-semibold text-lg text-[#0E375F]">{post.title}</h2>
+                  <h2 className="font-semibold text-lg text-primary">{post.title}</h2>
                   <span className="flex justify-end items-center gap-1 mt-[-5px]">
-                    <FaClock className="text-yellow-500" /> {post.time}
+                    <FaClock className="text-accent" /> {post.time}
                   </span>
                   <p className="text-gray-600 text-sm mt-2 line-clamp-3">
                     {post.desc}
@@ -119,7 +119,7 @@ export default function Blog() {
                     <span className="flex items-center gap-1">
                       <FaCalendarAlt className="text-orange-500" /> {post.date}
                     </span>
-                    <button className="mt-4  bg-[#0E375F] text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
+                    <button className="mt-4  bg-primary text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
                       Read more
                     </button>
                   </div>
@@ -130,12 +130,12 @@ export default function Blog() {
         </div>
       </div>
       <section className="flex flex-col justify-center items-center ">
-            <h1 className="text-2xl font-semibold text-center text-[#0E375F] underline-offset-5 underline">Blog news</h1>
+            <h1 className="text-2xl font-semibold text-center text-primary underline-offset-5 underline">Blog news</h1>
             <div className="flex flex-wrap gap-3 my-10 px-6">
       {categories.map((cat, i) => (
         <span
           key={i}
-          className="px-4 py-2 border border-[#0E375F] text-[#0E375F] rounded-lg text-sm font-medium cursor-pointer hover:bg-[#0E375F] hover:text-white transition"
+          className="px-4 py-2 border border-primary text-primary rounded-lg text-sm font-medium cursor-pointer hover:bg-primary hover:text-white transition"
         >
           {cat}
         </span>
@@ -156,9 +156,9 @@ export default function Blog() {
                   className=" object-cover  w-full h-[200px] rounded-xl"
                 />
                 <div className="p-4">
-                  <h2 className="font-semibold text-lg text-[#0E375F]">{post.title}</h2>
+                  <h2 className="font-semibold text-lg text-primary">{post.title}</h2>
                   <span className="flex justify-end items-center gap-1 mt-[-5px]">
-                    <FaClock className="text-yellow-500" /> {post.time}
+                    <FaClock className="text-accent" /> {post.time}
                   </span>
                   <p className="text-gray-600 text-sm mt-2 line-clamp-3">
                     {post.desc}
@@ -167,7 +167,7 @@ export default function Blog() {
                     <span className="flex items-center gap-1">
                       <FaCalendarAlt className="text-orange-500" /> {post.date}
                     </span>
-                    <button className="mt-4  bg-[#0E375F] text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
+                    <button className="mt-4  bg-primary text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
                       Read more
                     </button>
                   </div>
@@ -189,9 +189,9 @@ export default function Blog() {
                   className=" object-cover  w-full h-[200px] rounded-xl"
                 />
                 <div className="p-4">
-                  <h2 className="font-semibold text-lg text-[#0E375F]">{post.title}</h2>
+                  <h2 className="font-semibold text-lg text-primary">{post.title}</h2>
                   <span className="flex justify-end items-center gap-1 mt-[-5px]">
-                    <FaClock className="text-yellow-500" /> {post.time}
+                    <FaClock className="text-accent" /> {post.time}
                   </span>
                   <p className="text-gray-600 text-sm mt-2 line-clamp-3">
                     {post.desc}
@@ -200,7 +200,7 @@ export default function Blog() {
                     <span className="flex items-center gap-1">
                       <FaCalendarAlt className="text-orange-500" /> {post.date}
                     </span>
-                    <button className="mt-4  bg-[#0E375F] text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
+                    <button className="mt-4  bg-primary text-white text-sm p-2 rounded-md hover:bg-blue-600 transition">
                       Read more
                     </button>
                   </div>

@@ -78,7 +78,7 @@ export default function LearnMore() {
         <div>
           <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
             <div>
-              <h1 className="text-lg md:text-3xl font-semibold mb-6 text-[#ffa500]">
+              <h1 className="text-lg md:text-3xl font-semibold mb-6 text-accent">
                 Get new customers for your
                 <span className="block"> business</span>
               </h1>
@@ -120,11 +120,11 @@ export default function LearnMore() {
                       : ""
                   }`}
                 >
-                  <div className="bg-[#0E375F] text-white p-4 rounded-full">
+                  <div className="bg-primary text-white p-4 rounded-full">
                     {feature.icon}
                   </div>
                   <div className="max-w-xl">
-                    <h3 className="text-lg font-semibold text-[#0E375F] mb-2">
+                    <h3 className="text-lg font-semibold text-primary mb-2">
                       {feature.title}
                     </h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
@@ -141,7 +141,7 @@ export default function LearnMore() {
         <div className="">
          <div className="flex flex-col-reverse lg:flex-row items-center gap-10">
             <div>
-              <h1 className="text-lg lg:text-3xl font-semibold mb-6 text-[#ffa500]">
+              <h1 className="text-lg lg:text-3xl font-semibold mb-6 text-accent">
                 Advertise what you own
               </h1>
               <p className="text-gray-700 leading-relaxed lg:w-[80%]">
@@ -182,11 +182,11 @@ export default function LearnMore() {
                       : ""
                   }`}
                 >
-                  <div className="bg-[#0E375F] text-white p-4 rounded-full">
+                  <div className="bg-primary text-white p-4 rounded-full">
                     {feature.icon}
                   </div>
                   <div className="max-w-xl">
-                    <h3 className="text-lg font-semibold text-[#0E375F] mb-2">
+                    <h3 className="text-lg font-semibold text-primary mb-2">
                       {feature.title}
                     </h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
@@ -201,14 +201,14 @@ export default function LearnMore() {
       )}
 
       <section className="py-20 bg-gray-50 px-4">
-        <div className="bg-[#0A3D62] text-white py-10 px-6 sm:px-10 shadow-[12px_12px_0px_#b0b0b0] max-w-2xl mx-auto text-center">
+        <div className="bg-primary text-white py-10 px-6 sm:px-10 shadow-[12px_12px_0px_#b0b0b0] max-w-2xl mx-auto text-center">
           <h1 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-2">
             What are you waiting for?
           </h1>
           <p className="text-xs sm:text-sm md:text-base text-gray-200 mb-6">
             Let’s help you rise right to the top, click the button below.
           </p>
-          <button className="bg-[#F5A623] hover:bg-[#e69510] text-[#0A3D62] font-semibold py-2.5 px-6 rounded-md shadow-md hover:shadow-lg transition-all text-sm sm:text-base">
+          <button className="bg-accent hover:bg-accent/80 text-primary font-semibold py-2.5 px-6 rounded-md shadow-md hover:shadow-lg transition-all text-sm sm:text-base">
             Create a Business Account
           </button>
         </div>

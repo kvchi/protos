@@ -17,26 +17,26 @@ const BusinessCard = ({ business }) => {
 
         <div className="flex flex-col  justify-between h-full">
           <div>
-            <h3 className="text-[#0E375F] font-semibold text-[10px] sm:text-base">
+            <h3 className="text-primary font-semibold text-[10px] sm:text-base">
               {business.title}
             </h3>
 
             <div className="flex items-center space-x-1">
               {[...Array(business.rating)].map((_, index) => (
-                <FaStar key={index} className="text-yellow-400" size={12} />
+                <FaStar key={index} className="text-accent" size={12} />
               ))}
             </div>
           </div>
 
           <div className="hidden md:flex items-start gap-1 text-gray-600 text-[11px] sm:text-xs mt-[6px]">
-            <IoLocationOutline size={14} className="text-[#FFA500] mt-[1px]" />
+            <IoLocationOutline size={14} className="text-accent mt-[1px]" />
             <span>{business.address}</span>
           </div>
         </div>
       </div>
 
       <div className="flex md:hidden items-start gap-1 text-gray-600 text-[11px] sm:text-xs mt-[4px] ">
-        <IoLocationOutline size={14} className="text-[#FFA500] mt-[1px]" />
+        <IoLocationOutline size={14} className="text-accent mt-[1px]" />
         <span className="flex-1">{business.address}</span>
       </div>
 

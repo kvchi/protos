@@ -9,24 +9,28 @@ const workData = [
     icon: <FaRegUser />,
     title: 'Create an account',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
+    link: "/signup"
   },
   {
     id: 2,
     icon: <FaClipboardList />,
     title: 'Add Listing',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
+    link: "/signup"
   },
   {
     id: 3,
     icon: <RiSearchLine />,
     title: 'Search for Listing',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
+    link: "/searchResult"
   },
   {
     id: 4,
     icon: <PiNoteBlank />,
     title: 'Get exposure',
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut.',
+    link: "/signup"
   },
 ];
 

@@ -65,7 +65,7 @@ export default function BusinessInfo() {
     <main className="relative bg-gray-100 p-4">
       <div className="container mx-auto grid lg:grid-cols-2 gap-10 py-10">
         <div className="relative md:px-4 lg:px-0 md:w-full lg:max-w-xl">
-          <h2 className="text-3xl font-semibold text-[#0E375F]">
+          <h2 className="text-3xl font-semibold text-primary">
             {" "}
             Add business information
           </h2>
@@ -77,7 +77,7 @@ export default function BusinessInfo() {
             className="grid md:grid-cols-2 gap-4 max-w-full"
           >
             <div className="mt-4 grid md:col-span-2">
-              <p className="text-[#0E375F] text-xl font-semibold ">
+              <p className="text-primary text-xl font-semibold ">
                 Business name
               </p>
               <input
@@ -88,7 +88,7 @@ export default function BusinessInfo() {
               />
             </div>
             <div className="w-full">
-              <p className="text-[#0E375F] text-xl font-semibold ">Country</p>
+              <p className="text-primary text-xl font-semibold ">Country</p>
               <CountryDropdown
                 value={formData.country}
                 onChange={(val) => {
@@ -101,7 +101,7 @@ export default function BusinessInfo() {
               />
             </div>
             <div className="w-full">
-              <p className="text-[#0E375F] text-xl font-semibold ">State</p>
+              <p className="text-primary text-xl font-semibold ">State</p>
               <RegionDropdown
                 value={formData.state}
                 onChange={(val) => {
@@ -115,7 +115,7 @@ export default function BusinessInfo() {
               />
             </div>
             <div className="w-full">
-              <p className="text-[#0E375F] text-xl font-semibold ">City</p>
+              <p className="text-primary text-xl font-semibold ">City</p>
               <div className="flex gap-2 items-center border-2 rounded-md border-gray-400 p-2">
                 <input
                   type="text"
@@ -135,7 +135,7 @@ export default function BusinessInfo() {
               </div>
             </div>
             <div className="w-full">
-              <p className="text-[#0E375F] text-xl font-semibold ">
+              <p className="text-primary text-xl font-semibold ">
                 Postal code
               </p>
               <div className="flex gap-2 items-center border-2 rounded-md border-gray-400 p-2">
@@ -148,7 +148,7 @@ export default function BusinessInfo() {
               </div>
             </div>
             <div className="md:col-span-2">
-              <p className="text-[#0E375F] text-xl font-semibold mt-4">
+              <p className="text-primary text-xl font-semibold mt-4">
                 Address
               </p>
               <input
@@ -161,7 +161,7 @@ export default function BusinessInfo() {
             <div className="md:col-span-2">
               <label
                 htmlFor="phone"
-                className="text-[#0E375F] text-xl font-semibold "
+                className="text-primary text-xl font-semibold "
               >
                 Phone
               </label>
@@ -180,7 +180,7 @@ export default function BusinessInfo() {
               </div>
             </div>
             <div className="md:col-span-2">
-              <p className="text-[#0E375F] text-xl font-semibold  mt-4">
+              <p className="text-primary text-xl font-semibold  mt-4">
                 Your Email Address
               </p>
               <input
@@ -191,7 +191,7 @@ export default function BusinessInfo() {
               />
             </div>
             <div className="md:col-span-2">
-              <p className="text-[#0E375F] text-xl font-semibold mt-4">
+              <p className="text-primary text-xl font-semibold mt-4">
                 Website
               </p>
               <input
@@ -202,7 +202,7 @@ export default function BusinessInfo() {
               />
             </div>
             <div className="md:col-span-2">
-              <p className="text-[#0E375F] text-xl font-semibold mt-4">
+              <p className="text-primary text-xl font-semibold mt-4">
                 Categories
               </p>
               <input
@@ -213,7 +213,7 @@ export default function BusinessInfo() {
               />
             </div>
             <div className=" md:col-span-2">
-              <p className="text-[#0E375F] text-xl font-semibold">Hours</p>
+              <p className="text-primary text-xl font-semibold">Hours</p>
               <div className="mt-2 grid grid-cols-3 gap-2 sm:gap-3 md:gap-5">
                 <select
                   className="border-2 border-gray-300 rounded py-2 text-gray-700 "

@@ -1,20 +1,21 @@
-// src/context/RegistrationContext.jsx
+
 import { createContext, useState, useEffect } from "react";
 
 export const RegistrationContext = createContext();
 
 export const RegistrationProvider = ({ children }) => {
-  // load from localStorage on first render
+
   const [formData, setFormData] = useState(() => {
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : {};
   });
 
   const [token, setToken] = useState(() => {
-    return localStorage.getItem("token") || null;
+    const savedToken = localStorage.getItem("token");
+    return savedToken ? JSON.parse(savedToken) : null;
   });
 
-  // keep localStorage in sync for user data
+ 
   useEffect(() => {
     if (formData?.email) {
       localStorage.setItem("user", JSON.stringify(formData));
@@ -23,25 +24,42 @@ export const RegistrationProvider = ({ children }) => {
     }
   }, [formData]);
 
-  // keep localStorage in sync for token
   useEffect(() => {
     if (token) {
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", JSON.stringify(token));
     } else {
       localStorage.removeItem("token");
     }
   }, [token]);
 
-  // handy functions for login / logout
+  useEffect(() => {
+    const loginTime = localStorage.getItem("loginTime");
+    const savedToken = localStorage.getItem("token");
+
+    if (!loginTime || !savedToken) return;
+
+  const now = Date.now();
+  const sessionLimit = 48 * 60 * 60 * 1000;
+
+  if (now - loginTime > sessionLimit) {
+    logout();
+    localStorage.removeItem("loginTime");
+    console.log("Session expired - user logged out automatically")
+
+  }
+  }, []);
+
   const login = (userData, authToken) => {
     setFormData(userData);
     setToken(authToken);
+    localStorage.setItem("loginTime", Date.now)
     console.log(userData);
   };
 
   const logout = () => {
     setFormData({});
     setToken(null);
+    localStorage.removeItem("loginTime")
   };
 
   return (

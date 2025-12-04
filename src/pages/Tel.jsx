@@ -45,7 +45,7 @@ export default function Tel() {
       <BsArrowLeft className="w-10 h-10 mb-10 cursor-pointer" onClick={handleBack} />
       <div className="flex gap-10">
         <div className="lg:w-[40%]">
-          <h2 className="text-2xl md:text-3xl font-bold text-[#0E375F] lg:w-[90%] w-[85%] leading-snug">
+          <h2 className="text-2xl md:text-3xl font-bold text-primary lg:w-[90%] w-[85%] leading-snug">
             Continue with Protos Business account sign up
           </h2>
           <p className="lg:text-xl font-medium w-[80%] lg:w-full mt-10">
@@ -84,7 +84,7 @@ export default function Tel() {
 
             <button
               type="submit"
-              className="mt-8 bg-[#0E375F] py-3 px-4 rounded-lg text-white flex items-center gap-20 w-fit mx-15 lg:mx-25 mb-20 cursor-pointer"
+              className="mt-8 bg-primary py-3 px-4 rounded-lg text-white flex items-center gap-20 w-fit mx-15 lg:mx-25 mb-20 cursor-pointer"
             >
               Continue <BsArrowRight />
             </button>

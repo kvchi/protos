@@ -38,7 +38,7 @@ export default function Signup() {
         onClick={handleBack}  />
       <div className="flex gap-10">
         <div className="lg:w-[40%]">
-          <h2 className="text-3xl font-bold text-[#0E375F]">
+          <h2 className="text-3xl font-bold text-primary">
             First Step, Create business name
           </h2>
           <p className="lg:text-xl font-medium w-[80%] lg:w-full mt-10">
@@ -64,7 +64,7 @@ export default function Signup() {
 
             <button
               type="submit"
-              className="mt-8 bg-[#0E375F] py-3 px-4 rounded-lg text-white flex items-center gap-20 w-fit mx-15 lg:mx-25 mb-20 cursor-pointer"
+              className="mt-8 bg-primary py-3 px-4 rounded-lg text-white flex items-center gap-20 w-fit mx-15 lg:mx-25 mb-20 cursor-pointer"
             >
               Continue <BsArrowRight />
             </button>

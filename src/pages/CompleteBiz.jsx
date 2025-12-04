@@ -72,13 +72,13 @@ export default function CompleteBiz() {
   return (
     <main className="flex flex-col lg:flex-row px-4 sm:px-8 lg:px-28 py-15 bg-gray-100 gap-30">
       <div className="lg:w-[30%]">
-        <h2 className="text-3xl font-bold text-[#0E375F]">
+        <h2 className="text-3xl font-bold text-primary">
           Complete business information
         </h2>
         <p>Add your business information and detail for easy recognition</p>
         <form onSubmit={handleSubmit} className="mt-5">
           {/* First Name */}
-          <p className="text-[#0E375F] text-xl font-semibold my-3">First Name</p>
+          <p className="text-primary text-xl font-semibold my-3">First Name</p>
           <input
             type="text"
             name="first_name"
@@ -90,7 +90,7 @@ export default function CompleteBiz() {
           />
 
           {/* Last Name */}
-          <p className="text-[#0E375F] text-xl font-semibold my-3">Last Name</p>
+          <p className="text-primary text-xl font-semibold my-3">Last Name</p>
           <input
             type="text"
             name="last_name"
@@ -102,7 +102,7 @@ export default function CompleteBiz() {
           />
 
           {/* Email */}
-          <p className="text-[#0E375F] text-xl font-semibold my-3">
+          <p className="text-primary text-xl font-semibold my-3">
             Your Email Address
           </p>
           <input
@@ -116,7 +116,7 @@ export default function CompleteBiz() {
           />
 
           {/* Password */}
-          <p className="text-[#0E375F] text-xl font-semibold my-3">
+          <p className="text-primary text-xl font-semibold my-3">
             Personal password
           </p>
           <div className="relative w-full">
@@ -148,10 +148,10 @@ export default function CompleteBiz() {
             />
             <p className="md:w-[80%] lg:w-[100%] font-medium text-sm mt-6">
               By continuing, you agree to{" "}
-              <span className="text-[#0E375F]">Protos</span>{" "}
-              <span className="text-amber-300 underline">Business Terms</span>{" "}
+              <span className="text-primary">Protos</span>{" "}
+              <span className="text-accent underline">Business Terms</span>{" "}
               and acknowledge our{" "}
-              <span className="text-amber-300 underline">Privacy Policy.</span>{" "}
+              <span className="text-accent underline">Privacy Policy.</span>{" "}
               We may email you about Protos products, services and local events.
               You can unsubscribe at any time.
             </p>
@@ -160,7 +160,7 @@ export default function CompleteBiz() {
           {/* Submit */}
           <button
             type="submit"
-            className="mt-8 bg-[#0E375F] py-3 px-4 rounded-lg text-white mb-20 cursor-pointer flex mx-auto"
+            className="mt-8 bg-primary py-3 px-4 rounded-lg text-white mb-20 cursor-pointer flex mx-auto"
           >
             Create a free account
           </button>

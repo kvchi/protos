@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Filtered from "../components/Filtered";
 import Search from "../components/Seach";
 
 export default function SearchResult() {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   return (
     <main>
       <div className="flex items-start">
-        <Filtered />
+        <Filtered
+          isOpen={isFilterOpen}
+          onOpen={() => setIsFilterOpen(true)}
+          onClose={() => setIsFilterOpen(false)}
+        />
         <Search />
       </div>
     </main>

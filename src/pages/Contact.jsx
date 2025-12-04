@@ -119,7 +119,7 @@ export default function Contact() {
                 className="border-2 rounded-md border-gray-400 p-2 resize-none h-30"
               />
             </div>
-           <div className="flex justify-center mt-14 bg-[#0E375F] p-2.5 text-white rounded-md">
+           <div className="flex justify-center mt-14 bg-primary p-2.5 text-white rounded-md">
              <button>Send Message</button>
            </div>
           </form>
@@ -130,8 +130,8 @@ export default function Contact() {
       </section>
       <section>
         <div className="flex flex-col justify-center items-center">
-          <h2 className="text-xl font-semibold mt-14 py-2 px-4 bg-[#E7EBEF] rounded-full text-[#0E375F]">Contact us</h2>
-          <p className="text-[#0E375F] font-semibold text-3xl my-8 text-center px-6">We'd love to hear from you.</p>
+          <h2 className="text-xl font-semibold mt-14 py-2 px-4 bg-secondary rounded-full text-primary">Contact us</h2>
+          <p className="text-primary font-semibold text-3xl my-8 text-center px-6">We'd love to hear from you.</p>
           <p>Chat to our friendly team</p>
         </div>
         <div className="flex justify-center items-center my-14 px-8 md:px-28 ">
@@ -143,15 +143,15 @@ export default function Contact() {
             {contactInfo.map((i) => (
               <div 
                 key={i.id}
-                className="bg-[#E7EBEF] p-6 rounded-sm shadow-sm flex flex-col gap-3">
-                  <div className="bg-[#0E375F] w-10 h-10 flex items-center justify-center rounded-md text-white mb-4">
+                className="bg-secondary p-6 rounded-sm shadow-sm flex flex-col gap-3">
+                  <div className="bg-primary w-10 h-10 flex items-center justify-center rounded-md text-white mb-4">
             {i.icon}
           </div>
-          <h3 className="text-lg font-semibold text-[#0E375F]">
+          <h3 className="text-lg font-semibold text-primary">
             {i.title}
           </h3>
-          <p className="text-[#0E375F]">{i.desc}</p>
-          <span className="text-sm text-[#0E375F] font-medium">
+          <p className="text-primary">{i.desc}</p>
+          <span className="text-sm text-primary font-medium">
             {i.link}
           </span>
               </div>

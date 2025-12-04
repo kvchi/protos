@@ -15,8 +15,8 @@ import PersonalInfo from "./PersonalInfo";
 import Location from "./Location";
 import ChangePassword from "./ChangePassword";
 import { LucidePanelLeftClose } from "lucide-react";
-import { favoriteData, ratingsData, reservationData } from "../../components/data/Data";
-// import { reservationData } from "../../components/data/Data";
+import { favoriteData, ratingsData, reservationData } from "../../components/data/data";
+// import { reservationData } from "../../components/data/data";
 
 export default function Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);

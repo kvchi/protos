@@ -47,3 +47,7 @@ body {
 .leaflet-tile-pane {
   z-index: 1 !important;
 }
+
+input, textarea, select {
+  font-size: 16px;
+}

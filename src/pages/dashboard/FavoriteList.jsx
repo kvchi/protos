@@ -73,7 +73,10 @@ export default function FavoritesList({ favorites, setFavorites }) {
           />
         ))}
       </div>
-      <PlaceOrder isOpen={isAddFolderOpen} onClose={() => setIsAddFolderOpen(false)}>
+      <PlaceOrder 
+      isOpen={isAddFolderOpen} 
+      onClose={() => setIsAddFolderOpen(false)}
+      title="Add a new Folder">
         
         <label className="text-sm mb-1 block">Folder Name</label>
         <input

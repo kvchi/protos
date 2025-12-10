@@ -11,7 +11,8 @@ export const reservationData = [
     type: "Reservation",
     date: "27/12/2024", 
     time: "10:00 PM",   
-    people: 4,          
+    people: 4, 
+    request: "A window side table close to the main street"         
   }
 ];
 
@@ -100,5 +101,6 @@ export const ratingsData = [
     comments: 890,
     location: "Plot 22 Freedom Way, Lekki Phase 1, Lagos",
     type: "RatingSummary",
+    
   },
 ];

@@ -1,13 +1,14 @@
-import { useState} from "react";
+import { useState } from "react";
 import RecentActivityCard from "../../components/dashboard/RecentActivityCard";
 import PlaceOrder from "../../components/PlaceOrder";
-import ReviewForm from "../../components/dashboard/ReviewForm"
+import ReviewForm from "../../components/dashboard/ReviewForm";
+import ReviewBanner from "../../components/dashboard/ReviewBanner";
 import PrimaryButton from "../../components/shared/PrimaryButton";
 
-export default function Ratings({ ratings, }) {
+export default function Ratings({ ratings }) {
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const openReviewModal = () => setIsReviewOpen(true);
-  const closeReviewModal = () => setIsReviewOpen(false)
+  const closeReviewModal = () => setIsReviewOpen(false);
   // if (ratings.length === 0) {
   //   return (
   //     <div className="pt-4 text-center mt-20">
@@ -36,24 +37,36 @@ export default function Ratings({ ratings, }) {
         </div>
       </div>
       <div className="mt-8 space-y-6">
-              {ratings.map((item, index) => (
-                <RecentActivityCard
-                  key={index}
-                  mode="ratings"
-                  image={item.image}
-                  title={item.title}
-                  description={item.description}
-                  location={item.location} 
-                  onLeaveReview={openReviewModal}
-                />
-              ))}
-        </div>
-        <PlaceOrder 
-        isOpen={isReviewOpen} 
+        {ratings.map((item, index) => (
+          <RecentActivityCard
+            key={index}
+            mode="ratings"
+            image={item.image}
+            title={item.title}
+            description={item.description}
+            location={item.location}
+            onLeaveReview={openReviewModal}
+          />
+        ))}
+      </div>
+      <PlaceOrder
+        isOpen={isReviewOpen}
         onClose={closeReviewModal}
-        title="Edit Review">
-                <ReviewForm onClose={closeReviewModal} />
-        </PlaceOrder>
+        title="Edit Review"
+      >
+        <ReviewForm onClose={closeReviewModal} />
+      </PlaceOrder>
+      <div className="mt-5">
+        <ReviewBanner
+          title="Yemkemo Restaurant & Bar"
+          description="Restaurant, bar, grills, sushi and raw fish, Japanese restaurant."
+          location="365 Ikari village, Ikeja, Lagos state, Nigeria"
+          rating={4}
+          reviewText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          onEdit={() => console.log("edit clicked")}
+          onDelete={() => console.log("delete clicked")}
+        />
+      </div>
     </div>
   );
 }

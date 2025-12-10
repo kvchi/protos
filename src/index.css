@@ -36,3 +36,14 @@ body {
 .modal-scroll::-webkit-scrollbar-track {
   background-color: #f3f4f6;
 }
+
+.modal-overlay {
+  z-index: 9999 !important;
+}
+
+.leaflet-container,
+.leaflet-pane,
+.leaflet-marker-pane,
+.leaflet-tile-pane {
+  z-index: 1 !important;
+}

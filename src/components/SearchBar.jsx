@@ -45,7 +45,7 @@ const isMenuPage = pathname === "/menu";
               : "Lagos, Nigeria"
             }
             readOnly
-            className="outline-none bg-transparent text-gray-800 text-sm"
+            className="outline-none bg-transparent text-gray-800 text-base md:text-sm"
           />
         </div>
       )}

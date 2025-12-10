@@ -1,7 +1,11 @@
 import PrimaryButton from "../../components/shared/PrimaryButton";
 import RecentActivityCard from "../../components/dashboard/RecentActivityCard";
 
-export default function Reservation({ reservations, setReservations }) {
+
+export default function Reservation({ reservations,
+  setReservations,
+  setSelectedReservation,
+  setActiveItem, }) {
   if (reservations.length === 0) {
     return (
       <div className="pt-4 text-center mt-20">
@@ -37,7 +41,14 @@ export default function Reservation({ reservations, setReservations }) {
             date={item.date}
             time={item.time}
             people={item.people}
-            onDetails={() => console.log("show details:", item)}
+            onClick={() => {
+              setSelectedReservation(item)
+              setActiveItem("reservationDetails")
+            }}
+            onDetails={() => {
+              setSelectedReservation(item);
+              setActiveItem("reservationDetails")
+            }}
             onCancel={() => {
               const updated = reservations.filter((_, i) => i !== index);
               setReservations(updated);

@@ -18,18 +18,19 @@ export default function RecentActivityCard({
   onAddNote,
   onRemove,
   onViewMap,
-  onLeaveReview
+  onLeaveReview,
+  
 }) {
   const isReservation = mode === "reservation";
   const isFavorite = mode === "favorite";
   const isRatings = mode === "ratings";
 
   return (
-    <div className="border border-gray-300 p-4 flex flex-col md:flex-row gap-4 shadow-sm rounded-lg w-full">
+    <div className="border border-gray-300 p-4 flex flex-col md:flex-row gap-4 shadow-sm w-full">
       {/* Image */}
       <img
         src={image}
-        className="w-full md:w-24 md:h-24 h-40 object-cover rounded-md cursor-pointer md:flex-shrink-0"
+        className="w-full md:w-24 md:h-24 h-40 object-cover  cursor-pointer md:flex-shrink-0"
         onClick={onClick}
       />
 
@@ -111,6 +112,7 @@ export default function RecentActivityCard({
                 <LuUsers className="text-primary" />
                 <p className="font-medium text-sm">People: {people}</p>
               </div>
+              
             </div>
           </div>
         )}

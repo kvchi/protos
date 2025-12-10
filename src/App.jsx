@@ -109,7 +109,7 @@ export default function App() {
         {
           path: "commentSection",
           element: <CommentPage />
-        }
+        },
       ]
     }
 

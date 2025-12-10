@@ -15,7 +15,15 @@ import PersonalInfo from "./PersonalInfo";
 import Location from "./Location";
 import ChangePassword from "./ChangePassword";
 import { LucidePanelLeftClose } from "lucide-react";
-import { favoriteData, ratingsData, reservationData } from "../../components/data/data";
+import {
+  favoriteData,
+  ratingsData,
+  reservationData,
+} from "../../components/data/data";
+import PlaceOrder from "../../components/PlaceOrder";
+import EditReservationForm from "../../components/dashboard/EditReservationForm";
+import ReservationDetails from "./ReservationDetails";
+import CancelReservationModal from "../../components/dashboard/CancelReservation";
 // import { reservationData } from "../../components/data/data";
 
 export default function Dashboard() {
@@ -28,6 +36,9 @@ export default function Dashboard() {
   const [nearMe, setNearme] = useState([]);
   const [reservations, setReservations] = useState([]);
   const [settingsPage, setSettingsPage] = useState("settings");
+  const [selectedReservation, setSelectedReservation] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden relative w-full">
@@ -115,18 +126,40 @@ export default function Dashboard() {
           )}
 
           {/* RESERVATIONS */}
+
           {activeItem === "reservations" && (
             <div>
               <button
-                className="text-primary text-2xl self-start  cursor-pointer"
+                className="text-primary text-2xl self-start cursor-pointer"
                 onClick={() => setActiveItem("dashboard")}
               >
                 <HiArrowLeft />
               </button>
+
               <Reservation
                 setActiveItem={setActiveItem}
                 reservations={reservationData}
                 setReservations={setReservations}
+                setSelectedReservation={setSelectedReservation}
+              />
+            </div>
+          )}
+
+          {/* RESERVATION DETAILS PAGE */}
+          {activeItem === "reservationDetails" && selectedReservation && (
+            <div>
+              <button
+                className="text-primary text-2xl cursor-pointer"
+                onClick={() => setActiveItem("reservations")}
+              >
+                <HiArrowLeft />
+              </button>
+
+              <ReservationDetails
+                data={selectedReservation}
+                onDetails={() => setIsEditModalOpen(true)}
+                setActiveItem={setActiveItem}
+                onCancel={() => setIsCancelModalOpen(true)}
               />
             </div>
           )}
@@ -201,6 +234,28 @@ export default function Dashboard() {
               </div>
             </section>
           )}
+          <div>
+            <PlaceOrder
+              isOpen={isEditModalOpen}
+              onClose={() => setIsEditModalOpen(false)}
+              title="Edit Reservation"
+            >
+              <EditReservationForm
+                onClose={() => setIsEditModalOpen(false)}
+                data={selectedReservation}
+              />
+            </PlaceOrder>
+          </div>
+          <CancelReservationModal
+            isOpen={isCancelModalOpen}
+            onClose={() => setIsCancelModalOpen(false)}
+            onBack={() => {
+              setIsCancelModalOpen(false);
+              setActiveItem("dashboard")
+            }}
+            title="Reservation Cancelled"
+            venue={selectedReservation?.title}
+          />
         </main>
       </div>
     </div>

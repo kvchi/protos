@@ -85,7 +85,7 @@ const isMenuPage = pathname === "/menu";
             placeholder="Search with keyword"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 outline-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm"
+            className="flex-1 outline-none text-[#3A3A3A] placeholder-[#A0A0A0] text-base md:text-sm"
             onFocus={onFocus}
             onBlur={onBlur}
           />
@@ -95,7 +95,7 @@ const isMenuPage = pathname === "/menu";
 
       <button
         onClick={handleSearch}
-        className="bg-primary text-white px-4 py-2 md:px-4 md:py-2 rounded-xl text-sm lg:text-base cursor-pointer"
+        className="bg-primary text-white px-4 py-2 md:px-4 md:py-2 rounded-xl text-base cursor-pointer"
       >
         Search
       </button>

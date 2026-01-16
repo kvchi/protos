@@ -21,6 +21,7 @@ import HomeAfterLogin from "./pages/HomeAfterLogin";
 import Blog from "./pages/Blog";
 import Business from "./pages/Business";
 import UserSignUp from "./pages/auth/UserSignUp";
+import UserSignin from "./pages/auth/UserSignin";
 import VerifyEmail from "./pages/auth/VerifyEmail";
 import SearchResult from "./pages/SearchResult";
 import LearnMore from "./pages/LearnMore";
@@ -29,12 +30,14 @@ import SearchDetails from "./pages/SearchDetails";
 import Menu from "./pages/Menu";
 import Upload from "./pages/Upload";
 import Dashboard from "./pages/dashboard/Dashboard";
+import BusinessDashboard from "./pages/businessDashboard/BusinessDashboard";
 
 import DashboardLayout from "./layout/DashboardLayout";
 import RestaurantDetails from "./pages/dashboard/RestaurantDetails";
 import MenuDetails from "./pages/dashboard/MenuDetails";
 import CommentPage from "./pages/dashboard/CommentPage";
 import ScrollToTop from "./components/ScrollToTop";
+import ForgetPassword from "./pages/auth/ForgetPassword";
 
 export default function App() {
 
@@ -66,6 +69,8 @@ export default function App() {
         { path: "/signin", element: <Signin /> },
         { path: "/signup1", element: <Signup1 /> },
         { path: "/userSignup", element: <UserSignUp /> },
+        { path: "/userSignin", element: <UserSignin />},
+        { path: "/forgot-password", element: <ForgetPassword />},
         { path: "/email", element: <Email /> },
         { path: "/verifyemail", element: <VerifyEmail /> },
         { path: "/tel", element: <Tel /> },
@@ -110,6 +115,10 @@ export default function App() {
           path: "commentSection",
           element: <CommentPage />
         },
+        {
+          path: "businessDashboard",
+          element: <BusinessDashboard />
+        }
       ]
     }
 

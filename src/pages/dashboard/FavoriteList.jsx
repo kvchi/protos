@@ -9,22 +9,20 @@ export default function FavoritesList({ favorites, setFavorites }) {
 
   const handleAddFolder = () => {
     console.log("New folder:", folderName);
-
-    // You can push to your folders list here
     setFolderName("");
     setIsAddFolderOpen(false);
   };
 
-  // if (favorites.length === 0) {
-  //   return (
-  //     <div className="pt-4 text-center mt-20">
-  //       <p className="text-lg font-semibold mb-4">No Favorite added yet</p>
-  //       <PrimaryButton type="submit" className="mt-6 flex items-center mx-auto">
-  //         Add Favorites
-  //       </PrimaryButton>
-  //     </div>
-  //   );
-  // }
+   if (favorites.length === 0) {
+     return (
+       <div className="pt-4 text-center mt-20">
+         <p className="text-lg font-semibold mb-4">No Favorite added yet</p>
+         <PrimaryButton type="submit" className="mt-6 flex items-center mx-auto">
+           Add Favorites
+         </PrimaryButton>
+       </div>
+     );
+   }
 
   return (
     <div className="pt-4">

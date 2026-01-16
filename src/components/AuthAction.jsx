@@ -1,28 +1,38 @@
-
-
 export default function AuthAction({ page, loading }) {
-    const buttonLabel = page === "businessInfo" ? "Add business" : "Sign up"
-
-    const buttonAlignment = page === "businessInfo" ? "items-start" : "items-center";
+  const buttonLabel = page === "businessInfo" ? "Add business" : "Sign up";
+  const buttonAlignment = page === "businessInfo" ? "items-start" : "items-center";
 
   return (
     <div className={`md:col-span-2 flex flex-col ${buttonAlignment}`}>
-            <p className="font-medium text-sm mt-6">
-              By continuing, you agree to{" "}
-              <span className="text-primary">Protos</span>{" "}
-              <span className="text-accent/90 underline">Business Terms</span>{" "}
-              and acknowledge our{" "}
-              <span className="text-accent/90 underline">Privacy Policy.</span>{" "}
-              We may email you about Protos products, services and local events.
-              You can unsubscribe at any time.
-            </p>
-            <button
-              type="submit"
-              disabled={loading}
-              className="mt-8 bg-primary py-3 px-4 rounded-lg text-white mb-20 cursor-pointer"
-            >
-              {buttonLabel}
-            </button>
-            </div>
-  )
+      <p className="font-medium text-sm mt-6 text-gray-600">
+        By continuing, you agree to{" "}
+        <span className="text-primary">Protos</span>{" "}
+        <span className="text-accent/90 underline cursor-pointer">
+          Business Terms
+        </span>{" "}
+        and acknowledge our{" "}
+        <span className="text-accent/90 underline cursor-pointer">
+          Privacy Policy.
+        </span>{" "}
+        We may email you about Protos products, services and local events.
+        You can unsubscribe at any time.
+      </p>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className={`
+          mt-8 py-3 px-4 rounded-lg text-white mb-20
+          transition-all duration-200
+          ${
+            loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-primary hover:opacity-90 cursor-pointer"
+          }
+        `}
+      >
+        {loading ? "Creating account..." : buttonLabel}
+      </button>
+    </div>
+  );
 }

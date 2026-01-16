@@ -24,6 +24,7 @@ import PlaceOrder from "../../components/PlaceOrder";
 import EditReservationForm from "../../components/dashboard/EditReservationForm";
 import ReservationDetails from "./ReservationDetails";
 import CancelReservationModal from "../../components/dashboard/CancelReservation";
+import ReservationDirections from "./ReservationDirections";
 // import { reservationData } from "../../components/data/data";
 
 export default function Dashboard() {
@@ -31,6 +32,7 @@ export default function Dashboard() {
   const [showRecent, setShowRecent] = useState(false);
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState("dashboard");
+  const [reservationView, setReservationView] = useState("list");
   const [favorites, setFavorites] = useState([]);
   const [ratings, setRatings] = useState([]);
   const [nearMe, setNearme] = useState([]);
@@ -44,12 +46,14 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden relative w-full">
       <div className="flex flex-1 ">
         <SideBar
+          type="user" 
           activeItem={activeItem}
           setActiveItem={setActiveItem}
           favorites={favorites}
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
         />
+
         <main className="flex-1 px-4 lg:px-16 py-6 space-y-8 ">
           <button
             className="md:hidden cursor-pointer"
@@ -127,7 +131,7 @@ export default function Dashboard() {
 
           {/* RESERVATIONS */}
 
-          {activeItem === "reservations" && (
+          {activeItem === "reservations" && reservationView === "list" && (
             <div>
               <button
                 className="text-primary text-2xl self-start cursor-pointer"
@@ -141,28 +145,50 @@ export default function Dashboard() {
                 reservations={reservationData}
                 setReservations={setReservations}
                 setSelectedReservation={setSelectedReservation}
+                setReservationView={setReservationView}
               />
             </div>
           )}
 
           {/* RESERVATION DETAILS PAGE */}
-          {activeItem === "reservationDetails" && selectedReservation && (
-            <div>
-              <button
-                className="text-primary text-2xl cursor-pointer"
-                onClick={() => setActiveItem("reservations")}
-              >
-                <HiArrowLeft />
-              </button>
+          {activeItem === "reservations" &&
+            reservationView === "details" &&
+            selectedReservation && (
+              <div>
+                <button
+                  className="text-primary text-2xl cursor-pointer"
+                  onClick={() => setReservationView("list")}
+                >
+                  <HiArrowLeft />
+                </button>
 
-              <ReservationDetails
-                data={selectedReservation}
-                onDetails={() => setIsEditModalOpen(true)}
-                setActiveItem={setActiveItem}
-                onCancel={() => setIsCancelModalOpen(true)}
-              />
-            </div>
-          )}
+                <ReservationDetails
+                  data={selectedReservation}
+                  onDetails={() => setIsEditModalOpen(true)}
+                  setActiveItem={setActiveItem}
+                  onCancel={() => setIsCancelModalOpen(true)}
+                  setReservationView={setReservationView}
+                />
+              </div>
+            )}
+
+          {activeItem === "reservations" &&
+            reservationView === "directions" &&
+            selectedReservation && (
+              <div>
+                <button
+                  className="text-primary text-2xl cursor-pointer"
+                  onClick={() => setReservationView("details")}
+                >
+                  <HiArrowLeft />
+                </button>
+
+                <ReservationDirections
+                  setActiveItem={setActiveItem}
+                  data={selectedReservation}
+                />
+              </div>
+            )}
 
           {activeItem === "dashboard" && !showRecent && (
             <>
@@ -251,7 +277,7 @@ export default function Dashboard() {
             onClose={() => setIsCancelModalOpen(false)}
             onBack={() => {
               setIsCancelModalOpen(false);
-              setActiveItem("dashboard")
+              setActiveItem("dashboard");
             }}
             title="Reservation Cancelled"
             venue={selectedReservation?.title}

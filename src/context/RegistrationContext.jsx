@@ -52,7 +52,7 @@ export const RegistrationProvider = ({ children }) => {
   const login = (userData, authToken) => {
     setFormData(userData);
     setToken(authToken);
-    localStorage.setItem("loginTime", Date.now)
+    localStorage.setItem("loginTime", Date.now())
     console.log(userData);
   };
 

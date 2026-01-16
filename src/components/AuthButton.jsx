@@ -12,7 +12,8 @@ export default function AuthButton({ signupText = "Sign up" }) {
 
   const isLoggedIn = !!token;
   const pathname = location.pathname;
-  const isBusinessPage = pathname === "/business";
+  const isBusinessPage = pathname.startsWith("/business") ||
+  pathname.startsWith("/dashboard/businessDashboard");
   const signupLink = isBusinessPage ? "/signup" : "/userSignup";
 
   // close dropdown if you click outside
@@ -27,12 +28,25 @@ export default function AuthButton({ signupText = "Sign up" }) {
   }, []);
 
   if (
-    ["/signup", "/signin", "/userSignup", "/verifyEmail", "/confirmationEmail"].includes(
+    ["/signup", "/signin", "/userSignup","/userSignin", "/verifyEmail", "/confirmationEmail"].includes(
       pathname
     )
   ) {
     return null;
   }
+
+  const dashboardLink = isBusinessPage ? "/dashboard/businessDashboard" : "/dashboard";
+
+const dashboardText = isBusinessPage
+  ? "Go to Business Dashboard"
+  : "Go to User Dashboard";
+
+const switchAccountLink = isBusinessPage ? "/home" : "/business";
+
+const switchAccountText = isBusinessPage
+  ? "Switch to User Account"
+  : "Switch to Business Account";
+
 
   return (
     <div>
@@ -63,21 +77,21 @@ export default function AuthButton({ signupText = "Sign up" }) {
           {/* Dropdown */}
           {isOpen && (
             <div className="absolute right-0 mt-1 w-56 bg-white  rounded-md shadow-lg py-2 z-50">
-              <Link
-                to="/dashboard"
-                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 text-primary transition border-b-gray-300 border-b"
+               <Link
+                to={dashboardLink}
+                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 text-primary border-b"
                 onClick={() => setIsOpen(false)}
               >
                 <LayoutDashboard className="w-4 h-4" />
-                <p className="text-sm">Go to User Dashboard</p>
+                <p className="text-sm">{dashboardText}</p>
               </Link>
-              <Link
-                to="/business"
-                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 text-primary transition border-b-gray-300 border-b"
+             <Link
+                to={switchAccountLink}
+                className="flex items-center gap-3 px-4 py-3 hover:bg-gray-100 text-primary border-b"
                 onClick={() => setIsOpen(false)}
               >
                 <Truck className="w-4 h-4" />
-                <p className="text-sm ">Switch to Business Account</p>
+                <p className="text-sm">{switchAccountText}</p>
               </Link>
               <button
                 onClick={() => {
@@ -97,7 +111,7 @@ export default function AuthButton({ signupText = "Sign up" }) {
         // Not logged in
         <div className="flex items-center gap-4 sm:gap-6 py-2">
           <Link
-            to="/signin"
+            to="/userSignin"
             className="border-2 rounded-xl border-primary px-3 sm:px-4 py-1.5 sm:py-2"
           >
             <button className="text-primary text-sm sm:text-base font-normal cursor-pointer">

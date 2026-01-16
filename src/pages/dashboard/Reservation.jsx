@@ -5,7 +5,7 @@ import RecentActivityCard from "../../components/dashboard/RecentActivityCard";
 export default function Reservation({ reservations,
   setReservations,
   setSelectedReservation,
-  setActiveItem, }) {
+  setActiveItem,setReservationView }) {
   if (reservations.length === 0) {
     return (
       <div className="pt-4 text-center mt-20">
@@ -43,7 +43,7 @@ export default function Reservation({ reservations,
             people={item.people}
             onClick={() => {
               setSelectedReservation(item)
-              setActiveItem("reservationDetails")
+              setReservationView("details")
             }}
             onDetails={() => {
               setSelectedReservation(item);

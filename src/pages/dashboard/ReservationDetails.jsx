@@ -4,12 +4,18 @@ import { GoTrash } from "react-icons/go";
 import { PiChats } from "react-icons/pi";
 import { FaRegUser } from "react-icons/fa6";
 import { LiaConciergeBellSolid } from "react-icons/lia";
-import { MapContainer, TileLayer } from "react-leaflet";
-import { useState } from "react";
 
-export default function ReservationDetails({ data, onDetails, onCancel, }) {
-    const [userlocation,] = useState([6.5244, 3.3792]);
-  
+import { useState } from "react";
+import MapView from "../../components/shared/MapView";
+
+export default function ReservationDetails({
+  data,
+  onDetails,
+  onCancel,
+  setReservationView,
+}) {
+  const [userlocation] = useState([6.5244, 3.3792]);
+
   return (
     <div className="px-4 md:px-10 pt-6">
       <div className="flex items-center justify-between">
@@ -72,32 +78,42 @@ export default function ReservationDetails({ data, onDetails, onCancel, }) {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <LiaConciergeBellSolid className="text-gold"/>
-            <p className="text-primary font-semibold">Reqeust: <span className="font-medium">{data.request}</span></p>
+            <LiaConciergeBellSolid className="text-gold" />
+            <p className="text-primary font-semibold">
+              Reqeust: <span className="font-medium">{data.request}</span>
+            </p>
           </div>
         </div>
       </div>
-      
-        <div className=" pt-20 ">
-        <MapContainer
-          center={userlocation}
-          zoom={13}
-          scrollWheelZoom={false}
-          className="w-full h-[50vh] rounded-md shadow-md"
-        >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-        </MapContainer>
+
+      <div className="pt-20">
+        <MapView center={userlocation} height="50vh" />
       </div>
+
       <div className="py-10 flex items-center justify-between">
-        <p className="text-lg font-semibold">Location: <span className="font-medium">365 Ikari village, Ikeja, Lagos state, Nigeria</span></p>
-        <button className="text-lg font-semibold text-accent underline">Get Directions</button>
+        <p className="text-lg font-semibold">
+          Location:{" "}
+          <span className="font-medium">
+            365 Ikari village, Ikeja, Lagos state, Nigeria
+          </span>
+        </p>
+        <button
+          onClick={() => setReservationView("directions")}
+          className="text-lg font-semibold text-accent underline cursor-pointer"
+        >
+          Get Directions
+        </button>
       </div>
       <div>
         <h3 className="text-lg text-primary font-semibold">About</h3>
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam officiis quae harum ipsa maiores nam neque inventore magnam obcaecati recusandae. Sapiente ipsam expedita minus maxime minima aspernatur molestiae numquam saepe vitae, reprehenderit ipsa rerum maiores blanditiis accusantium perferendis quam. Placeat ea possimus repellat rem vero ab aspernatur praesentium sit vel.</p>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam
+          officiis quae harum ipsa maiores nam neque inventore magnam obcaecati
+          recusandae. Sapiente ipsam expedita minus maxime minima aspernatur
+          molestiae numquam saepe vitae, reprehenderit ipsa rerum maiores
+          blanditiis accusantium perferendis quam. Placeat ea possimus repellat
+          rem vero ab aspernatur praesentium sit vel.
+        </p>
       </div>
     </div>
   );

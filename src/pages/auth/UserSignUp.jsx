@@ -2,11 +2,15 @@ import { useContext, useState } from "react";
 import { RegistrationContext } from "../../context/RegistrationContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom"
 
 import AuthAction from "../../components/AuthAction";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
 import { Frame7 } from "../../assets/images";
+import { FiEye, FiEyeOff } from "react-icons/fi";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
@@ -14,6 +18,7 @@ export default function UserSignUp() {
   const { formData, setFormData } = useContext(RegistrationContext);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const countryOptions = Country.getAllCountries().map((c) => ({
     value: c.isoCode,
@@ -73,20 +78,23 @@ export default function UserSignUp() {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${BASE_URL}/auth/create/`, {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-        country: formData.country,
-        state: formData.state,
-        city: formData.city,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
+      const res = await axios.post(
+        `${BASE_URL}/auth/create/`,
+        {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          country: formData.country,
+          state: formData.state,
+          city: formData.city,
         },
-      });
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       console.log("Signup response:", res.data);
 
@@ -94,12 +102,34 @@ export default function UserSignUp() {
         localStorage.setItem("email", formData.email);
         localStorage.setItem("verifyType", "signup");
 
-        alert("Signup successful! Please check your email for a verification code.")
+        toast.success(
+          "Signup successful! Please check your email for a verification code."
+        );
         navigate("/verifyEmail");
       }
     } catch (err) {
       console.error("Signup failed:", err.response?.data || err.message);
-      alert(err.response?.data?.message || "Signup failed. Please try again.");
+      if (err.response?.status === 400 && err.response?.data) {
+        const data = err.response.data;
+
+        if (data.email) {
+          toast.error(`Email error: ${data.email[0]}`);
+        } else if (data.password) {
+          toast.error(`Password error: ${data.password[0]}`);
+        } else if (data.first_name) {
+          toast.error(`First name error: ${data.first_name[0]}`);
+        } else {
+         
+          const messages = Object.values(data)
+            .map((msgArr) => msgArr.join(", "))
+            .join("\n");
+          toast.error(`Signup failed:\n${messages}`);
+        }
+      } else if (err.response?.status === 500) {
+        toast.error("Server error! Please try again later.");
+      } else {
+        toast.error("Signup failed. Please check your inputs and try again.");
+      }
     } finally {
       setLoading(false);
     }
@@ -107,6 +137,16 @@ export default function UserSignUp() {
 
   return (
     <main className="flex lg:flex-row flex-col gap-40 lg:items-center px-6 lg:px-30 py-8 bg-gray-100">
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        pauseOnHover
+        draggable
+        theme="colored"
+      />
       <div className="space-y-2 lg:w-[40%]">
         <h1 className="text-2xl lg:text-4xl font-bold text-[#0E375F]">
           Sign up and Connect
@@ -116,9 +156,10 @@ export default function UserSignUp() {
         </p>
         <p className="text-lg font-medium">
           Already have an account?{" "}
-          <span className="text-[#FFA500] font-semibold cursor-pointer">
+          <Link
+           to="/userSignin" className="text-[#FFA500] font-semibold cursor-pointer">
             Sign in
-          </span>
+          </Link>
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-3 mt-5">
@@ -146,9 +187,8 @@ export default function UserSignUp() {
               }
             />
           </div>
-          {/* Country / State / City */}
+
           <div className="flex items-center w-full gap-4">
-            {/* Country */}
             <div className="">
               <p className="text-[#0E375F] text-xl font-semibold">Country</p>
               <Select
@@ -169,7 +209,6 @@ export default function UserSignUp() {
               />
             </div>
 
-            {/* State */}
             <div className="">
               <p className="text-[#0E375F] text-xl font-semibold">State</p>
               <Select
@@ -188,7 +227,6 @@ export default function UserSignUp() {
               />
             </div>
 
-            {/* City */}
             <div className="">
               <p className="text-[#0E375F] text-xl font-semibold">City</p>
               <Select
@@ -223,16 +261,25 @@ export default function UserSignUp() {
             <p className="text-lg font-semibold text-[#0E375F] mt-3">
               Password
             </p>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="border-2 rounded-md border-gray-200 p-2 w-full"
-              value={formData.password || ""}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, password: e.target.value }))
-              }
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                className="border-2 rounded-md border-gray-200 p-2 w-full pr-10"
+                value={formData.password || ""}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, password: e.target.value }))
+                }
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#0E375F]"
+              >
+                {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
+              </button>
+            </div>
             <div className="">
               <AuthAction page="userSignup" loading={loading} />
             </div>

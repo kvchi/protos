@@ -11,10 +11,8 @@ export default function Signin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-
-  // 👇 get context
-  const { login, } = useContext(RegistrationContext);
   
+  const { login, } = useContext(RegistrationContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

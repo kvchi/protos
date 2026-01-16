@@ -10,8 +10,8 @@ export default function BusinessRatingsDetails({ business, onBack }) {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-4">
-      {/* Header */}
-      <div className=" gap-2 mb-4">
+      
+      <div className="gap-2 mb-4">
         <button
           onClick={onBack}
           className="text-gray-600 hover:text-gray-900"
@@ -24,13 +24,12 @@ export default function BusinessRatingsDetails({ business, onBack }) {
         </h1>
       </div>
 
-      {/* Business name */}
+      
       <h2 className="text-lg font-semibold text-gold">
         {business.name}
       </h2>
 
-      {/* Ratings row */}
-      <div className="flex items-center gap-3 mt-2 text-sm">
+      <div className="flex items-center gap-3 mt-2 text-xs md:text-sm ">
         <div className="flex items-center text-green gap-1">
           <FaStar />
           <FaStar />
@@ -38,21 +37,21 @@ export default function BusinessRatingsDetails({ business, onBack }) {
           <FaStar />
         </div>
 
-        <span className="text-red-500">(122 ratings)</span>
+        <span className="text-red-500 text-[11px]">(122 ratings)</span>
 
-        <span className="flex items-center gap-1 text-accent">
+        <span className="flex items-center gap-1 text-accent text-[11px] md:text-base">
           <FaRegMessage className="text-tetiary"/>
           2444 Review
         </span>
 
-        <span className="flex items-center gap-1 text-accent">
+        <span className="flex items-center gap-1 text-accent text-[11px] md:text-base">
           <FaRegHeart className="text-tetiary"/>
           20000 Likes
         </span>
       </div>
 
       {/* Features */}
-      <p className="text-xs text-gray-500 mt-2 leading-relaxed w-md">
+      <p className="text-xs text-gray-500 mt-2 leading-relaxed w-full md:max-w-md">
         <span className="font-semibold text-gray-700">Features:</span>{" "}
         Restaurant, bar, grills, sushi and raw fish, Japanese restaurant,
         sushi and raw fish, Japanese restaurant

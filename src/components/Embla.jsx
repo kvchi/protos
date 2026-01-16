@@ -78,7 +78,7 @@ export default function Embla() {
 
   return (
     <div className="relative w-full overflow-hidden">
-      {/* SWIPER */}
+     
       <Swiper
         modules={[EffectFade, Autoplay, Pagination]}
         effect="fade"

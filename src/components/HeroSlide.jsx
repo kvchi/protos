@@ -10,7 +10,7 @@ export default function HeroSlide({ image, title, text, isLoggedIn }) {
       />
       <div className="absolute inset-0 bg-black/50"></div>
 
-      <div className="absolute top-10 left-6 md:top-20 md:left-20 lg:left-24 z-10 text-white">
+      <div className="absolute top-8 left-6 md:top-20 md:left-20 lg:left-24 z-10 text-white">
         <h2 className="md:text-[40px] lg:text-[80px] font-extrabold leading-tight font-nunito">
           {title.map((line, idx) => (
             <span key={idx} className="block">
@@ -19,7 +19,7 @@ export default function HeroSlide({ image, title, text, isLoggedIn }) {
           ))}
         </h2>
 
-        <p className="text-base md:text-lg font-light leading-tight font-nunito mt-5 md:mt-12">
+        <p className="text-[12px] md:text-lg font-light leading-tight font-nunito mt-2 md:mt-12">
           {text.map((line, idx) => (
             <span key={idx} className="block">
               {line}
@@ -29,7 +29,7 @@ export default function HeroSlide({ image, title, text, isLoggedIn }) {
 
         {isLoggedIn && (
           <button
-            className="mt-20 flex items-center gap-2 px-6 py-3 border-2 border-[#ffa500] text-white font-medium rounded-md transition-all duration-300 hover:scale-105"
+            className="mt-5 md:mt-20 flex items-center gap-2 p-1 md:px-6 md:py-3 border-2 border-[#ffa500] text-white font-medium rounded-md transition-all duration-300 hover:scale-105"
           >
             <MapPin className="w-5 h-5 text-[#ffa500]" />
             Get Direction

@@ -77,8 +77,7 @@ export default function Embla() {
   const slidesToShow = isLoggedIn ? loggedInSlides : guestSlides;
 
   return (
-    <div className="relative w-full overflow-hidden">
-     
+    <div className="relative w-full overflow-hidden min-h-[45vh] sm:min-h-[50vh] md:min-h-[55vh]">
       <Swiper
         modules={[EffectFade, Autoplay, Pagination]}
         effect="fade"
@@ -87,7 +86,7 @@ export default function Embla() {
         autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop={true}
         onSlideChange={(swiper) => setCurrentIndex(swiper.realIndex)}
-        className="overflow-hidden"
+        className="overflow-hidden h-full min-h-[45vh] sm:min-h-[50vh] md:min-h-[55vh]"
       >
         {slidesToShow.map((slide, i) => (
           <SwiperSlide key={i}>
@@ -97,19 +96,19 @@ export default function Embla() {
       </Swiper>
 
       {!isLoggedIn && (
-        <div className="absolute bottom-15 md:bottom-30 lg:bottom-30 left-1/2 md:left-[19rem] lg:left-[30rem] -translate-x-1/2 w-[90%] md:w-[70%] lg:w-[50%] z-20">
+        <div className="absolute bottom-14 sm:bottom-16 md:bottom-20 lg:bottom-[7.5rem] left-1/2 md:left-[19rem] lg:left-[30rem] -translate-x-1/2 w-[95%] sm:w-[88%] md:w-[70%] lg:w-[50%] z-20 px-1">
           <SearchBar />
         </div>
       )}
 
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex items-center gap-2 z-10">
+      <div className="absolute bottom-3 sm:bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 sm:gap-2 z-10">
         {slidesToShow.map((_, i) => (
           <button
             key={i}
-            className={`rounded-full transition-all duration-300 ${
+            className={`rounded-full transition-all duration-300 shrink-0 ${
               currentIndex === i
-                ? "w-4 h-4 bg-yellow-500"
-                : "w-3 h-3 bg-gray-300"
+                ? "w-3 h-3 sm:w-4 sm:h-4 bg-yellow-500"
+                : "w-2.5 h-2.5 sm:w-3 sm:h-3 bg-gray-300"
             }`}
             onClick={() => document.querySelector(".swiper").swiper.slideToLoop(i)}
           ></button>

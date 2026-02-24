@@ -5,6 +5,18 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+/* Global button hover effect */
+button {
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.2s ease;
+}
+button:hover {
+  opacity: 0.92;
+}
+button:active {
+  transform: scale(0.98);
+}
+
 .font-nunito {
   font-family: 'Nunito', sans-serif;
 }

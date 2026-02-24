@@ -16,10 +16,17 @@ export default function ImageUpload({
       return;
     }
 
-    const objectUrl = URL.createObjectURL(value);
-    setPreview(objectUrl);
-
-    return () => URL.revokeObjectURL(objectUrl);
+    // value can be a File/Blob (from upload) or a string URL (prefilled from business.image etc.)
+    if (typeof value === "string") {
+      setPreview(value);
+      return;
+    }
+    if (value instanceof File || value instanceof Blob) {
+      const objectUrl = URL.createObjectURL(value);
+      setPreview(objectUrl);
+      return () => URL.revokeObjectURL(objectUrl);
+    }
+    setPreview(null);
   }, [value]);
 
   const handleFile = (file) => {

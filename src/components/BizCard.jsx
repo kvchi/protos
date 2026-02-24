@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { IoLocationOutline } from "react-icons/io5";
 
 const BusinessCard = ({ business }) => {
+  const navigate = useNavigate();
   return (
     <div className="bg-white rounded-lg p-3 sm:p-4 border border-[#878A8D] flex flex-col gap-2 w-full">
       {/* Image + Title */}
@@ -45,7 +47,11 @@ const BusinessCard = ({ business }) => {
         <span className="text-gray-700">{business.features}</span>
       </div>
 
-      <button className="text-[#CC8400] font-medium text-xs sm:text-sm mt-auto underline self-center">
+      <button
+        type="button"
+        onClick={() => navigate("/searchDetails")}
+        className="text-[#CC8400] font-medium text-xs sm:text-sm mt-auto underline self-center cursor-pointer"
+      >
         More Info
       </button>
     </div>

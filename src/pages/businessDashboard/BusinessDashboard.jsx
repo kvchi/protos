@@ -40,7 +40,6 @@ export default function BusinessDashboard() {
           )}
           {activeItem === "listings" && <div><BusinessListing /></div>}
           {activeItem === "ratings" && <div><BusinessRatings /></div>}
-          {activeItem === "uploads" && <div>Uploads</div>}
           {activeItem === "reservations" && (
             <BusinessReservations onBack={() => setActiveItem("dashboard")} />
           )}

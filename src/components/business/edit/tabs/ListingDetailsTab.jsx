@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
 
 /**
@@ -32,18 +32,34 @@ const selectStyles = {
  */
 const fieldWidth = "w-full sm:max-w-md md:max-w-lg";
 
-export default function ListingDetailsTab() {
-  const [formData, setFormData] = useState({
-    owner: null,
-    title: "",
-    description: "",
-    category: null,
-    subCategory: null,
-    address: "",
-    phone: "",
-    website: "",
-    businessSection: null,
-  });
+const initialFormData = {
+  owner: null,
+  title: "",
+  description: "",
+  category: null,
+  subCategory: null,
+  address: "",
+  phone: "",
+  website: "",
+  businessSection: null,
+};
+
+function getInitialFormData(business) {
+  if (!business) return initialFormData;
+  return {
+    ...initialFormData,
+    title: business.name ?? "",
+    description: business.description ?? "",
+    address: business.location ?? "",
+  };
+}
+
+export default function ListingDetailsTab({ business }) {
+  const [formData, setFormData] = useState(() => getInitialFormData(business));
+
+  useEffect(() => {
+    setFormData(getInitialFormData(business));
+  }, [business?.id]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

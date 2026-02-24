@@ -19,7 +19,8 @@ import PlaceOrder from "../../components/dashboard/PlaceOrder";
 
 export default function RestaurantDetails() {
   const [currentIndex, setCurrentIndex] = useState(1);
-
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [activeItem, setActiveItem] = useState("dashboard");
   const navigate = useNavigate();
 
   const reviews = [
@@ -45,7 +46,14 @@ export default function RestaurantDetails() {
     <main className="min-h-screen bg-gray-50">
       <div className="flex flex-col lg:flex-row gap-10">
         <div>
-          <SideBar />
+          <SideBar 
+            type="user"
+            activeItem={activeItem}
+            setActiveItem={setActiveItem}
+            favorites={[]}
+            showSidebar={showSidebar}
+            setShowSidebar={setShowSidebar}
+          />
         </div>
         <div className="p-4 md:p-10 border-r-2 border-gray-300">
           <HiArrowLeft

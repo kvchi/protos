@@ -15,6 +15,7 @@ import { RiRocket2Line } from "react-icons/ri"
 export default function BusinessInfo() {
   const [filterBy, setFilterBy] = useState("restaurant");
   const [editingBusiness, setEditingBusiness] = useState(null);
+  const [showAddForm, setShowAddForm] = useState(false);
 
   if (editingBusiness) {
     return (
@@ -27,6 +28,18 @@ export default function BusinessInfo() {
     );
   }
 
+  if (showAddForm) {
+    return (
+      <div className="sm:px-4 md:px-6 py-4">
+        <EditBusiness
+          business={null}
+          title="Add Business"
+          onBack={() => setShowAddForm(false)}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className="
@@ -34,7 +47,7 @@ export default function BusinessInfo() {
       <BusinessInfoHeader
         filterBy={filterBy}
         onFilterChange={setFilterBy}
-        onAddBusiness={() => console.log("Add business")}
+        onAddBusiness={() => setShowAddForm(true)}
       />
 
       {businessData.length === 0 ? (

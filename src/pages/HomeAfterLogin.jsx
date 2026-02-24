@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../components/SearchBar";
 import Embla from "../components/Embla";
 import { businessData } from "../data/businessData";
@@ -9,10 +10,13 @@ import { newsData } from "../data/newsData";
 import NewsCard from "../components/NewsCard";
 
 export default function HomeAfterLogin() {
+  const navigate = useNavigate();
   return (
     <main>
-      <div className="flex justify-center px-6 lg:px-24 py-10">
-        <SearchBar />
+      <div className="flex justify-center px-6 lg:px-24 py-10 w-full">
+        <div className="w-full max-w-2xl">
+          <SearchBar />
+        </div>
       </div>
       <Embla />
       <div className="lg:px-24 lg:py-10 w-full">
@@ -20,7 +24,11 @@ export default function HomeAfterLogin() {
           <h1 className="text-primary font-semibold md:text-2xl">
             Top Business near you
           </h1>
-          <button className="block lg:hidden bg-primary py-2 px-4 rounded-xl text-white text-[12px]">
+          <button
+            type="button"
+            onClick={() => navigate("/searchResult")}
+            className="block lg:hidden bg-primary py-2 px-4 rounded-xl text-white text-[12px]"
+          >
             View more
           </button>
         </div>
@@ -29,7 +37,11 @@ export default function HomeAfterLogin() {
             We recommend these businesses based on your current location, they
             might be exactly what you need.
           </p>
-          <button className="hidden lg:block bg-primary py-2 px-6 rounded-xl text-white">
+          <button
+            type="button"
+            onClick={() => navigate("/searchResult")}
+            className="hidden lg:block bg-primary py-2 px-6 rounded-xl text-white"
+          >
             View more
           </button>
         </div>
@@ -44,7 +56,11 @@ export default function HomeAfterLogin() {
           <h1 className="text-primary font-semibold md:text-2xl">
             Top Business near you
           </h1>
-          <button className="block lg:hidden bg-primary py-2 px-4 rounded-xl text-white text-[12px]">
+          <button
+            type="button"
+            onClick={() => navigate("/searchResult")}
+            className="block lg:hidden bg-primary py-2 px-4 rounded-xl text-white text-[12px]"
+          >
             View more
           </button>
         </div>
@@ -53,7 +69,11 @@ export default function HomeAfterLogin() {
             There are selected based on your prefrences, recent searches and
             viewed enterprise.
           </p>
-          <button className="hidden lg:block bg-primary py-2 px-6 rounded-xl text-white">
+          <button
+            type="button"
+            onClick={() => navigate("/searchResult")}
+            className="hidden lg:block bg-primary py-2 px-6 rounded-xl text-white"
+          >
             View more
           </button>
         </div>

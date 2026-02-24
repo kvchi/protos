@@ -6,14 +6,16 @@ import { FaRegUser } from "react-icons/fa6";
 import { LiaConciergeBellSolid } from "react-icons/lia";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import MapView from "../../components/shared/MapView";
 
 export default function ReservationDetails({
   data,
   onDetails,
   onCancel,
-  setReservationView,
+  
 }) {
+  const navigate = useNavigate();
   const [userlocation] = useState([6.5244, 3.3792]);
 
   return (
@@ -98,7 +100,7 @@ export default function ReservationDetails({
           </span>
         </p>
         <button
-          onClick={() => setReservationView("directions")}
+          onClick={() => navigate("/map")}
           className="text-lg font-semibold text-accent underline cursor-pointer"
         >
           Get Directions

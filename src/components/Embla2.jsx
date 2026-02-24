@@ -59,16 +59,16 @@ export default function Embla2() {
               />
               <div className="absolute inset-0 bg-black/50"></div>
 
-              <div className="absolute top-4 left-4 lg:top-10 lg:left-30 z-10 text-white">
-                <h2 className="lg:text-[80px] font-extrabold leading-tight font-nunito">
+              <div className="absolute top-6 left-4 right-4 sm:top-4 sm:left-6 md:left-8 md:top-6 lg:top-10 lg:left-[7.5rem] z-10 text-white pr-2 sm:pr-0">
+                <h2 className=" text-3xl md:text-4xl lg:text-5xl xl:text-[80px] font-extrabold leading-tight font-nunito">
                   {slide.title.map((line, idx) => (
-                    <span key={idx} className={`block ${idx > 0 ? "mt-5" : ""}`}>
+                    <span key={idx} className={`block ${idx > 0 ? "mt-1 sm:mt-2 md:mt-3 lg:mt-5" : ""}`}>
                       {line}
                     </span>
                   ))}
                 </h2>
 
-                <p className="text-base md:text-lg font-light leading-tight font-nunito mt-8">
+                <p className="text-base md:text-lg font-light leading-tight font-nunito mt-3 sm:mt-4 md:mt-6 lg:mt-8 max-w-xl">
                   {slide.text.map((line, idx) => (
                     <span key={idx} className="block">
                       {line}
@@ -76,7 +76,7 @@ export default function Embla2() {
                   ))}
                 </p>
 
-                <p className="bg-primary p-4 inline-block mt-10 rounded-md">
+                <p className="bg-primary text-sm sm:text-base px-3 py-2 sm:px-4 sm:py-2.5 md:p-4 inline-block mt-4 sm:mt-6 md:mt-8 lg:mt-10 rounded-md">
                   {slide.button}
                 </p>
               </div>
@@ -85,8 +85,8 @@ export default function Embla2() {
         ))}
       </Swiper>
 
-      {/* SearchBar stays on top – no change */}
-      <div className="absolute bottom-10 left-1/4 -translate-x-1/2 z-20">
+      {/* SearchBar responsive: inset on mobile, centered with max-width on sm+ */}
+      <div className="absolute bottom-13 left-4 right-4 sm:bottom-8 sm:left-1/2 sm:right-auto sm:-translate-x-1/2 md:bottom-10 z-20 sm:w-full sm:max-w-xl md:max-w-2xl">
         <SearchBar />
       </div>
     </div>

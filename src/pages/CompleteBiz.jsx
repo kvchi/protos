@@ -34,10 +34,31 @@ export default function CompleteBiz() {
   const handleSubmit = async (e) => {
   e.preventDefault();
 
-  if (!validatePassword(formData.password)) {
+  const { first_name, last_name, email, password, agreed } = formData || {};
+  if (!first_name?.trim()) {
+    alert("Please enter your first name.");
+    return;
+  }
+  if (!last_name?.trim()) {
+    alert("Please enter your last name.");
+    return;
+  }
+  if (!email?.trim()) {
+    alert("Please enter your email address.");
+    return;
+  }
+  if (!password) {
+    alert("Please enter a password.");
+    return;
+  }
+  if (!validatePassword(password)) {
     alert(
       "Password must be at least 8 characters, include a letter, a number, and a special character."
     );
+    return;
+  }
+  if (!agreed) {
+    alert("Please agree to the Terms and Privacy Policy to continue.");
     return;
   }
 
@@ -76,7 +97,7 @@ export default function CompleteBiz() {
           Complete business information
         </h2>
         <p>Add your business information and detail for easy recognition</p>
-        <form onSubmit={handleSubmit} className="mt-5">
+        <form onSubmit={handleSubmit} noValidate className="mt-5">
           {/* First Name */}
           <p className="text-primary text-xl font-semibold my-3">First Name</p>
           <input

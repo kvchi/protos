@@ -26,12 +26,18 @@ export default function RecentActivityCard({
   const isRatings = mode === "ratings";
 
   return (
-    <div className="border border-gray-300 p-4 flex flex-col md:flex-row gap-4 shadow-sm w-full">
+    <div
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e) => e.key === "Enter" && onClick() : undefined}
+      className={`border border-gray-300 p-4 flex flex-col md:flex-row gap-4 shadow-sm w-full ${onClick ? "cursor-pointer" : ""}`}
+      onClick={onClick}
+    >
       {/* Image */}
       <img
         src={image}
-        className="w-full md:w-24 md:h-24 h-40 object-cover  cursor-pointer md:flex-shrink-0"
-        onClick={onClick}
+        className="w-full md:w-24 md:h-24 h-40 object-cover md:flex-shrink-0 pointer-events-none"
+        alt=""
       />
 
       <div className="flex-1 w-full">
@@ -69,7 +75,7 @@ export default function RecentActivityCard({
 
           {/* RESERVATION BUTTONS */}
           {isReservation && (
-            <div className="space-y-2 flex-shrink-0">
+            <div className="space-y-2 flex-shrink-0" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={onDetails}
                 className="px-3 py-1 text-sm rounded-md text-primary font-semibold bg-secondary border-2"
@@ -119,17 +125,17 @@ export default function RecentActivityCard({
 
         {/* FAVORITE MODE */}
         {isFavorite && (
-          <div className="text-gray-600 text-sm w-full">
-            <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
-              <div className="flex flex-col gap-2">
-                <div className="flex flex-wrap items-center gap-3">
-                  <div className="text-green text-base whitespace-nowrap">
-                    ★ ★ ★ ★{" "}
-                    <span className="text-red text-xs">(122 ratings)</span>
-                  </div>
+            <div className="text-gray-600 text-sm w-full" onClick={(e) => e.stopPropagation()}>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+                <div className="flex flex-col gap-2">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <div className="text-green text-base whitespace-nowrap">
+                      ★ ★ ★ ★{" "}
+                      <span className="text-red text-xs">(122 ratings)</span>
+                    </div>
 
-                  <button
-                    onClick={onViewMap}
+                    <button
+                      onClick={onViewMap}
                     className="text-accent underline text-sm flex items-center gap-1 whitespace-nowrap"
                   >
                     <IoLocationOutline size={16} /> View Map
@@ -163,7 +169,7 @@ export default function RecentActivityCard({
 
         {/* RATINGS MODE */}
         {isRatings && (
-          <div className="flex flex-col md:flex-row justify-between w-full gap-4 relative">
+            <div className="flex flex-col md:flex-row justify-between w-full gap-4 relative" onClick={(e) => e.stopPropagation()}>
             <div>
               <div className="mt-2 flex flex-wrap items-center gap-2 text-green text-sm">
                 <span>★ ★ ★ ★</span>

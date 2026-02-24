@@ -13,12 +13,12 @@ const BUSINESS_TABS = [
   "Authentication",
 ];
 
-export default function EditBusiness({ business, onBack }) {
+export default function EditBusiness({ business, onBack, title }) {
   const [activeTab, setActiveTab] = useState("Business details");
 
   return (
     <div className="lg:px-6 py-4">
-      <EditBusinessHeader onBack={onBack} />
+      <EditBusinessHeader onBack={onBack} title={title} />
 
        <Tabs
         tabs={BUSINESS_TABS}

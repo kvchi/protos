@@ -4,6 +4,8 @@ import { Facebook, foodImages, Instagram, twitter } from "../assets/images";
 import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useNavigate } from "react-router-dom";
+import FilterModal from "../components/FilterModal";
+import FilterImageModal from "../components/FilterImageModal";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -17,7 +19,8 @@ import { SlGlobe } from "react-icons/sl";
 import { Link } from "react-router-dom";
 
 export default function SearchDetails() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
+  const [isGalleryModalOpen, setIsGalleryModalOpen] = useState(false);
 
   const menuItems = [
     {
@@ -115,11 +118,25 @@ export default function SearchDetails() {
           </span>
         </div>
         <div className="flex items-center justify-end pt-3 text-gray-600">
-          <button className="text-lg lg:text-xl font-semibold border p-2 rounded-lg">
+          <button
+            type="button"
+            onClick={() => setIsGalleryModalOpen(true)}
+            className="text-lg lg:text-xl font-semibold border p-2 rounded-lg cursor-pointer hover:bg-gray-100"
+          >
             60+ More in Gallery
           </button>
         </div>
       </section>
+
+      {isGalleryModalOpen && (
+        <FilterModal
+          isOpen={isGalleryModalOpen}
+          onClose={() => setIsGalleryModalOpen(false)}
+          showPrice={false}
+        >
+          <FilterImageModal />
+        </FilterModal>
+      )}
       <section className=" pt-20">
         <h2 className="text-2xl lg:text-3xl font-semibold">
           Yekemo Restaurant & Bar
@@ -155,9 +172,17 @@ export default function SearchDetails() {
           </p>
           <p className="font-bold text-xl">
             Location:{" "}
-            <span className="text-lg font-semibold">
+              <span className="text-lg font-semibold">
               365 Ikari village, Ikeja, Lagos state, Nigeria{" "}
-              <span className="text-red-500 text-sm">(Direction)</span>
+              <span
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate("/map")}
+                onKeyDown={(e) => e.key === "Enter" && navigate("/map")}
+                className="text-red-500 text-sm cursor-pointer hover:underline"
+              >
+                (Direction)
+              </span>
             </span>
           </p>
         </div>
@@ -194,7 +219,10 @@ export default function SearchDetails() {
               </p>
             </div>
             <div className="pl-11">
-              <Link className="text-accent hover:underline  cursor-pointer inline-block border-b border-accent font-semibold">
+              <Link
+                to="/map"
+                className="text-accent hover:underline cursor-pointer inline-block border-b border-accent font-semibold"
+              >
                 Get direction
               </Link>
             </div>

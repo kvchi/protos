@@ -2,7 +2,7 @@ import { HiArrowLeft } from "react-icons/hi2";
 
 export default function EditBusinessHeader({
   onBack,
-  title = "Edit Business", 
+  title = "Edit Business",
 }) {
   return (
     <div className="my-4 space-y-3 max-w-[21rem] md:max-w-lg lg:max-w-4xl">

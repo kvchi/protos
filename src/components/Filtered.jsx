@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { IoClose, IoFunnelOutline } from "react-icons/io5";
-import { RiArrowDropDownLine } from "react-icons/ri";
+import CurrencyDropdown from "./shared/CurrencyDropdown";
 
 export default function Filtered({ isOpen, onOpen, onClose }) {
   const [activeTab, setActiveTab] = useState("Category");
   const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectCurrency, setSelectCurrency] = useState("Select currency");
-  const [currencyOpen, setCurrencyOpen] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
 
   const categories = [
     "Asian Restaurants",
@@ -31,27 +31,32 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
     "Grill Houses",
   ];
 
+  const features = [
+    "Order online",
+    "Kid friendly",
+    "Dog allowed",
+    "Outdoor seating",
+  ];
+
+  const categoryPillsToShow = showAllCategories ? categories : categories.slice(0, 3);
+  const featuresToShow = showAllFeatures ? features : features.slice(0, 3);
+
   return (
     <>
       <main
         className={`hidden lg:block pl-14 pr-12 py-20 border-r-2 border-b-2 border-gray-200 mb-10 w-[30%] relative`}>
-        <div className="flex items-center gap-5 ">
-          <h2
-            onClick={() => {
-              console.log("Filter clicked!");
-              onOpen();
-            }}
-            className="text-lg font-semibold text-primary cursor-pointer">
-            Filter
-          </h2>
+        <div
+          role="button"
+          tabIndex={0}
+          onClick={onOpen}
+          onKeyDown={(e) => e.key === "Enter" && onOpen()}
+          className="flex items-center gap-5 cursor-pointer w-fit">
+          <h2 className="text-lg font-semibold text-primary">Filter</h2>
           <IoFunnelOutline className="w-6 h-6 text-primary" />
         </div>
         <div className="flex items-center pt-5 gap-5">
           <p className="text-lg font-semibold">Price</p>
-          <div className="flex items-center gap-3 border p-2 rounded-xl shadow-lg">
-            <p>NGN - Naira</p>
-            <RiArrowDropDownLine className="w-6 h-6" />
-          </div>
+          <CurrencyDropdown triggerClassName="flex items-center justify-between gap-3 border p-2 rounded-xl shadow-lg cursor-pointer min-w-[10rem] bg-white hover:bg-gray-50" />
         </div>
 
         <div className="grid grid-cols-2 gap-4 pt-12">
@@ -65,36 +70,44 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
         <div>
           <div className="flex items-center justify-between pt-8">
             <h2 className="text-lg font-semibold">Category</h2>
-            <p className="text-[#5C7B1E] cursor-pointer">See all</p>
+            <p
+              role="button"
+              tabIndex={0}
+              onClick={() => setShowAllCategories((prev) => !prev)}
+              onKeyDown={(e) => e.key === "Enter" && setShowAllCategories((prev) => !prev)}
+              className="text-[#5C7B1E] cursor-pointer hover:underline"
+            >
+              {showAllCategories ? "See less" : "See all"}
+            </p>
           </div>
-          <div className="mt-5 flex flex-col gap-3">
-            <p className="w-fit border p-2 rounded-lg shadow-lg">
-              Asian Restaurant
-            </p>
-            <p className="w-fit border p-2 rounded-lg shadow-lg">
-              Chinese Restaurant
-            </p>
-            <p className="w-fit border p-2 rounded-lg shadow-lg">Fast Food</p>
+          <div className="mt-5 flex flex-col gap-3 flex-wrap max-h-[280px] overflow-y-auto modal-scroll">
+            {categoryPillsToShow.map((cat) => (
+              <p key={cat} className="w-fit border p-2 rounded-lg shadow-lg">
+                {cat}
+              </p>
+            ))}
           </div>
         </div>
         <div>
           <div className="flex items-center justify-between pt-8">
             <h2 className="text-lg font-semibold">Features</h2>
-            <p className="text-[#5C7B1E] cursor-pointer">See all</p>
+            <p
+              role="button"
+              tabIndex={0}
+              onClick={() => setShowAllFeatures((prev) => !prev)}
+              onKeyDown={(e) => e.key === "Enter" && setShowAllFeatures((prev) => !prev)}
+              className="text-[#5C7B1E] cursor-pointer hover:underline"
+            >
+              {showAllFeatures ? "See less" : "See all"}
+            </p>
           </div>
           <div className="space-y-2 mt-4">
-            <div className="flex gap-3 items-center">
-              <input type="checkbox" />
-              <p>Order online</p>
-            </div>
-            <div className="flex gap-3 items-center">
-              <input type="checkbox" />
-              <p>Kid friendly</p>
-            </div>
-            <div className="flex gap-3 items-center">
-              <input type="checkbox" />
-              <p>Dog allowed</p>
-            </div>
+            {featuresToShow.map((feature) => (
+              <div key={feature} className="flex gap-3 items-center">
+                <input type="checkbox" />
+                <p>{feature}</p>
+              </div>
+            ))}
           </div>
         </div>
       </main>
@@ -145,7 +158,7 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
 
           
               <div className="flex gap-3 md:gap-6 pb-2 mb-6 overflow-x-auto scrollbar-hide whitespace-nowrap">
-                {["Price", "Category", "Features", "Neighborhood", "Menu"].map(
+                {["Price", "Category", "Features", "Neighborhood"].map(
                   (tab) => (
                     <button
                       key={tab}
@@ -164,37 +177,11 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
 
               {activeTab === "Price" && (
                 <div className="space-y-6 ">
-                  <div className="relative w-[200px] mb-10">
-                    <button
-                      onClick={() => setCurrencyOpen((prev) => !prev)}
-                      className="flex justify-between items-centere w-full border border-gray-300 px-3 py-2 text-md font-medium text-gray-700 rounded-lg cursor-pointer"
-                    >
-                      {selectCurrency}
-                      <RiArrowDropDownLine className="text-xl" />
-                    </button>
-
-                    {currencyOpen && (
-                      <div className="absolute z-10 mt-2 w-full bg-white border border-gray-200 rounded-md shadow-lg">
-                        <div
-                          onClick={() => {
-                            setSelectCurrency("USD - Dollar");
-                            setCurrencyOpen(false);
-                          }}
-                          className="px-3 py-2 bg-[#e7ebef] hover:bg-primary hover:text-white cursor-pointer text-sm "
-                        >
-                          $ USD -Dollar
-                        </div>
-                        <div
-                          onClick={() => {
-                            setSelectCurrency("NGN - Naira");
-                            setCurrencyOpen(false);
-                          }}
-                          className="px-3 py-2 bg-[#e7ebef] hover:bg-primary hover:text-white cursor-pointer text-sm"
-                        >
-                          ₦ NGN -Naira
-                        </div>
-                      </div>
-                    )}
+                  <div className="w-[200px] mb-10">
+                    <CurrencyDropdown
+                      triggerClassName="flex justify-between items-center w-full border border-gray-300 px-3 py-2 text-md font-medium text-gray-700 rounded-lg cursor-pointer bg-white hover:bg-gray-50"
+                      listClassName="absolute left-0 top-full mt-2 z-20 w-full py-1 bg-white border border-gray-200 rounded-md shadow-lg text-sm"
+                    />
                   </div>
                   <div className="grid grid-cols-3 gap-4 max-w-md">
                     {[
@@ -217,31 +204,29 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
 
               {/* Category Tab */}
               {activeTab === "Category" && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-3 max-h-[400px] overflow-y-auto  modal-scroll">
-                  {[...Array(5)]
-                    .flatMap(() => categories)
-                    .map((item, index) => (
-                      <label
-                        key={index}
-                        className="flex items-center gap-2 text-gray-800 text-sm"
-                      >
-                        <input
-                          type="checkbox"
-                          className="accent-accent w-4 h-4"
-                          checked={selectedCategories.includes(item)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setSelectedCategories((prev) => [...prev, item]);
-                            } else {
-                              setSelectedCategories((prev) =>
-                                prev.filter((cat) => cat !== item)
-                              );
-                            }
-                          }}
-                        />
-                        {item}
-                      </label>
-                    ))}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-3 max-h-[400px] overflow-y-auto modal-scroll">
+                  {categories.map((item) => (
+                    <label
+                      key={item}
+                      className="flex items-center gap-2 text-gray-800 text-sm"
+                    >
+                      <input
+                        type="checkbox"
+                        className="accent-accent w-4 h-4"
+                        checked={selectedCategories.includes(item)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedCategories((prev) => [...prev, item]);
+                          } else {
+                            setSelectedCategories((prev) =>
+                              prev.filter((cat) => cat !== item)
+                            );
+                          }
+                        }}
+                      />
+                      {item}
+                    </label>
+                  ))}
                 </div>
               )}
 

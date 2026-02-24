@@ -13,31 +13,35 @@ export default function Home() {
   const navigate = useNavigate()
   
   return (
-    <div className="">
+    <div className="min-w-0 overflow-x-hidden">
       <Embla />
-      <div className=" hidden lg:block px-24 py-10 w-full">
+      <div className="hidden lg:block px-6 xl:px-24 py-8 xl:py-10 w-full max-w-[1600px] mx-auto">
         <h3 className="text-primary font-semibold text-2xl">
           Top Business Around
         </h3>
-        <div className="flex items-center justify-between">
-          <p className="text-base font-medium leading-tight pt-2">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <p className="text-base font-medium leading-tight pt-0 lg:pt-2 max-w-2xl">
             We recommend these businesses based on your current location, they
             might be exactly what you need.
           </p>
-          <button className="bg-primary py-2 px-6 rounded-xl text-white">
+          <button
+            type="button"
+            onClick={() => navigate("/searchResult")}
+            className="bg-primary py-2 px-6 rounded-xl text-white shrink-0"
+          >
             View more
           </button>
         </div>
       </div>
-      <div className="hidden lg:grid lg:grid-cols-3 px-24 py-10 w-full gap-5">
+      <div className="hidden lg:grid lg:grid-cols-3 px-6 xl:px-24 py-8 xl:py-10 w-full max-w-[1600px] mx-auto gap-5">
         {businessData.map((biz) => (
           <BusinessCard key={biz.id} business={biz} />
         ))}
       </div>
-      <div className="px-10 lg:px-24 py-4 w-full">
-        <h2 className="text-primary font-bold text-2xl">Categories</h2>
+      <div className="px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 w-full max-w-[1600px] mx-auto">
+        <h2 className="text-primary font-bold text-xl sm:text-2xl">Categories</h2>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-6 gap-y-8 px-10 lg:px-24 py-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 gap-y-6 sm:gap-y-8 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-4 sm:py-6 w-full max-w-[1600px] mx-auto">
         {categoriesData.map((cate, index) => {
           const columns = 4;
           const row = Math.floor(index / columns);
@@ -61,9 +65,9 @@ export default function Home() {
           );
         })}
       </div>
-      <section className="bg-primary w-full">
-          <h2 className="text-white text-center pt-25 pb-20 font-bold text-2xl">How we work</h2>
-           <div className="flex flex-wrap justify-center gap-8 pb-25 ">
+      <section className="bg-primary w-full min-w-0">
+          <h2 className="text-white text-center pt-12 sm:pt-16 md:pt-20 pb-12 sm:pb-16 md:pb-20 font-bold text-xl sm:text-2xl px-4">How we work</h2>
+           <div className="flex flex-wrap justify-center gap-6 sm:gap-8 pb-12 sm:pb-16 md:pb-20 px-4">
         {workData.map((item) => (
           <WorkCard
             key={item.id}
@@ -76,10 +80,10 @@ export default function Home() {
         ))}
       </div>
       </section>
-      <section className="bg-white w-full px-10 py-16 flex lg:flex-row flex-col items-center">
-        <div className="lg:px-24">
-          <h3 className="pb-10 font-semibold text-3xl md:text-2xl">What out client <span className="block">say about us</span></h3>
-          <p className="w-full"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non at nisi amet! Iste molestiae quo laborum. A vel enim eum sint natus vero, accusantium excepturi sapiente reprehenderit laudantium culpa consequatur.</p>
+      <section className="bg-white w-full min-w-0 px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 py-10 sm:py-14 lg:py-16 flex flex-col lg:flex-row items-center gap-8 lg:gap-12 max-w-[1600px] mx-auto">
+        <div className="w-full lg:max-w-xl">
+          <h3 className="pb-6 sm:pb-8 lg:pb-10 font-semibold text-2xl sm:text-3xl lg:text-2xl">What out client <span className="block">say about us</span></h3>
+          <p className="w-full text-sm sm:text-base"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Non at nisi amet! Iste molestiae quo laborum. A vel enim eum sint natus vero, accusantium excepturi sapiente reprehenderit laudantium culpa consequatur.</p>
         </div>
         <div>
           <Testimonials />

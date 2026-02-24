@@ -1,18 +1,21 @@
-// import React, { useState } from "react";
-import { FiSearch, FiMapPin } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import { RiArrowDropDownLine } from "react-icons/ri";
-import { AiFillStar } from "react-icons/ai";
-import { FaRegCommentDots } from "react-icons/fa";
-import Rectangle133 from "../assets/images/Rectangle133.png";
 import { IoFunnelOutline } from "react-icons/io5";
 import Filtered from "./Filtered";
+import SearchRestaurantList from "./SearchRestaurantList";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+
+const SORT_OPTIONS = [
+  { value: "distance", label: "Distance" },
+  { value: "rating", label: "Rating" },
+  { value: "name", label: "Name A–Z" },
+  { value: "reviews", label: "Most reviews" },
+];
 
 export default function Search() {
-  const navigate = useNavigate();
-
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [sortOpen, setSortOpen] = useState(false);
+  const [sortBy, setSortBy] = useState("distance");
 
   
   return (
@@ -53,108 +56,59 @@ export default function Search() {
             <IoFunnelOutline className="w-6 h-6 text-primary" />
           </div>
 
-          <div className="flex items-center gap-2 ml-auto lg:ml-0">
+          <div className="flex items-center gap-2 ml-auto lg:ml-0 relative">
             <p className="font-semibold text-gray-800 text-sm sm:text-base">
               Sort:
             </p>
-            <div className="flex items-center border rounded-md px-3 py-2 text-gray-700 shadow-sm cursor-pointer text-sm sm:text-base w-[70%] sm:w-auto">
-              <span>Distance</span>
-              <RiArrowDropDownLine className="w-6 h-6 text-gray-600" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 md:px-8 lg:px-10">
-        <div>
-          <h2 className="text-xl md:text-2xl font-bold text-primary">
-            Restaurants
-          </h2>
-          <p className="text-sm md:text-base">
-            Here are restaurants in{" "}
-            <span className="text-accent font-semibold underline underline-offset-4">
-              Lagos
-            </span>
-          </p>
-        </div>
-
-        {[1, 2, 3, 4, 5].map((item) => (
-          <div
-            key={item}
-            className="flex flex-col lg:flex-row border border-gray-200 p-4 md:p-5 rounded-lg my-6 md:my-8 w-full shadow-sm hover:shadow-md transition-all bg-white"
-          >
-            <div className="w-full lg:w-56">
-              <img
-                src={Rectangle133}
-                alt="restaurant"
-                className="w-full lg:w-56 object-cover rounded-md cursor-pointer"
-                onClick={()=> navigate("/searchDetails")}
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => setSortOpen((o) => !o)}
+              onKeyDown={(e) => e.key === "Enter" && setSortOpen((o) => !o)}
+              className="flex items-center justify-between border rounded-md px-3 py-2 text-gray-700 shadow-sm cursor-pointer text-sm sm:text-base w-[70%] sm:w-auto min-w-[8rem] bg-white hover:bg-gray-50"
+            >
+              <span>
+                {SORT_OPTIONS.find((o) => o.value === sortBy)?.label ?? "Distance"}
+              </span>
+              <RiArrowDropDownLine
+                className={`w-6 h-6 text-gray-600 transition-transform ${sortOpen ? "rotate-180" : ""}`}
               />
             </div>
-
-            <div className="mt-3 lg:mt-0 lg:ml-5 flex-1 lg:border-r border-gray-200">
-              <h1 className="text-lg font-bold text-accent">
-                Yemkemo Restaurant & Bar
-              </h1>
-
-              <div className="flex flex-wrap items-center gap-3 mt-2 text-sm">
-                <div className="flex items-center text-green-600 font-semibold">
-                  <AiFillStar className="text-[#28a745] mr-1" /> 4.5 (122
-                  ratings)
-                </div>
-                <div className="flex items-center text-gray-500">
-                  <FaRegCommentDots className="text-red-400 mr-1" /> 2444
-                  Comments
-                </div>
-              </div>
-
-              <div className="flex items-start gap-2 text-gray-600 mt-2 text-sm">
-                <FiMapPin className="text-red-500 mt-0.5" />
-                <p>
-                  365 Ikari Village, Ikeja, Lagos state, Nigeria.{" "}
-                  <span
-                  onClick={() => navigate("/map")} className="text-red-400 font-medium cursor-pointer hover:underline">
-                    (Direction)
-                  </span>
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 mt-3">
-                {[
-                  "Restaurant",
-                  "Grills",
-                  "Sushi",
-                  "Japanese",
-                  "Breakfast & brunch",
-                  "Vegetable Salad",
-                ].map((tag, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-1 border border-primary rounded-full text-primary text-xs font-medium">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-4 lg:mt-0 lg:ml-5 w-full lg:w-[35%] flex flex-col justify-between">
-              <p className="text-sm text-gray-700 leading-relaxed">
-                <span className="font-semibold">Information:</span> Lorem ipsum
-                dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                aliquip ex ea commodo consequat.
-                <span className="text-accent ml-1 font-medium cursor-pointer hover:underline">
-                  Read more
-                </span>
-              </p>
-              <button className="self-end text-[#e63946] font-semibold hover:underline mt-3">
-                Visit website
-              </button>
-            </div>
+            {sortOpen && (
+              <>
+                <div
+                  className="fixed inset-0 z-10"
+                  aria-hidden
+                  onClick={() => setSortOpen(false)}
+                />
+                <ul
+                  className="absolute right-0 top-full mt-1 z-20 py-1 w-full min-w-[10rem] bg-white border rounded-md shadow-lg text-sm"
+                  role="listbox"
+                >
+                  {SORT_OPTIONS.map((opt) => (
+                    <li
+                      key={opt.value}
+                      role="option"
+                      aria-selected={sortBy === opt.value}
+                      onClick={() => {
+                        setSortBy(opt.value);
+                        setSortOpen(false);
+                      }}
+                      className={`px-3 py-2 cursor-pointer hover:bg-gray-100 ${
+                        sortBy === opt.value ? "bg-primary/10 text-primary font-medium" : "text-gray-700"
+                      }`}
+                    >
+                      {opt.label}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
-        ))}
+        </div>
       </section>
+
+      <SearchRestaurantList locationName="Lagos" />
        <div className="lg:hidden">
         <Filtered 
         isOpen={isFilterOpen}

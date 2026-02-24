@@ -22,20 +22,20 @@ export default function Footer() {
               Discovery
             </h3>
             <div className="flex flex-col text-white font-light space-y-2 text-[12px] md:text-base">
-              <Link to="/" className="cursor-pointer">
+              <Link to="/" className="cursor-pointer hover:text-accent transition-colors">
                 Articles
               </Link>
-              <Link className="cursor-pointer">Find a Business</Link>
+              <Link className="cursor-pointer hover:text-accent transition-colors">Find a Business</Link>
               <Link
                 to="/category"
                 onClick={() =>
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
                 }
-                className="cursor-pointer"
+                className="cursor-pointer hover:text-accent transition-colors"
               >
                 Categories
               </Link>
-              <Link className="cursor-pointer">Events</Link>
+              <Link className="cursor-pointer hover:text-accent transition-colors">Events</Link>
             </div>
           </div>
 
@@ -46,17 +46,17 @@ export default function Footer() {
             <div className="text-white font-light space-y-2 text-[12px] md:text-base ">
               <Link
                 to="/business"
-                className="cursor-pointer"
+                className="cursor-pointer hover:text-accent transition-colors"
                 onClick={() =>
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
                 }
               >
                 Protos for business
               </Link>
-              <p className="cursor-pointer">Advertise what you own</p>
+              <p className="cursor-pointer hover:text-accent transition-colors">Advertise what you own</p>
               <Link
                 to="/blog"
-                className="cursor-pointer"
+                className="cursor-pointer hover:text-accent transition-colors"
                 onClick={() =>
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
                 }
@@ -72,7 +72,7 @@ export default function Footer() {
             <div className="flex flex-col text-white font-light space-y-2 text-[12px] md:text-base">
               <Link
                 to="/about"
-                className="cursor-pointer"
+                className="cursor-pointer hover:text-accent transition-colors"
                 onClick={() =>
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
                 }
@@ -81,16 +81,16 @@ export default function Footer() {
               </Link>
               <Link
                 to="/contact"
-                className="cursor-pointer"
+                className="cursor-pointer hover:text-accent transition-colors"
                 onClick={() =>
                   window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
                 }
               >
                 Contact Us
               </Link>
-              <p className="cursor-pointer">Privacy Policy</p>
-              <p className="cursor-pointer">Terms of Service</p>
-              <p className="cursor-pointer">Help Center</p>
+              <p className="cursor-pointer hover:text-accent transition-colors">Privacy Policy</p>
+              <p className="cursor-pointer hover:text-accent transition-colors">Terms of Service</p>
+              <p className="cursor-pointer hover:text-accent transition-colors">Help Center</p>
             </div>
           </div>
         </div>

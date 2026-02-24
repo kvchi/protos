@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Select from "react-select";
 import ImageUpload from "../../../shared/ImageUpload";
 
@@ -14,11 +14,30 @@ const categories = [
   { value: "entertainment", label: "Entertainment" },
 ];
 
-export default function BusinessDetailsTab() {
-  const [logo, setLogo] = useState(null);
-  const [businessType, setBusinessType] = useState(null);
+function getBusinessTypeOption(name) {
+  if (!name) return null;
+  const lower = String(name).toLowerCase();
+  if (lower.includes("restaurant")) return businessTypes[0];
+  if (lower.includes("cafe") || lower.includes("coffee")) return businessTypes[1];
+  if (lower.includes("bar")) return businessTypes[2];
+  return null;
+}
+
+export default function BusinessDetailsTab({ business }) {
+  const [logo, setLogo] = useState(business?.image ?? null);
+  const [title, setTitle] = useState(business?.name ?? "");
+  const [description, setDescription] = useState(business?.description ?? "");
+  const [businessType, setBusinessType] = useState(() => getBusinessTypeOption(business?.name));
   const [category, setCategory] = useState(null);
   const [subCategory, setSubCategory] = useState(null);
+
+  useEffect(() => {
+    if (!business) return;
+    setLogo(business.image ?? null);
+    setTitle(business.name ?? "");
+    setDescription(business.description ?? "");
+    setBusinessType(getBusinessTypeOption(business.name));
+  }, [business?.id]);
 
   const selectStyles = {
   control: (base) => ({
@@ -39,6 +58,8 @@ export default function BusinessDetailsTab() {
           Business title
         </label>
         <input
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
           className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2"
           placeholder="Thor: Ragnarok with Bill"
         />
@@ -50,6 +71,8 @@ export default function BusinessDetailsTab() {
         </label>
         <textarea
           rows={6}
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-2"
           placeholder="Describe your business..."
         />

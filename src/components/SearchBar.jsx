@@ -27,16 +27,16 @@ const isMenuPage = pathname === "/menu";
   return (
     <div
       className={`
-        flex items-center gap-3 p-2
+        flex items-center gap-2 sm:gap-3 p-2 sm:p-3
         ${
           showDetailsLayout
             ? "bg-[#E7EBEF] rounded-2xl shadow-sm lg:max-w-xl"
-            : "bg-[#E7EBEF] rounded-md md:rounded-2xl shadow-md md:max-w-md lg:max-w-xl"
+            : "bg-[#E7EBEF] rounded-lg sm:rounded-xl md:rounded-2xl shadow-md w-full min-w-0"
         }
       `}
     >
       {showDetailsLayout && (
-        <div className="hidden md:flex items-center bg-white px-3 py-2 rounded-lg ">
+        <div className="hidden md:flex items-center bg-white px-3 py-2 rounded-lg min-w-0 flex-1">
           <input
             type="text"
             defaultValue={
@@ -45,32 +45,32 @@ const isMenuPage = pathname === "/menu";
               : "Lagos, Nigeria"
             }
             readOnly
-            className="outline-none bg-transparent text-gray-800 text-base md:text-sm"
+            className="outline-none bg-transparent text-gray-800 text-base md:text-sm w-full min-w-0"
           />
         </div>
       )}
 
       {showDetailsLayout && (
-        <span className="hidden md:block w-[1px] h-8 bg-gray-400 opacity-50"></span>
+        <span className="hidden md:block w-[1px] h-8 bg-gray-400 opacity-50 shrink-0" aria-hidden="true" />
       )}
 
       {!showDetailsLayout && (
         <>
-          <div className="hidden lg:flex items-center gap-2">
-            <p className="text-[#3A3A3A] text-sm">Category</p>
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
+            <p className="text-[#3A3A3A] text-sm whitespace-nowrap">Category</p>
             <IoIosArrowDown />
           </div>
-          <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
-          <div className="hidden lg:flex items-center gap-2">
-            <p className="text-[#3A3A3A] text-sm">Location</p>
+          <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30 shrink-0" aria-hidden="true" />
+          <div className="hidden lg:flex items-center gap-2 shrink-0">
+            <p className="text-[#3A3A3A] text-sm whitespace-nowrap">Location</p>
             <IoIosArrowDown />
           </div>
-          <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30"></span>
+          <span className="hidden lg:block w-[1px] h-8 bg-[#3A3A3A] opacity-30 shrink-0" aria-hidden="true" />
         </>
       )}
       <div
         className={`
-          flex flex-col w-full max-w-xs rounded-lg px-2 py-1
+          flex flex-col flex-1 min-w-0 rounded-lg px-2 py-1 sm:px-3 sm:py-1.5
           ${
             showDetailsLayout
               ? "bg-white"
@@ -78,14 +78,14 @@ const isMenuPage = pathname === "/menu";
           }
         `}
       >
-        <div className="flex items-center gap-2">
-          <IoSearch className="text-[#3A3A3A] lg:text-lg" />
+        <div className="flex items-center gap-2 min-w-0">
+          <IoSearch className="text-[#3A3A3A] lg:text-lg shrink-0 w-4 h-4 sm:w-5 sm:h-5" />
           <input
             type="text"
             placeholder="Search with keyword"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="flex-1 outline-none text-[#3A3A3A] placeholder-[#A0A0A0] text-base md:text-sm"
+            className="flex-1 min-w-0 outline-none text-[#3A3A3A] placeholder-[#A0A0A0] text-sm sm:text-base"
             onFocus={onFocus}
             onBlur={onBlur}
           />
@@ -95,7 +95,7 @@ const isMenuPage = pathname === "/menu";
 
       <button
         onClick={handleSearch}
-        className="bg-primary text-white px-4 py-2 md:px-4 md:py-2 rounded-xl text-base cursor-pointer"
+        className="bg-primary text-white px-4 py-2.5 sm:px-5 sm:py-2 rounded-lg sm:rounded-xl text-sm sm:text-base cursor-pointer shrink-0"
       >
         Search
       </button>

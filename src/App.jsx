@@ -2,6 +2,8 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Error from "./components/Error";
+import { useSwitchAccount } from "./context/SwitchAccountContext";
+import SwitchAccountLoading from "./components/SwitchAccountLoading";
 
 
 import Home from "./pages/Home";
@@ -40,7 +42,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ForgetPassword from "./pages/auth/ForgetPassword";
 
 export default function App() {
-
+  const { showSwitchLoading } = useSwitchAccount();
 
   function PageOutlet() {
     return (
@@ -124,5 +126,10 @@ export default function App() {
 
   ]);
 
-  return <RouterProvider router={Routes} />;
+  return (
+    <>
+      <RouterProvider router={Routes} />
+      {showSwitchLoading && <SwitchAccountLoading />}
+    </>
+  );
 };

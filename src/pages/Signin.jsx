@@ -1,9 +1,9 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Frame6, } from "../assets/images";
+import { Frame6 } from "../assets/images";
 import api from "../api/axios";
 import { RegistrationContext } from "../context/RegistrationContext";
-
+import { useSwitchAccount } from "../context/SwitchAccountContext";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -11,14 +11,17 @@ export default function Signin() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  
-  const { login, } = useContext(RegistrationContext);
+  const { login } = useContext(RegistrationContext);
+  const { setShowSwitchLoading } = useSwitchAccount();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setLoading(true);
-    console.log("Sending to backend", {email, password});
+    setShowSwitchLoading(true, "business");
+    console.log("Sending to backend", { email, password });
+
+    let didNavigate = false;
 
     try {
       const response = await api.post("/auth/login/", {
@@ -26,35 +29,36 @@ export default function Signin() {
         password,
       });
 
-      console.log("Login Response from backend:",response.data);
+      console.log("Login Response from backend:", response.data);
 
-
-        if (response.data.detail?.includes("verification code")) {
-          localStorage.setItem("email", email);
-          localStorage.setItem("verifyType", "login");
-          navigate("/verifyemail");
-          return
-        }
-
-        if (response.data.token?.access_token) {
-          localStorage.setItem("loginTIme", Date.now());
-          login(
-        {
-          email: response.data.user.email,
-          first_name: response.data.user.first_name,
-          last_name: response.data.user.last_name,
-          country: response.data.user.country,
-          state: response.data.user.state,
-          city: response.data.user.city,
-      },
-        response.data.token
-      );
-      navigate("/home")
-        } else {
-        console.warn("Unexpected login response:", response.data);
-        setError("Unexpected response from server. Please try again.");
+      if (response.data.detail?.includes("verification code")) {
+        localStorage.setItem("email", email);
+        localStorage.setItem("verifyType", "login");
+        setShowSwitchLoading(false);
+        navigate("/verifyemail");
+        return;
       }
-      
+
+      if (response.data.token?.access_token) {
+        localStorage.setItem("loginTIme", Date.now());
+        login(
+          {
+            email: response.data.user.email,
+            first_name: response.data.user.first_name,
+            last_name: response.data.user.last_name,
+            country: response.data.user.country,
+            state: response.data.user.state,
+            city: response.data.user.city,
+          },
+          response.data.token
+        );
+        didNavigate = true;
+        window.location.href = "/home";
+        return;
+      }
+
+      console.warn("Unexpected login response:", response.data);
+      setError("Unexpected response from server. Please try again.");
     } catch (err) {
       console.error(err);
       setError(
@@ -63,6 +67,9 @@ export default function Signin() {
       );
     } finally {
       setLoading(false);
+      if (!didNavigate) {
+        setShowSwitchLoading(false);
+      }
     }
   };
 

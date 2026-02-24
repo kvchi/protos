@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { HiArrowLeft } from "react-icons/hi2";
@@ -25,7 +25,6 @@ import EditReservationForm from "../../components/dashboard/EditReservationForm"
 import ReservationDetails from "./ReservationDetails";
 import CancelReservationModal from "../../components/dashboard/CancelReservation";
 import ReservationDirections from "./ReservationDirections";
-// import { reservationData } from "../../components/data/data";
 
 export default function Dashboard() {
   const [showSidebar, setShowSidebar] = useState(false);
@@ -41,6 +40,20 @@ export default function Dashboard() {
   const [selectedReservation, setSelectedReservation] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isCancelModalOpen, setIsCancelModalOpen] = useState(false);
+  
+  // Load profile image from localStorage on mount
+  const [profileImage, setProfileImage] = useState(() => {
+    return localStorage.getItem('profileImage') || null;
+  });
+
+  // Save to localStorage whenever profileImage changes
+  useEffect(() => {
+    if (profileImage) {
+      localStorage.setItem('profileImage', profileImage);
+    } else {
+      localStorage.removeItem('profileImage');
+    }
+  }, [profileImage]);
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col overflow-x-hidden relative w-full">
@@ -52,6 +65,8 @@ export default function Dashboard() {
           favorites={favorites}
           showSidebar={showSidebar}
           setShowSidebar={setShowSidebar}
+          profileImage={profileImage}    
+          setProfileImage={setProfileImage}     
         />
 
         <main className="flex-1 px-4 lg:px-16 py-6 space-y-8 ">
@@ -217,6 +232,7 @@ export default function Dashboard() {
                   title="Yemkemo Restaurant & Bar"
                   description="Restaurant, bar, grill..."
                   location="365 Ikari village, Ikja"
+                  onClick={() => navigate("/dashboard/restaurantDetails")}
                 />
               </section>
             </>
@@ -254,7 +270,7 @@ export default function Dashboard() {
                     title="Yemkemo Restaurant & Bar"
                     description="Restaurant, bar, grill, sushi and raw fish, Japanese restaurant..."
                     location="365 Ikari village, Ikja, Lagos state."
-                    onClick={() => navigate("restaurantDetails")}
+                    onClick={() => navigate("/dashboard/restaurantDetails")}
                   />
                 ))}
               </div>

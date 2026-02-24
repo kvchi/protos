@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { IoIosChatboxes, IoMdHeartEmpty } from "react-icons/io";
 import { IoLocationOutline } from "react-icons/io5";
+import CurrencyDropdown from "./shared/CurrencyDropdown";
 
 const filterSections = [
   {
@@ -40,7 +42,8 @@ const filterSections = [
   },
 ];
 
-export default function MenuFilter({onOpenFilterModal}) {
+export default function MenuFilter({ onOpenFilterModal }) {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState({});
 
   const toggleExpand = (title) =>
@@ -75,7 +78,13 @@ export default function MenuFilter({onOpenFilterModal}) {
           <p className="leading-tight text-xs">
             365 Ikari village, Ikeja, Lagos state, Nigeria.
             <br />
-            <span className="text-red-600 underline cursor-pointer">
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => navigate("/map")}
+              onKeyDown={(e) => e.key === "Enter" && navigate("/map")}
+              className="text-red-600 underline cursor-pointer"
+            >
               (Direction)
             </span>
           </p>
@@ -105,10 +114,11 @@ export default function MenuFilter({onOpenFilterModal}) {
                 <>
                   <div className="flex items-center gap-4">
                     <h3 className="text-xs font-semibold">Price</h3>
-
-                    <select className="border rounded bg-white p-1 text-xs w-[110px]">
-                      <option>NGN - Naira</option>
-                    </select>
+                    <CurrencyDropdown
+                      size="sm"
+                      triggerClassName="flex items-center justify-between gap-2 border rounded bg-white p-1.5 text-xs min-w-[110px] cursor-pointer hover:bg-gray-50"
+                      listClassName="absolute left-0 top-full mt-1 z-20 py-1 min-w-[10rem] bg-white border rounded-lg shadow-lg text-xs"
+                    />
                   </div>
 
                   <div className="grid grid-cols-2 gap-2 mt-3">

@@ -4,6 +4,7 @@ import MenuItems from "../components/MenuItems";
 import food10 from "../assets/images/food10.jpg";
 import food1 from "../assets/images/food1.jpeg";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import FilterModal from "../components/FilterModal";
 import FilterImageModal from "../components/FilterImageModal";
 import { IoIosChatboxes, IoMdHeartEmpty } from "react-icons/io";
@@ -61,6 +62,7 @@ const menuItems = [
 ];
 
 export default function Menu() {
+  const navigate = useNavigate();
   const [isPlaceOrderOpen, setIsPlaceOrderOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
@@ -171,7 +173,13 @@ export default function Menu() {
             <p className="leading-tight text-xs">
               365 Ikari village, Ikeja, Lagos state, Nigeria.
               <br />
-              <span className="text-red-600 underline cursor-pointer">
+              <span
+                role="button"
+                tabIndex={0}
+                onClick={() => navigate("/map")}
+                onKeyDown={(e) => e.key === "Enter" && navigate("/map")}
+                className="text-red-600 underline cursor-pointer"
+              >
                 (Direction)
               </span>
             </p>

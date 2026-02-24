@@ -12,7 +12,7 @@ export default function EditListing({ business, onBack }) {
     <div className="lg:px-6 py-4">
       <EditBusinessHeader
         onBack={onBack}
-        title="Add posts"
+        title={business ? "Edit listing" : "Add posts"}
       />
 
       <Tabs

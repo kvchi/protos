@@ -1,6 +1,13 @@
+import { useState, useEffect } from "react";
 import FormInput from "../../../shared/FormInput";
 
-export default function LocationTab() {
+export default function LocationTab({ business }) {
+  const [streetAddress, setStreetAddress] = useState(business?.location ?? "");
+
+  useEffect(() => {
+    if (business?.location) setStreetAddress(business.location);
+  }, [business?.id, business?.location]);
+
   return (
     <div className="space-y-6 pt-6">
       <h2 className="text-lg font-semibold text-primary">
@@ -11,7 +18,12 @@ export default function LocationTab() {
         <FormInput label="State" placeholder="Lagos" />
         <FormInput label="City" placeholder="Lekki" />
         <FormInput label="Local Government" placeholder="Lekki" />
-        <FormInput label="Street Address" placeholder="12 Admiralty Way" />
+        <FormInput
+          label="Street Address"
+          placeholder="12 Admiralty Way"
+          value={streetAddress}
+          onChange={(e) => setStreetAddress(e.target.value)}
+        />
         <FormInput label="Website" placeholder="Yemkemo.com" />
       </div>
     </div>

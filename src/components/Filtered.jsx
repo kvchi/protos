@@ -59,12 +59,21 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
           <CurrencyDropdown triggerClassName="flex items-center justify-between gap-3 border p-2 rounded-xl shadow-lg cursor-pointer min-w-[10rem] bg-white hover:bg-gray-50" />
         </div>
 
-        <div className="grid grid-cols-2 gap-4 pt-12">
-          <p className="border p-2 rounded-lg shadow-lg">30k - below</p>
-          <p className="border p-2 rounded-lg shadow-lg">30k - 100k</p>
-          <p className="border p-2 rounded-lg shadow-lg">100k - 500k</p>
-          <p className="border p-2 rounded-lg shadow-lg">500k - 1m</p>
-          <p className="border p-2 rounded-lg shadow-lg">1m - above</p>
+        <p className="text-sm font-semibold text-gray-600 pt-6 pb-2">
+          Price range
+        </p>
+        <div className="grid grid-cols-2 gap-3">
+          {["30k - below", "30k - 100k", "100k - 500k", "500k - 1m", "1m - above"].map(
+            (label) => (
+              <button
+                key={label}
+                type="button"
+                className="w-full border-2 border-gray-200 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-700 bg-white hover:border-primary hover:bg-primary/5 hover:text-primary cursor-pointer transition-colors whitespace-nowrap text-center"
+              >
+                {label}
+              </button>
+            )
+          )}
         </div>
 
         <div>
@@ -80,9 +89,9 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
               {showAllCategories ? "See less" : "See all"}
             </p>
           </div>
-          <div className="mt-5 flex flex-col gap-3 flex-wrap max-h-[280px] overflow-y-auto modal-scroll">
+          <div className="mt-5 flex flex-col gap-3 flex-wrap max-h-[380px] overflow-y-auto modal-scroll">
             {categoryPillsToShow.map((cat) => (
-              <p key={cat} className="w-fit border p-2 rounded-lg shadow-lg">
+              <p key={cat} className="w-fit border p-1 rounded-lg shadow-lg">
                 {cat}
               </p>
             ))}
@@ -204,7 +213,7 @@ export default function Filtered({ isOpen, onOpen, onClose }) {
 
               {/* Category Tab */}
               {activeTab === "Category" && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-3 max-h-[400px] overflow-y-auto modal-scroll">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-4 gap-y-3 max-h-[55vh] overflow-y-auto modal-scroll min-h-0">
                   {categories.map((item) => (
                     <label
                       key={item}

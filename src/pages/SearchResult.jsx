@@ -5,7 +5,7 @@ import Search from "../components/Seach";
 export default function SearchResult() {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   return (
-    <main>
+    <main className="w-full overflow-x-hidden">
       <div className="flex items-start">
         <Filtered
           isOpen={isFilterOpen}

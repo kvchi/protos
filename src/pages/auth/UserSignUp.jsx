@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { RegistrationContext } from "../../context/RegistrationContext";
+import { RegistrationContext } from "../../context/RegistrationContext.js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom"

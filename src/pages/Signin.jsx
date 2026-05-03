@@ -2,8 +2,8 @@ import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Frame6 } from "../assets/images";
 import api from "../api/axios";
-import { RegistrationContext } from "../context/RegistrationContext";
-import { useSwitchAccount } from "../context/SwitchAccountContext";
+import { RegistrationContext } from "../context/RegistrationContext.js";
+import { useSwitchAccount } from "../context/useSwitchAccount";
 
 export default function Signin() {
   const [email, setEmail] = useState("");
@@ -53,7 +53,10 @@ export default function Signin() {
           response.data.token
         );
         didNavigate = true;
-        window.location.href = "/home";
+        const redirect = localStorage.getItem("postLoginRedirect") || "/home";
+        console.log("Redirecting to:", redirect);
+        localStorage.removeItem("postLoginRedirect");
+        window.location.href = redirect;
         return;
       }
 

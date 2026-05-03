@@ -14,7 +14,7 @@ const CatCard = ({ image, title, color, onClick }) => {
       <img
         src={image}
         alt={title}
-        className="w-full object-contain p-2 rounded-md"
+        className="w-full h-32 object-contain p-2 rounded-md"
       />
       <div className="p-2 text-center">
         <h4 className={`font-semibold text-base ${text}`}>{title}</h4>

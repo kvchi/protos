@@ -5,7 +5,7 @@ import { FiEye, FiEyeOff } from "react-icons/fi";
 import { useState, useContext } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import axios from "axios";
-import { RegistrationContext } from "../../context/RegistrationContext";
+import { RegistrationContext } from "../../context/RegistrationContext.js";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 

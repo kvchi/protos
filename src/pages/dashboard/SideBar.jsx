@@ -1,7 +1,7 @@
 import { LucidePanelLeftClose } from "lucide-react";
 import { sidebarMenus } from "./sideBarMenu";
 import { useState, useEffect, useContext } from "react";
-import { RegistrationContext } from "../../context/RegistrationContext"; // Adjust the path as needed
+import { RegistrationContext } from "../../context/RegistrationContext.js"; // Adjust the path as needed
 
 export default function SideBar({
   type = "user",
@@ -150,7 +150,7 @@ export default function SideBar({
         )}
       </label>
       <p className="mt-4 font-medium">
-        Name: <span className="text-blue-600">
+        Name: <span className="text-blue-600 text-sm font-light">
           {formData.first_name} {formData.last_name}
         </span>
       </p>
@@ -204,7 +204,7 @@ export default function SideBar({
       </aside>
 
       {/* ================= DESKTOP SIDEBAR ================= */}
-      <aside className="w-[250px] border-r-2 border-gray py-8 hidden md:block px-8">
+      <aside className="w-[250px] border-r-2 border-gray py-8 hidden md:block px-6">
         <ProfileSection />
 
         <div className="mt-10">

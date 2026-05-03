@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ClipboardCheck, CircleDollarSign } from "lucide-react";
 import { hand } from "../assets/images";
-import { SwitchAccountContext } from "../context/SwitchAccountContext";
+import { SwitchAccountContext } from "../context/SwitchAccountContext.js";
 
 export default function SwitchAccountLoading() {
   const { switchMode } = useContext(SwitchAccountContext);

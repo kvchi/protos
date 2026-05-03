@@ -36,11 +36,6 @@ button:active {
 
 }
 
-.modal-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: #0e375f #f3f4f6;
-}
-
 .modal-scroll::-webkit-scrollbar {
   width: 4px;
 }

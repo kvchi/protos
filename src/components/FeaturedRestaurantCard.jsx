@@ -12,7 +12,7 @@ export default function FeaturedRestaurantCard({
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm flex-shrink-0 w-[320px] sm:w-[360px] flex flex-col gap-2">
+    <div className="snap-start bg-white rounded-xl p-3 sm:p-4 border border-gray-200 shadow-sm flex-shrink-0 w-[320px] sm:w-[360px] flex flex-col gap-2">
       <div className="flex items-start gap-3">
         <img
           src={image}

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import SearchResultCard from "./SearchResultCard";
 import FeaturedRestaurantCard from "./FeaturedRestaurantCard";
 import { featuredRestaurants } from "../data/featuredRestaurants";
@@ -8,17 +8,40 @@ const PLACEHOLDER_ITEMS = [1, 2, 3, 4, 5];
 export default function SearchRestaurantList({ locationName = "Lagos" }) {
   const featuredScrollRef = useRef(null);
 
-  const CARD_WIDTH = 360;
-  const GAP = 16;
-  const SLIDE_STEP = CARD_WIDTH + GAP;
+  const [slideStep, setSlideStep] = useState(0);
+
+  const measureStep = () => {
+    const el = featuredScrollRef.current;
+    if (!el) return;
+    const firstCard = el.firstElementChild;
+    if (!firstCard) return;
+
+    const styles = window.getComputedStyle(el);
+    const gapPx = Number.parseFloat(styles.columnGap || styles.gap || "0") || 0;
+    const cardWidth = firstCard.getBoundingClientRect().width || firstCard.offsetWidth || 0;
+    const step = Math.round(cardWidth + gapPx);
+    if (step > 0) setSlideStep(step);
+  };
+
+  useEffect(() => {
+    measureStep();
+    window.addEventListener("resize", measureStep);
+    return () => window.removeEventListener("resize", measureStep);
+  }, []);
 
   const scrollFeatured = (direction) => {
     if (!featuredScrollRef.current) return;
+    if (!slideStep) measureStep();
     featuredScrollRef.current.scrollBy({
-      left: direction === "left" ? -SLIDE_STEP : SLIDE_STEP,
+      left: direction === "left" ? -slideStep : slideStep,
       behavior: "smooth",
     });
   };
+
+  const viewportWidthClass = useMemo(
+    () => "overflow-hidden w-[min(100%,992px)] sm:w-[min(100%,1112px)]",
+    []
+  );
 
   return (
     <section className="px-4 md:px-8 lg:px-10">
@@ -59,10 +82,10 @@ export default function SearchRestaurantList({ locationName = "Lagos" }) {
             </button>
           </div>
         </div>
-        <div className="overflow-hidden w-[min(100%,992px)] sm:w-[min(100%,1112px)]">
+        <div className={viewportWidthClass}>
           <div
             ref={featuredScrollRef}
-            className="flex gap-4 overflow-x-auto scroll-smooth pb-2 [&::-webkit-scrollbar]:hidden"
+            className="flex gap-4 overflow-x-auto scroll-smooth pb-2 [&::-webkit-scrollbar]:hidden snap-x snap-mandatory"
             style={{
               scrollbarWidth: "none",
               msOverflowStyle: "none",

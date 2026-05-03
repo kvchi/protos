@@ -1,7 +1,6 @@
 
-import { createContext, useState, useEffect } from "react";
-
-export const RegistrationContext = createContext();
+import { useState, useEffect } from "react";
+import { RegistrationContext } from "./RegistrationContext";
 
 export const RegistrationProvider = ({ children }) => {
 
@@ -12,7 +11,12 @@ export const RegistrationProvider = ({ children }) => {
 
   const [token, setToken] = useState(() => {
     const savedToken = localStorage.getItem("token");
-    return savedToken ? JSON.parse(savedToken) : null;
+    if (!savedToken) return null;
+    try {
+      return JSON.parse(savedToken);
+    } catch {
+      return savedToken;
+    }
   });
 
  
@@ -26,7 +30,11 @@ export const RegistrationProvider = ({ children }) => {
 
   useEffect(() => {
     if (token) {
-      localStorage.setItem("token", JSON.stringify(token));
+      // Persist token safely whether it's a string or object
+      localStorage.setItem(
+        "token",
+        typeof token === "string" ? token : JSON.stringify(token)
+      );
     } else {
       localStorage.removeItem("token");
     }
@@ -51,6 +59,7 @@ export const RegistrationProvider = ({ children }) => {
 
   const login = (userData, authToken) => {
     setFormData(userData);
+    // authToken can be a raw JWT string or an object (e.g. { access_token, refresh_token })
     setToken(authToken);
     localStorage.setItem("loginTime", Date.now())
     console.log(userData);

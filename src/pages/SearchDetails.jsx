@@ -64,7 +64,7 @@ export default function SearchDetails() {
   const [currentIndex, setCurrentIndex] = useState(1);
 
   return (
-    <main className="bg-gray-50 min-h-screen pb-20 px-4 lg:px-30">
+    <main className="bg-gray-50 min-h-screen pb-20 px-4 lg:px-30 overflow-x-hidden">
       <div className="flex justify-center py-10">
         <SearchBar />
       </div>

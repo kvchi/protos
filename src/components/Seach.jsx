@@ -17,9 +17,8 @@ export default function Search() {
   const [sortOpen, setSortOpen] = useState(false);
   const [sortBy, setSortBy] = useState("distance");
 
-  
   return (
-    <main className="w-full lg:w-[80%] mx-auto flex flex-col">
+    <main className="w-full lg:flex-1 min-w-0 flex flex-col">
       <section className="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full px-4 md:px-8 lg:px-10 rounded-lg py-5 md:py-10 gap-4">
         <div className="flex flex-row items-start lg:items-center bg-secondary rounded-lg overflow-hidden shadow-sm p-3 lg:p-2 lg:ml-12 gap-3">
           <input

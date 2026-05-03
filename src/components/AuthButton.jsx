@@ -1,7 +1,7 @@
 import { useContext, useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { RegistrationContext } from "../context/RegistrationContext";
-import { useSwitchAccount } from "../context/SwitchAccountContext";
+import { RegistrationContext } from "../context/RegistrationContext.js";
+import { useSwitchAccount } from "../context/useSwitchAccount";
 import { ChevronDown, LogOut, LayoutDashboard } from "lucide-react";
 
 const SWITCH_LOADING_DURATION_MS = 2500;
@@ -118,7 +118,8 @@ export default function AuthButton({ signupText = "Sign up" }) {
                     setShowSwitchLoading(true, mode);
 
                     setTimeout(() => {
-                      window.location.href = dashboardLink.path;
+                      navigate(dashboardLink.path, { replace: true });
+                      setShowSwitchLoading(false);
                     }, SWITCH_LOADING_DURATION_MS);
                   }
                 }}

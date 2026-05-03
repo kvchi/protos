@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Frame8 } from "../../assets/images";
-import { RegistrationContext } from "../../context/RegistrationContext";
+import { RegistrationContext } from "../../context/RegistrationContext.js";
 import { toast } from "react-toastify";
 
 const BASE_URL = import.meta.env.VITE_BASE_URL;

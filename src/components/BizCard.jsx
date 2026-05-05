@@ -49,7 +49,7 @@ const BusinessCard = ({ business }) => {
 
       <button
         type="button"
-        onClick={() => navigate("/searchDetails")}
+        onClick={() => navigate(`/searchDetails/${business.id}`)}
         className="text-[#CC8400] font-medium text-xs sm:text-sm mt-auto underline self-center cursor-pointer"
       >
         More Info

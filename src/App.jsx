@@ -84,7 +84,7 @@ export default function App() {
         { path: "/searchResult", element: <SearchResult /> },
         { path: "/learnMore", element: <LearnMore /> },
         { path: "/map", element: <Map /> },
-        { path: "/searchDetails", element: <SearchDetails /> },
+        { path: "/searchDetails/:id", element: <SearchDetails /> },
         { path: "/menu", element: <Menu /> },
         { path: "/upload", element: <Upload /> },
       ],

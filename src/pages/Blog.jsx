@@ -20,13 +20,8 @@ export default function Blog() {
   useEffect(() => {
     async function fetchBlogs() {
       try {
-        const data = await getBlogs();
-        
-        // 1. Log the data to see what the server is actually sending
+        const data = await getBlogs();  
         console.log("API Response:", data);
-
-        // 2. Use optional chaining (?.) and provide a fallback empty array
-        // This prevents the "cannot read results of undefined" error
         const blogPosts = data?.results || data || [];
         
         setPosts(blogPosts);

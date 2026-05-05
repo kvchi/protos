@@ -7,3 +7,7 @@ export async function createBusiness(payload) {
   return res.data;
 }
 
+export async function getBusinesses() {
+  const res = await api.get("/business/businesses/");
+  return res.data;
+}

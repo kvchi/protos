@@ -7,3 +7,8 @@ export async function getBlogs() {
     // Now res.data will exist
     return res.data;
 }
+
+export async function getBlogById(id) {
+    const res = await api.get(`/blog/blogs/${id}/`);
+    return res.data;
+}

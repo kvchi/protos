@@ -21,6 +21,7 @@ import CompleteBiz from "./pages/CompleteBiz";
 import Signin from "./pages/Signin";
 import HomeAfterLogin from "./pages/HomeAfterLogin";
 import Blog from "./pages/Blog";
+import BlogDetail from "./pages/BlogDetail";
 import Business from "./pages/Business";
 import UserSignUp from "./pages/auth/UserSignUp";
 import UserSignin from "./pages/auth/UserSignin";
@@ -40,6 +41,7 @@ import MenuDetails from "./pages/dashboard/MenuDetails";
 import CommentPage from "./pages/dashboard/CommentPage";
 import ScrollToTop from "./components/ScrollToTop";
 import ForgetPassword from "./pages/auth/ForgetPassword";
+import ResetPassword from "./pages/auth/ResetPassword";
 
 export default function App() {
   const { showSwitchLoading } = useSwitchAccount();
@@ -73,6 +75,7 @@ export default function App() {
         { path: "/userSignup", element: <UserSignUp /> },
         { path: "/userSignin", element: <UserSignin />},
         { path: "/forgot-password", element: <ForgetPassword />},
+        { path: "/reset-password", element: <ResetPassword />},
         { path: "/email", element: <Email /> },
         { path: "/verifyemail", element: <VerifyEmail /> },
         { path: "/tel", element: <Tel /> },
@@ -80,6 +83,7 @@ export default function App() {
         { path: "/businessInfo", element: <BusinessInfo /> },
         { path: "/completeBiz", element: <CompleteBiz /> },
         { path: "/blog", element: <Blog /> },
+        { path: "/blog/:id", element: <BlogDetail /> },
         { path: "/business", element: <Business /> },
         { path: "/searchResult", element: <SearchResult /> },
         { path: "/learnMore", element: <LearnMore /> },

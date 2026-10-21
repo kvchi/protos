@@ -28,3 +28,8 @@ export async function createReview(businessId, payload) {
   });
   return res.data;
 }
+
+export async function likeUnlikeBusiness(id) {
+  const res = await api.post(`/business/businesses/${id}/like/`);
+  return res.data;
+}

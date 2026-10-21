@@ -68,6 +68,7 @@ export default function ResetPassword() {
         {
           email,
           password,
+          confirm_password: confirmPassword,
         },
         { headers: { "Content-Type": "application/json" } }
       );

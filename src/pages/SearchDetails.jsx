@@ -4,6 +4,7 @@ import {
   getBusinessById,
   getBusinessReviews,
   createReview,
+  likeUnlikeBusiness,
 } from "../api/business.service";
 
 import SearchBar from "../components/SearchBar";
@@ -19,7 +20,7 @@ import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 
 import { ArrowLeft, ArrowRight, Phone } from "lucide-react";
-import { IoIosChatboxes, IoMdHeartEmpty } from "react-icons/io";
+import { IoIosChatboxes, IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
 import MenuCard from "../components/MenuCard";
 import { IoLocationOutline } from "react-icons/io5";
 import { SlGlobe } from "react-icons/sl";
@@ -38,6 +39,9 @@ export default function SearchDetails() {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [submittingReview, setSubmittingReview] = useState(false);
+
+  const [isLiked, setIsLiked] = useState(false);
+  const [liking, setLiking] = useState(false);
 
   useEffect(() => {
     async function fetchBusiness() {
@@ -147,6 +151,18 @@ export default function SearchDetails() {
     }
   };
 
+  const handleLike = async () => {
+    setLiking(true);
+    try {
+      await likeUnlikeBusiness(id);
+      setIsLiked((prev) => !prev);
+    } catch (_) {
+      console.error("Failed to like business");
+    } finally {
+      setLiking(false);
+    }
+  };
+
   return (
     <main className="bg-gray-50 min-h-screen pb-20 px-4 lg:px-30 overflow-x-hidden">
       <div className="flex justify-center py-10">
@@ -236,9 +252,18 @@ export default function SearchDetails() {
             <p className="text-yellow-400 font-semibold">2444 review</p>
           </div>{" "}
           |
-          <div className="flex items-center px-4 gap-2">
-            <IoMdHeartEmpty className="text-red-500" />
-            <p className="text-yellow-400 font-semibold">Add to favorite</p>
+          <div
+            className="flex items-center px-4 gap-2 cursor-pointer"
+            onClick={handleLike}
+          >
+            {isLiked ? (
+              <IoMdHeart className="text-red-500" />
+            ) : (
+              <IoMdHeartEmpty className="text-red-500" />
+            )}
+            <p className="text-yellow-400 font-semibold">
+              {liking ? "..." : isLiked ? "Liked!" : "Add to favorite"}
+            </p>
           </div>
           |
           <div className=" flex items-center gap-2 px-4">
